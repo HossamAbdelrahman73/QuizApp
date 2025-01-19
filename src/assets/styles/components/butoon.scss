@@ -1,0 +1,17 @@
+@import "../abstracts/variables";
+.main-button {
+  background-color: $color-background-button;
+  border: none;
+  border-radius: $rounded-input;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4rem;
+  transition: $main-transition;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: $color-background-button;
+    color: $color-black;
+  }
+}
