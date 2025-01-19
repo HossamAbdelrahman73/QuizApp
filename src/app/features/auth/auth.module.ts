@@ -18,7 +18,7 @@ import { SharedModule } from '../../shared/shared.module';
     RegisterComponent,
     ResetPasswordComponent,
     ForgetPasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -26,4 +26,4 @@ import { SharedModule } from '../../shared/shared.module';
     SharedModule,
   ]
 })
-export class AuthModule { }
+export class AuthModule {}
