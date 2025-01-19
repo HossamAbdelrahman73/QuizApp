@@ -8,7 +8,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +20,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     ForgetPasswordComponent,
     ChangePasswordComponent,
   ],
-  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    SharedModule,
+  ]
 })
 export class AuthModule {}
