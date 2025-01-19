@@ -1,0 +1,22 @@
+.bg-router {
+  background-color: #333333;
+
+  &:hover {
+    background-color: #e0e0e0;
+    color: black;
+    cursor: pointer;
+  }
+}
+
+.active {
+  background-color: #333333;
+  color: #c5d86d;
+  border: 5px solid #c5d86d;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 30px;
+  &:hover {
+    background-color: #333333;
+    color: #c5d86d;
+  }
+}
