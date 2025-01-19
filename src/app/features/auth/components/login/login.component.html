@@ -1,1 +1,60 @@
-<p>login works!</p>
+<section>
+  <div class="container-fluid">
+    <h1 class="h2 mt-4 mb-4">Continue your learning journey with QuizWiz!</h1>
+
+    <div class="d-flex gap-3">
+      <div
+        class="bg-router fs-1 py-3 px-5 text-center rounded-4"
+        routerLink="/auth/login"
+        routerLinkActive="active"
+      >
+        <span><i class="fa-solid fa-user-tie"></i></span>
+        <h2 class="h5 text-white">Sign in</h2>
+      </div>
+      <div
+        class="bg-router fs-1 py-3 px-5 text-center rounded-4"
+        routerLink="/auth/register"
+        routerLinkActive="active"
+      >
+        <span class="mb-0 ms-3"><i class="fa-solid fa-user-plus"></i></span>
+        <h2 class="h5 pt-0">Sign up</h2>
+      </div>
+    </div>
+
+    <form class="">
+      <h3 class="h5 mt-5">Registered email address</h3>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping"
+          ><i class="fa-solid fa-envelope"></i
+        ></span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Type your email"
+          aria-label="Username"
+          aria-describedby="addon-wrapping"
+        />
+      </div>
+
+      <h3 class="h5 mt-5">Password</h3>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping"
+          ><i class="fa-solid fa-key"></i
+        ></span>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Type your password"
+          aria-label="Username"
+          aria-describedby="addon-wrapping"
+        />
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mt-5">
+        <button>Sign In <i class="fa-solid fa-circle-check"></i></button>
+
+        <p class="my-auto">Forgot password? <a>click here</a></p>
+      </div>
+    </form>
+  </div>
+</section>
