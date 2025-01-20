@@ -1,5 +1,5 @@
 import { GlobalInterceptor } from './core/interceptors/global/global.interceptor';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,10 +20,10 @@ import {
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+
     HttpClientModule,
   ],
   providers: [
-    // provideHttpClient(withFetch()),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GlobalInterceptor,

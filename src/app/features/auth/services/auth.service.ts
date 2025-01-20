@@ -18,6 +18,7 @@ export class AuthService {
       data
     );
   }
+
   onChangePassword(data: FormGroup): Observable<IChangePassword> {
     return this._HttpClient.post<IChangePassword>(
       'api/auth/change-password',
