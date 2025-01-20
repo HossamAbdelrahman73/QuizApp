@@ -20,10 +20,17 @@ import {
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+<<<<<<< HEAD
     HttpClientModule
   ],
   providers: [
     provideHttpClient(withFetch(),),
+=======
+    HttpClientModule,
+  ],
+  providers: [
+    // provideHttpClient(withFetch()),
+>>>>>>> d20a3f5 ([feat] solve interceptor and add some style in auth module)
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GlobalInterceptor,

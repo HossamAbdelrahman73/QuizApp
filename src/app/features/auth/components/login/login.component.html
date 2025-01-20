@@ -54,10 +54,21 @@
         />
       </div>
 
+<<<<<<< HEAD
       <div class="d-flex justify-content-between align-items-center mt-5">
         <button type="submit">
           Sign In <i class="fa-solid fa-circle-check"></i>
         </button>
+=======
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <button
+            type="submit"
+            class="btn main-button"
+            [disabled]="!loginForm.valid"
+          >
+            Sign In <i class="fa-solid fa-circle-check"></i>
+          </button>
+>>>>>>> d20a3f5 ([feat] solve interceptor and add some style in auth module)
 
         <p class="my-auto">Forgot password? <a>click here</a></p>
       </div>

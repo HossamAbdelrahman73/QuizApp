@@ -7,7 +7,9 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class GlobalInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<any>,
@@ -15,6 +17,7 @@ export class GlobalInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const baseUrl = 'https://upskilling-egypt.com:3005/';
     const token = localStorage.getItem('token');
+<<<<<<< HEAD
     if (token) {
       req = req.clone({
         url: baseUrl + req.url,
@@ -27,7 +30,16 @@ export class GlobalInterceptor implements HttpInterceptor {
         url: baseUrl + req.url,
       });
     }
+=======
 
-    return next.handle(req);
+    const modifiedRequest = req.clone({
+      url: `${baseUrl}${req.url}`,
+      setHeaders: {
+        Authorization: token ? `Bearer ${token}` : '',
+      },
+    });
+>>>>>>> d20a3f5 ([feat] solve interceptor and add some style in auth module)
+
+    return next.handle(modifiedRequest);
   }
 }
