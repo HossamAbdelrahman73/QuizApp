@@ -1,6 +1,6 @@
 <section class="auth">
-  <div class="container-fluid">
-    <h5 (click)="test()" class="mt-4 mb-4">
+  <div class="container-fluid bg-secondary">
+    <h5 (click)="test()" class="mt-2 mb-4">
       Continue your learning journey with QuizWiz!
     </h5>
 
@@ -57,18 +57,23 @@
           <label for="inputGroup-sizing-default2" class="form-label"
             >Password</label
           >
-          <div class="mb-3 input-group">
+          <div class="mb-3 input-group position-relative">
             <span class="input-group-text" id="inputGroup-sizing-default2"
               ><i class="fa-solid fa-key"></i
             ></span>
             <input
-              type="password"
+              [type]="togglePassword ? 'password' : 'text'"
               formControlName="password"
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default2"
               placeholder="Type your password"
             />
+            <!-- <span
+              (click)="togglePassword = !togglePassword"
+              class="position-absolute end-0 top-0 pe-3 pt-2"
+              ><i class="fa-solid fa-lock"></i
+            ></span> -->
           </div>
           <div>
             @if ( loginForm.get('password')?.getError('required') &&

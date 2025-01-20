@@ -13,6 +13,7 @@ export class LoginComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
   });
+  togglePassword = true;
 
   constructor(
     private _FormBuilder: FormBuilder,
