@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { IResetPassword } from '../interfaces/ireset-password';
 import { IChangePassword } from '../interfaces/ichange-password';
+import { IRegisterBody } from '../../interfaces/register-body.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,11 +17,17 @@ export class AuthService {
       data
     );
   }
-  onChangePassword(data: FormGroup): Observable<any> {
-    return this._HttpClient.post<IChangePassword>(
-      'api/auth/change-password',
-      data
-    );
+  
+
+  onChangePassword(data: FormGroup): Observable<IChangePassword> {
+    return this._HttpClient.post<IChangePassword>('api/auth/change-password', data)
+  }
+  onForgetPassword(data: FormGroup): Observable<any> {
+    return this._HttpClient.post('https://upskilling-egypt.com:3005/api/auth/forgot-password', data)
+  }
+  
+  register(data: IRegisterBody) {
+    return this._HttpClient.post('https://upskilling-egypt.com:3005/api/auth/register', data);
   }
 
   onSubmited(data: any): Observable<any> {
