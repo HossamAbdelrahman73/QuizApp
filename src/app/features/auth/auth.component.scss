@@ -1,3 +1,7 @@
+@import "../../../assets/styles/abstracts/variables";
+.container-fluid {
+  background-color: $color-background-section;
+}
 img {
   width: 100%;
 }
