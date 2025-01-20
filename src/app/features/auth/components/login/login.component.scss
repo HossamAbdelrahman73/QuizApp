@@ -31,3 +31,13 @@ h5 {
 a {
   color: $color-green;
 }
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 2.3rem;
+  &:disabled {
+    background-color: white;
+    color: black;
+  }
+}

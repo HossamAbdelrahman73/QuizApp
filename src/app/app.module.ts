@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   HTTP_INTERCEPTORS,
+  HttpClientModule,
   provideHttpClient,
   withFetch,
 } from '@angular/common/http';
@@ -19,9 +20,10 @@ import {
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    HttpClientModule,
   ],
   providers: [
-    provideHttpClient(withFetch()),
+    // provideHttpClient(withFetch()),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GlobalInterceptor,

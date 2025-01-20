@@ -7,28 +7,24 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class GlobalInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const baseUrl = 'https://upskilling-egypt.com:3005';
+    const baseUrl = 'https://upskilling-egypt.com:3005/';
     const token = localStorage.getItem('token');
 
-    if (token) {
-      req = req.clone({
-        url: baseUrl + req.url,
-        setHeaders: {
-          Authorization: `${token}`,
-        },
-      });
-    } else {
-      req = req.clone({
-        url: baseUrl + req.url,
-      });
-    }
+    const modifiedRequest = req.clone({
+      url: `${baseUrl}${req.url}`,
+      setHeaders: {
+        Authorization: token ? `Bearer ${token}` : '',
+      },
+    });
 
-    return next.handle(req);
+    return next.handle(modifiedRequest);
   }
 }
