@@ -2,7 +2,7 @@
   padding: 1rem;
   h5 {
     color: #c5d86d;
-    margin: .7rem 0;
+    margin: 0.7rem 0;
   }
   .auth-links-container {
     display: flex;
@@ -73,7 +73,7 @@
     border-left: none;
     color: white;
     appearance: none;
-    padding:  1rem 1rem;
+    padding: 1rem 1rem;
     transition: all 0.2s ease-in-out;
     &:focus {
       outline: none;
@@ -115,6 +115,5 @@
 }
 .valid-message {
   color: green;
-  margin: .1rem 0;
+  margin: 0.1rem 0;
 }
-

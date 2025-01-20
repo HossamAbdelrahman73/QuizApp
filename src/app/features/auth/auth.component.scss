@@ -2,10 +2,15 @@ img {
   width: 100%;
 }
 
+@media screen and (max-width: 900px) {
+  img {
+    margin-top: 4.125rem;
+  }
+}
 @media screen and (max-width: 1200px) {
   img {
     width: 100%;
-    padding-top: 3.125rem;
+    padding-top: 2.125rem;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -15,6 +20,7 @@ img {
 }
 @media screen and (min-width: 1300px) {
   img {
-    width: 78%;
+    width: 80%;
+    height: 100%;
   }
 }
