@@ -1,3 +1,10 @@
+@import "../../../../../assets/styles/abstracts/variables";
+
+h5 {
+  color: #c5d86d;
+  margin: 0.7rem 0;
+}
+
 .bg-router {
   background-color: #333333;
 
@@ -19,4 +26,8 @@
     background-color: #333333;
     color: #c5d86d;
   }
+}
+
+a {
+  color: $color-green;
 }
