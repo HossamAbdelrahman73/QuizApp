@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { authRoutes } from '../../routes/routes-enum';
 
 @Component({
   selector: 'app-forget-password',
@@ -13,6 +15,7 @@ export class ForgetPasswordComponent {
   apiMessage: string = '';
   authService = inject(AuthService);
   toast = inject(ToastrService);
+  router = inject(Router);
   constructor() {
     this.forgotPasswordForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -28,6 +31,8 @@ export class ForgetPasswordComponent {
       },
       complete: () => {
         this.toast.success(this.apiMessage)
+        localStorage.setItem('email', this.forgotPasswordForm.get('email')?.value);
+        this.router.navigate([authRoutes.RESET_PASSWORD]);
       }
     })
   }
