@@ -15,7 +15,7 @@ export class GlobalInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const baseUrl = 'https://upskilling-egypt.com:3005/api/';
+    const baseUrl = 'https://upskilling-egypt.com:3005/';
     const token = localStorage.getItem('token');
 
     const modifiedRequest = req.clone({
