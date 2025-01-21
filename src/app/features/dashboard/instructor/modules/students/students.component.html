@@ -1,0 +1,44 @@
+<section>
+  <div class="container">
+    <h1>Students list</h1>
+
+    <div class="d-flex gap-4">
+      <button
+        class="py-2 px-3 text-white rounded-5 btn-router"
+        routerLink="students-in-group"
+        routerLinkActive="active"
+      >
+        students in Group
+      </button>
+      <button
+        class="py-2 px-3 text-white rounded-5 btn-router"
+        routerLink="students-without-group"
+        routerLinkActive="active"
+      >
+        students without Group
+      </button>
+      <!-- <button class="py-2 px-3 bg-black text-white rounded-5">Groups</button> -->
+      <div class="dropdown-center">
+        <button
+          class="py-2 px-3 bg-black text-white rounded-5"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Groups
+          <span class=""><i class="fa-solid fa-square-caret-down"></i></span>
+        </button>
+        <ul class="dropdown-menu fs-6">
+          @for (group of groups; track $index) {
+
+          <li>
+            <a class="dropdown-item">{{ group.name }}</a>
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</section>
