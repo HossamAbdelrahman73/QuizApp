@@ -1,9 +1,10 @@
 import { ToastrService } from 'ngx-toastr';
 import { Istudent } from '../../interfaces/istudent';
 import { StudentsService } from './../../services/students.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ISpecificStudent } from '../../interfaces/ispecific-student';
 import { map, mergeMap, switchMap } from 'rxjs';
+import { IGroups } from '../../interfaces/igroups';
 
 declare var bootstrap: any; // Import Bootstrap JS globally
 

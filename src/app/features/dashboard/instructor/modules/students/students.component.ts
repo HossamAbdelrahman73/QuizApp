@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentsService } from './services/students.service';
+import { IGroups } from './interfaces/igroups';
 
 @Component({
   selector: 'app-students',
@@ -7,7 +8,7 @@ import { StudentsService } from './services/students.service';
   styleUrl: './students.component.scss',
 })
 export class StudentsComponent implements OnInit {
-  groups: any[] = [];
+  groups: IGroups[] = [];
   constructor(private _StudentsService: StudentsService) {}
   ngOnInit(): void {
     this._StudentsService.getAllGroups().subscribe({
