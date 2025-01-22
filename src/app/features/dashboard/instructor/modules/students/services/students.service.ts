@@ -26,9 +26,10 @@ export class StudentsService {
   onAddStudentToGroup(idStudent: string, idGroup: string): Observable<any> {
     return this._HttpClient.get(`api/student/${idStudent}/${idGroup}`);
   }
-  //   onUpdateStudentGroup(idStudent:string,idGroup:string):Observable<any>{
-  //  return this._HttpClient.put(`/api/student/${idStudent}/${idGroup}`);
-  // }
+
+  onUpdateStudentGroup(idStudent: string, idGroup: string): Observable<any> {
+    return this._HttpClient.put(`api/student/${idStudent}/${idGroup}`, null);
+  }
 
   onDeleteStudentById(id: string): Observable<any> {
     return this._HttpClient.delete(`api/student/${id}`);
@@ -36,5 +37,9 @@ export class StudentsService {
 
   getAllGroups(): Observable<any> {
     return this._HttpClient.get(`api/group`);
+  }
+
+  GetGroupById(id: string): Observable<any> {
+    return this._HttpClient.get(`api/group/${id}`);
   }
 }

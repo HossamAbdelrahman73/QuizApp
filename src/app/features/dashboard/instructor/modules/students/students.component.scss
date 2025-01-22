@@ -12,3 +12,9 @@
 .dropdown-menu {
   --bs-dropdown-link-active-bg: #a9c52cad !important;
 }
+.link {
+  color: white;
+  &:hover {
+    background-color: slategray;
+  }
+}
