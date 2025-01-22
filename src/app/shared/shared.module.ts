@@ -6,7 +6,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { ViewEditDialogComponent } from './components/view-edit-dialog/view-edit-dialog.component';
+import { HomeComponent } from './components/home/home.component';
+import { RouterModule } from '@angular/router';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -14,12 +21,19 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SidebarComponent,
     DeleteDialogComponent,
     ViewEditDialogComponent,
+    HomeComponent, 
+    NotFoundComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    MatCardModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatIconModule,
+    RouterModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -27,6 +41,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NavbarComponent,
     SidebarComponent,
     NgxPaginationModule,
+    MatCardModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatIconModule,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -18,7 +19,8 @@ export class LoginComponent {
   constructor(
     private _FormBuilder: FormBuilder,
     private _AuthService: AuthService,
-    private _ToastrService: ToastrService
+    private _ToastrService: ToastrService,
+    private _Router: Router
   ) {}
 
   test() {
@@ -33,6 +35,7 @@ export class LoginComponent {
         this._ToastrService.success(res.message);
         localStorage.setItem('token', res.data.accessToken);
         localStorage.setItem('profile', JSON.stringify(res.data.profile));
+        this._Router.navigate(['/dashboard/instructor']);
       },
       error: (err) => {
         console.log(err);

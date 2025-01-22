@@ -1,1 +1,34 @@
-<p>sidebar works!</p>
+<aside
+  class="py-3"
+  [ngClass]="valueSideBarChanged() ? 'side-bar-large' : 'side-bar-small'"
+>
+  <div>
+    <div
+      (click)="toggleSideBar()"
+      class="ps-3 mb-3 d-flex align-items-center gap-2"
+    >
+      <i class="fa-solid fa-bars fa-2x"></i>
+      <img src="../../../../assets/images/Logo icon.svg" alt="logo" />
+    </div>
+    <div class="col-md-12">
+      <ul class="text-white list-unstyled">
+        @for (item of menu; track $index) { @if(item.isActive) {
+        <li
+          class="ps-3 py-3 d-flex align-items-center"
+          [routerLink]="item.link"
+          routerLinkActive="active"
+        >
+          <span class="p-1 image-container">
+            <img [src]="item.image" class="w-100" alt="" />
+          </span>
+          <span
+            ><a class="d-block text-capitalize py-3 px-3 text-decoration-none">
+              <span class="text">{{ item.text }}</span>
+            </a></span
+          >
+        </li>
+        } }
+      </ul>
+    </div>
+  </div>
+</aside>

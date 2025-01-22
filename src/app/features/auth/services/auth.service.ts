@@ -14,26 +14,26 @@ export class AuthService {
 
   onResetPassword(data: FormGroup): Observable<IResetPassword> {
     return this._HttpClient.post<IResetPassword>(
-      'api/auth/reset-password',
+      'auth/reset-password',
       data
     );
   }
 
   onChangePassword(data: FormGroup): Observable<IChangePassword> {
     return this._HttpClient.post<IChangePassword>(
-      'api/auth/change-password',
+      'auth/change-password',
       data
     );
   }
   onForgetPassword(data: FormGroup): Observable<any> {
-    return this._HttpClient.post('api/auth/forgot-password', data);
+    return this._HttpClient.post('auth/forgot-password', data);
   }
 
   register(data: IRegisterBody) {
-    return this._HttpClient.post('api/auth/register', data);
+    return this._HttpClient.post('auth/register', data);
   }
 
   onSubmited(data: any): Observable<any> {
-    return this._HttpClient.post(`api/auth/login`, data);
+    return this._HttpClient.post(`auth/login`, data);
   }
 }

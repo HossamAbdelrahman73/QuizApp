@@ -2,7 +2,7 @@
   @for (student of collection | paginate : { itemsPerPage: 9, currentPage: page
   }; track student._id) {
 
-  <div class="col-md-4">
+  <div class="col-md-4 col-sm-6">
     <div
       class="py-2 px-2 border border-2 border-black rounded-2 d-flex justify-content-between align-items-center h-100"
     >
@@ -32,6 +32,7 @@
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            (click)="getGroupId(student.group._id, student.group.name)"
           >
             <span>
               <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -44,7 +45,10 @@
                 <span class=""><i class="fa-solid fa-eye"></i></span>View
               </a>
             </li>
-            <li class="fs-5">
+            <li
+              class="fs-5"
+              (click)="openGroupsToUpdateStudentGroup(student._id)"
+            >
               <a class="dropdown-item update"
                 ><span class=""
                   ><i class="fa-regular fa-pen-to-square"></i></span
@@ -98,7 +102,7 @@
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     >
-                      <i class="fa-solid fa-xmark"></i>
+                      <i class="fa-solid fa-xmark text-danger"></i>
                     </button>
                   </div>
                 </div>
@@ -143,15 +147,82 @@
                   />
                 </div>
               </div>
-              <!-- <div class="modal-footer">
-                <button
-                  type="button"
-                  class="main-color btn"
-                  data-bs-dismiss="modal"
+            </div>
+          </div>
+        </div>
+
+        <!-- popup update student in other group -->
+        <div
+          class="modal fade"
+          id="updateStudentModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalToggleLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+              <div
+                class="border border-2 border-black border-top-0 border-start-0 border-end-0"
+              >
+                <div
+                  class="d-flex justify-content-between align-items-center w-100 h-100 px-2"
                 >
-                  Close
-                </button>
-              </div> -->
+                  <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+                    Update student's Group
+                  </h1>
+                  <div class="d-flex">
+                    <div
+                      class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
+                    >
+                      <button
+                        type="button"
+                        class="fs-2 fa-bold border border-0 bg-transparent"
+                        [attr.data-bs-dismiss]="
+                          choosenGroup != 'none' ? 'modal' : ''
+                        "
+                        aria-label="Close"
+                        (click)="updateStudentGroup()"
+                      >
+                        <i class="fa-solid fa-check color-global"></i>
+                      </button>
+                    </div>
+                    <div
+                      class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
+                    >
+                      <button
+                        type="button"
+                        class="fs-2 fa-bold border border-0 bg-transparent"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <i class="fa-solid fa-xmark text-danger"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-body">
+                <h3 class="h5">Groups</h3>
+                <select
+                  class="form-select"
+                  (change)="getIdGroupValue($event)"
+                  aria-label="Default select example"
+                >
+                  <option aria-readonly="true" selected hidden>
+                    Open this select menu
+                  </option>
+                  @for (group of groups; track group._id) {
+                  <option
+                    [disabled]="IdGroup === group._id"
+                    [value]="group._id"
+                    class="link-option"
+                  >
+                    {{ group.name }}
+                  </option>
+
+                  }
+                </select>
+              </div>
             </div>
           </div>
         </div>

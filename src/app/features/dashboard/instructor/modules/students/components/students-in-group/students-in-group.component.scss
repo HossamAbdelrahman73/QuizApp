@@ -9,6 +9,9 @@
   color: $color-green;
 }
 
+option:disabled {
+  background-color: $color-green;
+}
 .my-pagination ::ng-deep .ngx-pagination .current {
   background: $color-green;
 }
@@ -51,4 +54,14 @@
 .title-input {
   background-color: $color-input-title;
   color: black;
+}
+
+.link-option {
+  color: black;
+  &:hover {
+    background-color: red;
+  }
+  &:active {
+    background-color: $color-green;
+  }
 }

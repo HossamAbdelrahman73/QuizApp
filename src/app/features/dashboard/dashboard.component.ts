@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
+import { SharedService } from '../../shared/services/shared-service/shared.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-
+  _SharedService = inject(SharedService)
+  valueSideBarChanged:Signal<boolean> = computed(()=> this._SharedService.sideBarChanged())
 }

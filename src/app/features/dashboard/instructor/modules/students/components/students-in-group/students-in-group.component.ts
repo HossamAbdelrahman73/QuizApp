@@ -1,9 +1,10 @@
-import { ToastrService } from 'ngx-toastr';
-import { Istudent } from '../../interfaces/istudent';
-import { StudentsService } from './../../services/students.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs';
 import { ISpecificStudent } from '../../interfaces/ispecific-student';
-import { map, mergeMap, switchMap } from 'rxjs';
+import { IStudent } from '../../interfaces/istudent';
+import { StudentsService } from './../../services/students.service';
+import { IGroups } from '../../interfaces/igroups';
 
 declare var bootstrap: any; // Import Bootstrap JS globally
 
@@ -13,9 +14,13 @@ declare var bootstrap: any; // Import Bootstrap JS globally
   styleUrl: './students-in-group.component.scss',
 })
 export class StudentsInGroupComponent implements OnInit {
-  collection: Istudent[] = [];
+  collection: IStudent[] = [];
   page: number = 1;
   studentview: ISpecificStudent | undefined = {} as ISpecificStudent;
+  groups: IGroups[] = [];
+  choosenGroup: string = '';
+  IdStudent: string = '';
+  IdGroup: string = '';
 
   constructor(
     private _StudentsService: StudentsService,
@@ -26,11 +31,17 @@ export class StudentsInGroupComponent implements OnInit {
     this.getAllStudentsInGroup();
   }
 
+  getIdGroupValue(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.choosenGroup = selectElement.value; // Get the selected value
+    console.log('choosenGroup: ', this.choosenGroup);
+  }
+
   getAllStudentsInGroup() {
     this._StudentsService
       .onGetStudentsInGroup()
       .pipe(
-        map((students: Istudent[]) =>
+        map((students: IStudent[]) =>
           students.filter((student) => student.group)
         )
       )
@@ -64,17 +75,48 @@ export class StudentsInGroupComponent implements OnInit {
     });
   }
 
-  // updateStudentGroup(idStudent:string,idGroup:string){
-  //   this._StudentsService.onUpdateStudentGroup(idStudent,idGroup).subscribe({
-  //     next: (res) => {
-  //       console.log(res);
+  getGroupId(idGroup: string, nameGroup: string) {
+    this.IdGroup = idGroup;
+  }
 
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
+  updateStudentGroup() {
+    if (this.choosenGroup !== 'none') {
+      this._StudentsService
+        .onUpdateStudentGroup(this.IdStudent, this.choosenGroup)
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+            this._ToastrService.success(res.message);
+            this.choosenGroup = '';
+            this.IdStudent = '';
+            console.log(this.choosenGroup, this.IdStudent);
+            this.getAllStudentsInGroup();
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+    }
+  }
+
+  openGroupsToUpdateStudentGroup(idStudent: string) {
+    this.IdStudent = idStudent;
+    console.log('IdStudent ', this.IdStudent);
+    this._StudentsService.getAllGroups().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.groups = res;
+        const modalElement = document.getElementById('updateStudentModal');
+        if (modalElement) {
+          const modalInstance = new bootstrap.Modal(modalElement);
+          modalInstance.show();
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 
   deleteStudentFromGroup(idStudent: string, idGroup: string) {
     this._StudentsService
