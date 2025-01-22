@@ -1,52 +1,61 @@
-import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { map } from 'rxjs';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { StudentsService } from '../../services/students.service';
+import { IGroups } from '../../interfaces/igroups';
 import { ISpecificStudent } from '../../interfaces/ispecific-student';
-import { IStudent } from '../../interfaces/istudent';
-import { StudentsService } from './../../services/students.service';
-
+import { Istudent } from '../../interfaces/istudent';
+import { ToastrService } from 'ngx-toastr';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
+export interface IchoosenStudents {
+  _id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+}
+
 @Component({
-  selector: 'app-students-in-group',
-  templateUrl: './students-in-group.component.html',
-  styleUrl: './students-in-group.component.scss',
+  selector: 'app-students-in-choosen-group',
+  templateUrl: './students-in-choosen-group.component.html',
+  styleUrl: './students-in-choosen-group.component.scss',
 })
-export class StudentsInGroupComponent implements OnInit {
-  collection: IStudent[] = [];
+export class StudentsInChoosenGroupComponent {
+  id: string = '';
+  collection: IchoosenStudents[] = [];
   page: number = 1;
   studentview: ISpecificStudent | undefined = {} as ISpecificStudent;
   groups: IGroups[] = [];
   choosenGroup: string = '';
   IdStudent: string = '';
+  groupName: string = '';
 
   constructor(
+    private route: ActivatedRoute,
     private _StudentsService: StudentsService,
     private _ToastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.getAllStudentsInGroup();
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id')!;
+      console.log('ID:', this.id);
+      this.getStudentsInChoosenGroup(this.id);
+    });
   }
 
-  getAllStudentsInGroup() {
-    this._StudentsService
-      .onGetStudentsInGroup()
-      .pipe(
-        map((students: IStudent[]) =>
-          students.filter((student) => student.group)
-        )
-      )
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.collection = res;
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+  getStudentsInChoosenGroup(id: string) {
+    this._StudentsService.GetGroupById(id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.collection = res.students;
+        this.groupName = res.name;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
+
   flagView: boolean = false;
   viewStudent(id: string) {
     this._StudentsService.onGetStudentById(id).subscribe({
@@ -77,7 +86,7 @@ export class StudentsInGroupComponent implements OnInit {
           this.choosenGroup = '';
           this.IdStudent = '';
           console.log(this.choosenGroup, this.IdStudent);
-          this.getAllStudentsInGroup();
+          this.getStudentsInChoosenGroup(this.id);
         },
         error: (err) => {
           console.log(err);
@@ -110,7 +119,7 @@ export class StudentsInGroupComponent implements OnInit {
         next: (res) => {
           console.log(res);
           this._ToastrService.success(res.message);
-          this.getAllStudentsInGroup();
+          this.getStudentsInChoosenGroup(this.id);
         },
         error: (err) => {
           console.log(err);
@@ -123,7 +132,7 @@ export class StudentsInGroupComponent implements OnInit {
       next: (res) => {
         console.log(res);
         this._ToastrService.success(res.message);
-        this.getAllStudentsInGroup();
+        this.getStudentsInChoosenGroup(this.id);
       },
       error: (err) => {
         console.log(err);

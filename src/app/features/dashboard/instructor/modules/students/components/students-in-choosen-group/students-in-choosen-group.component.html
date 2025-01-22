@@ -1,4 +1,7 @@
-<div class="row mt-4 g-3">
+<h2 class="my-2">
+  Group: <span class="text-secondary">{{ groupName }}</span>
+</h2>
+<div class="row mt-2 g-3">
   @for (student of collection | paginate : { itemsPerPage: 9, currentPage: page
   }; track student._id) {
 
@@ -11,10 +14,11 @@
           <span class="title">Student : </span>{{ student.first_name }}
           {{ student.last_name ? student.last_name : "" }}
         </h2>
-        <h3 class="h5">
-          <span class="title">Group :</span>
-          No Group
-        </h3>
+
+        <h4 class="h6">
+          <span class="title">Email :</span>
+          {{ student.email }}
+        </h4>
       </div>
 
       <div>
@@ -25,7 +29,9 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <i class="fa-solid fa-ellipsis-vertical"></i>
+            <span>
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+            </span>
           </button>
 
           <ul class="dropdown-menu">
@@ -34,18 +40,21 @@
                 <span class=""><i class="fa-solid fa-eye"></i></span>View
               </a>
             </li>
-            <li class="fs-5">
+            <li
+              class="fs-5"
+              (click)="openGroupsToUpdateStudentGroup(student._id)"
+            >
               <a class="dropdown-item update"
                 ><span class=""
                   ><i class="fa-regular fa-pen-to-square"></i></span
                 >Update student group</a
               >
             </li>
-            <li class="fs-5" (click)="openGroupsToAddStudent(student._id)">
-              <a class="dropdown-item add"
+            <li class="fs-5" (click)="deleteStudentFromGroup(student._id, id)">
+              <a class="dropdown-item delete"
                 ><span class=""
-                  ><i class="fa-solid fa-person-circle-plus"></i></span
-                >Add to group</a
+                  ><i class="fa-solid fa-person-circle-minus"></i></span
+                >Delete from group</a
               >
             </li>
             <li class="fs-5" (click)="deleteStudent(student._id)">
@@ -130,22 +139,14 @@
                   />
                 </div>
               </div>
-              <!-- <div class="modal-footer">
-                <button
-                  type="button"
-                  class="main-color btn"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div> -->
             </div>
           </div>
         </div>
-        <!-- popup Add to group -->
+
+        <!-- popup update student in other group -->
         <div
           class="modal fade"
-          id="AddStudentModal"
+          id="updateStudentModal"
           tabindex="-1"
           aria-labelledby="exampleModalToggleLabel"
           aria-hidden="true"
@@ -159,18 +160,18 @@
                   class="d-flex justify-content-between align-items-center w-100 h-100 px-2"
                 >
                   <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
-                    Add To Group
+                    Update student's Group
                   </h1>
                   <div class="d-flex">
                     <div
                       class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
                     >
                       <button
-                        (click)="AddStudentToGroup()"
                         type="button"
                         class="fs-2 fa-bold border border-0 bg-transparent"
                         [attr.data-bs-dismiss]="choosenGroup ? 'modal' : ''"
                         aria-label="Close"
+                        (click)="updateStudentGroup()"
                       >
                         <i class="fa-solid fa-check color-global"></i>
                       </button>
@@ -196,13 +197,17 @@
 
                 <div class="form-check">
                   <input
+                    [checked]="false"
                     (click)="choosenGroup = group._id"
                     class="form-check-input"
                     type="radio"
-                    name="flexRadioDefault"
-                    id="flexRadioDefault1"
+                    name="flexRadioDefault-{{ student._id }}"
+                    id="radio-{{ student._id }}-{{ group._id }}"
                   />
-                  <label class="form-check-label" for="flexRadioDefault1">
+                  <label
+                    class="form-check-label"
+                    for="radio-{{ student._id }}-{{ group._id }}"
+                  >
                     {{ group.name }}
                   </label>
                 </div>
@@ -215,7 +220,7 @@
     </div>
   </div>
   }@empty {
-  <h1 class="text-black-50 text-center">There Is No Data</h1>
+  <h3 class="text-center text-black-50">There Is No Data</h3>
   }
 
   <pagination-controls
