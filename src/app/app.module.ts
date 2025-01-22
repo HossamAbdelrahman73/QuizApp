@@ -13,6 +13,7 @@ import {
   withFetch,
 } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot(),
 
     HttpClientModule,
