@@ -1,0 +1,33 @@
+@import "../../../../assets/styles/abstracts/variables";
+nav {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  .container-fluid {
+    .navbar-nav {
+      .nav-item {
+        cursor: pointer;
+        img {
+          height: 30px;
+          width: 30px;
+        }
+        &:first-of-type {
+          color: #000;
+          border-radius: 20px;
+          border: 1px solid rgb(209, 208, 208);
+          padding:7px 10px;
+        }
+      }
+    }
+    .user-info {
+      padding: 12px 0;
+      cursor: pointer;
+      border-left: 2px solid rgba(0, 0, 0, 0.2);
+      h3.name {
+        font-size: 1rem;
+        font-weight: 700;
+      }
+      .role {
+        color: $color-green;
+      }
+    }
+  }
+}
