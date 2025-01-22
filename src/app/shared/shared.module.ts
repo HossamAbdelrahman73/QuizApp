@@ -21,7 +21,7 @@ import { MatIconModule } from '@angular/material/icon'
     SidebarComponent,
     DeleteDialogComponent,
     ViewEditDialogComponent,
-    HomeComponent, 
+    HomeComponent,
     NotFoundComponent
   ],
   imports: [
@@ -45,6 +45,7 @@ import { MatIconModule } from '@angular/material/icon'
     MatDialogModule,
     MatSelectModule,
     MatIconModule,
+    HomeComponent
   ],
 })
 export class SharedModule { }

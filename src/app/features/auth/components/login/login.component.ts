@@ -35,7 +35,7 @@ export class LoginComponent {
         this._ToastrService.success(res.message);
         localStorage.setItem('token', res.data.accessToken);
         localStorage.setItem('profile', JSON.stringify(res.data.profile));
-        this._Router.navigate(['/dashboard/instructor']);
+        this._Router.navigate(['/dashboard/instructor/home']);
       },
       error: (err) => {
         console.log(err);
