@@ -1,10 +1,9 @@
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Istudent } from '../../interfaces/istudent';
-import { StudentsService } from './../../services/students.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { ISpecificStudent } from '../../interfaces/ispecific-student';
-import { map, mergeMap, switchMap } from 'rxjs';
-import { IGroups } from '../../interfaces/igroups';
+import { IStudent } from '../../interfaces/istudent';
+import { StudentsService } from './../../services/students.service';
 
 declare var bootstrap: any; // Import Bootstrap JS globally
 
@@ -14,7 +13,7 @@ declare var bootstrap: any; // Import Bootstrap JS globally
   styleUrl: './students-in-group.component.scss',
 })
 export class StudentsInGroupComponent implements OnInit {
-  collection: Istudent[] = [];
+  collection: IStudent[] = [];
   page: number = 1;
   studentview: ISpecificStudent | undefined = {} as ISpecificStudent;
   groups: IGroups[] = [];
@@ -34,7 +33,7 @@ export class StudentsInGroupComponent implements OnInit {
     this._StudentsService
       .onGetStudentsInGroup()
       .pipe(
-        map((students: Istudent[]) =>
+        map((students: IStudent[]) =>
           students.filter((student) => student.group)
         )
       )

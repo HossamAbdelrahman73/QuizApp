@@ -1,0 +1,32 @@
+<section>
+  <div class="dialog-header">
+    <h2 mat-dialog-title>{{data.title}}</h2>
+    <div mat-dialog-actions class="dialog-actions">
+      <button class="submit-btn" [mat-dialog-close]="form.value">
+        <span><i class="fa-solid fa-check"></i></span>
+      </button>
+      <button class="close-btn" mat-dialog-close="">
+        <span><i class="fa-solid fa-xmark"></i></span>
+      </button>
+    </div>
+  </div>
+  <div class="dialog-form" mat-dialog-content>
+    <form [formGroup]="form">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Group Name</span>
+        <input formControlName="name" type="text" class="form-control" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-default">
+      </div>
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroup-sizing-default">List students</span>
+        <mat-select formControlName="students" [placeholder]="data.students.length === 0 ? 'All students are in groups' : 'Choose the students'"
+          [disabled]="data.students.length === 0" class="form-select" multiple>
+          <mat-option selected hidden>Choose the students</mat-option>
+          @for (student of data.students; track student._id) {
+          <mat-option [value]="student._id">{{student.first_name}} {{student.last_name}}</mat-option>
+          }
+        </mat-select>
+      </div>
+    </form>
+  </div>
+</section>

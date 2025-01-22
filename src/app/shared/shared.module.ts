@@ -7,6 +7,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { ViewEditDialogComponent } from './components/view-edit-dialog/view-edit-dialog.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -20,6 +24,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    MatCardModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatIconModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -27,6 +35,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NavbarComponent,
     SidebarComponent,
     NgxPaginationModule,
+    MatCardModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatIconModule,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

@@ -1,0 +1,43 @@
+<section>
+  <div class="container-fluid">
+    <div class="d-flex justify-content-end mb-4">
+      <button class="btn" (click)="onCreateGroup()">
+        <span><i class="fa-solid fa-circle-plus"></i></span>
+        <span>Create group</span>
+      </button>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="groups-list">
+          <h5>Groups list</h5>
+          <div class="row">
+            @for (group of groups ; track group._id) {
+            <div class="col-md-6 g-4">
+              <mat-card>
+                <div class="card-content-wrapper">
+                  <div>
+                    <mat-card-header>
+                      <mat-card-title>{{ group.name }}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <p>No. of students: {{ group.students.length }}</p>
+                    </mat-card-content>
+                  </div>
+                  <mat-card-actions class="actions">
+                    <button (click)="onEditGroup(group)">
+                      <span><i class="fa-regular fa-pen-to-square"></i></span>
+                    </button>
+                    <button>
+                      <span><i class="fa-solid fa-trash"></i></span>
+                    </button>
+                  </mat-card-actions>
+                </div>
+              </mat-card>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

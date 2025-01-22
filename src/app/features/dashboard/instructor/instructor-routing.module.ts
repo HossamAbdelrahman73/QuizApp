@@ -11,10 +11,11 @@ const routes: Routes = [
         (m) => m.StudentsModule
       ),
   },
+  { path: 'groups', loadChildren: () => import('../instructor/modules/groups/groups.module').then(m => m.GroupsModule) },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class InstructorRoutingModule {}
+export class InstructorRoutingModule { }
