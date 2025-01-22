@@ -13,6 +13,9 @@ import {
   withFetch,
 } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
@@ -21,6 +24,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot(),
 
     HttpClientModule,

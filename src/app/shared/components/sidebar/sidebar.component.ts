@@ -26,32 +26,32 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.menu = [
       {
-        link: '/dashboard/home',
+        link: '/dashboard/instructor/home',
         text: 'Dashboard',
         image:'../../../../assets/images/sidebar-images/Dashboard icon.svg',
         isActive: this.isInstructor() || this.isStudent(),
       },
       {
-        link: '/dashboard/',
+        link: '/dashboard/instructor/students',
         text: 'Students',
         image:'../../../../assets/images/sidebar-images/Students icon.svg',
         isActive: this.isInstructor(),
       },
       {
-        link: '/dashboard/',
+        link: '/dashboard/instructor/groups',
         text: 'Groups',
         image:'../../../../assets/images/sidebar-images/Students icon.svg',
         isActive: this.isInstructor()
       },
 
       {
-        link: '/dashboard',
+        link: '/dashboard/instructor/quizzes',
         text: 'Quizzes',
         image:'../../../../assets/images/sidebar-images/Quiz icon.svg',
         isActive: this.isInstructor()|| this.isStudent(),
       },
       {
-        link: '/dashboard/',
+        link: '/dashboard/instructor/results',
         text: 'Results',
         image:'../../../../assets/images/sidebar-images/Results icon.svg',
         isActive: this.isInstructor()|| this.isStudent(),

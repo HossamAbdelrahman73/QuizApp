@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { InstructorComponent } from './instructor.component';
 
 const routes: Routes = [
-  { path: '', component: InstructorComponent },
+  { path: 'home', component: InstructorComponent },
   {
     path: 'students',
     loadChildren: () =>
