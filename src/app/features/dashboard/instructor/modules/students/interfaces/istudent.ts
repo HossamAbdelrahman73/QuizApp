@@ -1,4 +1,4 @@
-export interface Istudent {
+export interface IStudent {
   _id: string;
   first_name: string;
   last_name: string;

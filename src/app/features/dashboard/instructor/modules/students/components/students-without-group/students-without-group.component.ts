@@ -1,9 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ISpecificStudent } from '../../interfaces/ispecific-student';
-import { Istudent } from '../../interfaces/istudent';
-import { StudentsService } from '../../services/students.service';
 import { IGroups } from '../../interfaces/igroups';
+import { ISpecificStudent } from '../../interfaces/ispecific-student';
+import { StudentsService } from '../../services/students.service';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
 @Component({
