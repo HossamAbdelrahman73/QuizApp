@@ -10,7 +10,6 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { SharedModule } from '../../shared/shared.module';
 
-
 @NgModule({
   declarations: [
     AuthComponent,
@@ -20,10 +19,6 @@ import { SharedModule } from '../../shared/shared.module';
     ForgetPasswordComponent,
     ChangePasswordComponent,
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    SharedModule,
-  ]
+  imports: [CommonModule, AuthRoutingModule, SharedModule],
 })
 export class AuthModule {}
