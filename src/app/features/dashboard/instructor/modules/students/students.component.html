@@ -28,11 +28,16 @@
           Groups
           <span class=""><i class="fa-solid fa-square-caret-down"></i></span>
         </button>
-        <ul class="dropdown-menu fs-6">
+        <ul class="dropdown-menu fs-6 bg-black">
           @for (group of groups; track $index) {
 
           <li>
-            <a class="dropdown-item">{{ group.name }}</a>
+            <a
+              class="dropdown-item link"
+              routerLinkActive="active"
+              [routerLink]="['students-in-choosen-group', group._id]"
+              >{{ group.name }}</a
+            >
           </li>
           }
         </ul>
