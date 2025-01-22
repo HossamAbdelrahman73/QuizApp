@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { StudentsService } from '../../services/students.service';
 import { IGroups } from '../../interfaces/igroups';
 import { ISpecificStudent } from '../../interfaces/ispecific-student';
-import { Istudent } from '../../interfaces/istudent';
 import { ToastrService } from 'ngx-toastr';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
