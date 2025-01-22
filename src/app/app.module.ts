@@ -11,12 +11,14 @@ import {
   HttpClientModule,
   provideHttpClient,
   withFetch,
+  withInterceptors,
 } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { loadingInterceptor } from './core/interceptors/loader/loading.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,19 +26,23 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule,
-    ToastrModule.forRoot(),
 
+    // NgxSpinnerModule,
+    ToastrModule.forRoot(),
+    NgxSpinnerModule.forRoot({ type: 'timer' }),
     HttpClientModule,
   ],
   providers: [
+    provideHttpClient(withInterceptors([loadingInterceptor])),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GlobalInterceptor,
       multi: true,
     },
+
     provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
