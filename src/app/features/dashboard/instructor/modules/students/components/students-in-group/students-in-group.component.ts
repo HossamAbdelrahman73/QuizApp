@@ -20,6 +20,7 @@ export class StudentsInGroupComponent implements OnInit {
   groups: IGroups[] = [];
   choosenGroup: string = '';
   IdStudent: string = '';
+  IdGroup: string = '';
 
   constructor(
     private _StudentsService: StudentsService,
@@ -28,6 +29,12 @@ export class StudentsInGroupComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllStudentsInGroup();
+  }
+
+  getIdGroupValue(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.choosenGroup = selectElement.value; // Get the selected value
+    console.log('choosenGroup: ', this.choosenGroup);
   }
 
   getAllStudentsInGroup() {
@@ -68,26 +75,33 @@ export class StudentsInGroupComponent implements OnInit {
     });
   }
 
+  getGroupId(idGroup: string, nameGroup: string) {
+    this.IdGroup = idGroup;
+  }
+
   updateStudentGroup() {
-    this._StudentsService
-      .onUpdateStudentGroup(this.IdStudent, this.choosenGroup)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this._ToastrService.success(res.message);
-          this.choosenGroup = '';
-          this.IdStudent = '';
-          console.log(this.choosenGroup, this.IdStudent);
-          this.getAllStudentsInGroup();
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+    if (this.choosenGroup !== 'none') {
+      this._StudentsService
+        .onUpdateStudentGroup(this.IdStudent, this.choosenGroup)
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+            this._ToastrService.success(res.message);
+            this.choosenGroup = '';
+            this.IdStudent = '';
+            console.log(this.choosenGroup, this.IdStudent);
+            this.getAllStudentsInGroup();
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+    }
   }
 
   openGroupsToUpdateStudentGroup(idStudent: string) {
     this.IdStudent = idStudent;
+    console.log('IdStudent ', this.IdStudent);
     this._StudentsService.getAllGroups().subscribe({
       next: (res) => {
         console.log(res);
