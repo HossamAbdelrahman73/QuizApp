@@ -1,0 +1,20 @@
+@import "../../../../../../assets/styles/abstracts/_variables";
+
+.btn-router {
+  background-color: black;
+  &.active {
+    background-color: $color-green;
+    padding: 30px;
+    border: none;
+  }
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: #a9c52cad !important;
+}
+.link {
+  color: white;
+  &:hover {
+    background-color: slategray;
+  }
+}

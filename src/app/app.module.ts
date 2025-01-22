@@ -12,6 +12,8 @@ import {
   provideHttpClient,
   withFetch,
 } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +31,7 @@ import {
       useClass: GlobalInterceptor,
       multi: true,
     },
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent],
 })

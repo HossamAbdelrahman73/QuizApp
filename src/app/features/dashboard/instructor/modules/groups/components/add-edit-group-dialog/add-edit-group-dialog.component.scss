@@ -1,0 +1,48 @@
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
+  .dialog-actions {
+    padding: 0;
+    button {
+      border-left: 1px solid rgba(#000000, 0.3);
+      border-block: none;
+      border-right: none;
+      background-color: transparent;
+      padding: 1rem;
+      height: 100%;
+      transition: all 0.3s ease;
+      &.submit-btn:hover {
+        background-color: rgb(26, 128, 0);
+        color: white;
+      }
+      &.close-btn:hover {
+        background-color: red;
+        color: white;
+      }
+      span i {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
+.dialog-form {
+  form {
+    .input-group-text {
+      background-color: #ffeddf;
+    }
+    .form-select:focus {
+      outline: 0px none #fff !important;
+      box-shadow: none;
+      border: 1px solid #0d1321;
+    }
+    .form-control:focus {
+      outline: 0px none #fff !important;
+      box-shadow: none;
+      border: 1px solid #0d1321;
+    }
+  }
+}

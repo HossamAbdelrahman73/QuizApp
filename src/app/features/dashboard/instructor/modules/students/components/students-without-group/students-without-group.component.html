@@ -1,0 +1,226 @@
+<div class="row mt-4 g-3">
+  @for (student of collection | paginate : { itemsPerPage: 9, currentPage: page
+  }; track student._id) {
+
+  <div class="col-md-4 col-sm-6">
+    <div
+      class="py-2 px-2 border border-2 border-black rounded-2 d-flex justify-content-between align-items-center h-100"
+    >
+      <div>
+        <h2 class="h4">
+          <span class="title">Student : </span>{{ student.first_name }}
+          {{ student.last_name ? student.last_name : "" }}
+        </h2>
+        <h3 class="h5">
+          <span class="title">Group :</span>
+          No Group
+        </h3>
+      </div>
+
+      <div>
+        <div class="dropdown-center">
+          <button
+            class="d-inline-block rounded-circle border-0 bg-transparent fs-4"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </button>
+
+          <ul class="dropdown-menu">
+            <li class="fs-5" (click)="viewStudent(student._id)">
+              <a class="dropdown-item view">
+                <span class=""><i class="fa-solid fa-eye"></i></span>View
+              </a>
+            </li>
+            <li class="fs-5">
+              <a class="dropdown-item update"
+                ><span class=""
+                  ><i class="fa-regular fa-pen-to-square"></i></span
+                >Update student group</a
+              >
+            </li>
+            <li class="fs-5" (click)="openGroupsToAddStudent(student._id)">
+              <a class="dropdown-item add"
+                ><span class=""
+                  ><i class="fa-solid fa-person-circle-plus"></i></span
+                >Add to group</a
+              >
+            </li>
+            <li class="fs-5" (click)="deleteStudent(student._id)">
+              <a class="dropdown-item delete"
+                ><span class=""><i class="fa-solid fa-trash"></i></span
+                >Delete</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- popup view -->
+        <div
+          class="modal fade"
+          id="viewStudentModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalToggleLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div
+                class="border border-2 border-black border-top-0 border-start-0 border-end-0"
+              >
+                <div
+                  class="d-flex justify-content-between align-items-center w-100 h-100 px-2"
+                >
+                  <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+                    Student Details
+                  </h1>
+                  <div
+                    class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
+                  >
+                    <button
+                      type="button"
+                      class="fs-2 fa-bold border border-0 bg-transparent"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <i class="fa-solid fa-xmark text-danger"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-body">
+                <div class="input-group my-4">
+                  <span class="input-group-text title-input">Name</span>
+                  <input
+                    disabled
+                    type="text"
+                    [value]="
+                      studentview?.first_name + ' ' + studentview?.last_name
+                    "
+                    class="form-control"
+                  />
+                </div>
+                <div class="input-group my-4">
+                  <span class="input-group-text title-input">Email</span>
+                  <input
+                    disabled
+                    type="text"
+                    [value]="studentview?.email"
+                    class="form-control"
+                  />
+                </div>
+                <div class="input-group my-4">
+                  <span class="input-group-text title-input">Role</span>
+                  <input
+                    disabled
+                    type="text"
+                    [value]="studentview?.role"
+                    class="form-control"
+                  />
+                </div>
+                <div class="input-group my-4">
+                  <span class="input-group-text title-input">Status</span>
+                  <input
+                    disabled
+                    type="text"
+                    [value]="studentview?.status"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <!-- <div class="modal-footer">
+                <button
+                  type="button"
+                  class="main-color btn"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <!-- popup Add to group -->
+        <div
+          class="modal fade"
+          id="AddStudentModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalToggleLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+              <div
+                class="border border-2 border-black border-top-0 border-start-0 border-end-0"
+              >
+                <div
+                  class="d-flex justify-content-between align-items-center w-100 h-100 px-2"
+                >
+                  <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+                    Add To Group
+                  </h1>
+                  <div class="d-flex">
+                    <div
+                      class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
+                    >
+                      <button
+                        (click)="AddStudentToGroup()"
+                        type="button"
+                        class="fs-2 fa-bold border border-0 bg-transparent"
+                        [attr.data-bs-dismiss]="choosenGroup ? 'modal' : ''"
+                        aria-label="Close"
+                      >
+                        <i class="fa-solid fa-check color-global"></i>
+                      </button>
+                    </div>
+                    <div
+                      class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
+                    >
+                      <button
+                        type="button"
+                        class="fs-2 fa-bold border border-0 bg-transparent"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <i class="fa-solid fa-xmark text-danger"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-body">
+                <h3 class="h5">Groups</h3>
+                @for (group of groups; track group._id) {
+
+                <div class="form-check">
+                  <input
+                    (click)="choosenGroup = group._id"
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="flexRadioDefault1"
+                  />
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    {{ group.name }}
+                  </label>
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }@empty {
+  <h1 class="text-black-50 text-center">There Is No Data</h1>
+  }
+
+  <pagination-controls
+    class="text-center my-pagination"
+    [directionLinks]="true"
+    (pageChange)="page = $event"
+  ></pagination-controls>
+</div>

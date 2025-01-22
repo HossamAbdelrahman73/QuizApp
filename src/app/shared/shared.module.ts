@@ -9,15 +9,42 @@ import { ViewEditDialogComponent } from './components/view-edit-dialog/view-edit
 import { HomeComponent } from './components/home/home.component';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
-  declarations: [NavbarComponent, SidebarComponent, DeleteDialogComponent, ViewEditDialogComponent, HomeComponent, NotFoundComponent],
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, RouterModule],
+  declarations: [
+    NavbarComponent,
+    SidebarComponent,
+    DeleteDialogComponent,
+    ViewEditDialogComponent,
+    HomeComponent, 
+    NotFoundComponent
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    MatCardModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatIconModule,
+    RouterModule
+  ],
   exports: [
     ReactiveFormsModule,
     HttpClientModule,
     NavbarComponent,
     SidebarComponent,
+    NgxPaginationModule,
+    MatCardModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatIconModule,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }
