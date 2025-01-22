@@ -32,6 +32,7 @@
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            (click)="getGroupId(student.group._id, student.group.name)"
           >
             <span>
               <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -176,7 +177,9 @@
                       <button
                         type="button"
                         class="fs-2 fa-bold border border-0 bg-transparent"
-                        [attr.data-bs-dismiss]="choosenGroup ? 'modal' : ''"
+                        [attr.data-bs-dismiss]="
+                          choosenGroup != 'none' ? 'modal' : ''
+                        "
                         aria-label="Close"
                         (click)="updateStudentGroup()"
                       >
@@ -200,25 +203,25 @@
               </div>
               <div class="modal-body">
                 <h3 class="h5">Groups</h3>
-                @for (group of groups; track group._id) {
-
-                <div class="form-check">
-                  <input
-                    [checked]="false"
-                    (click)="choosenGroup = group._id"
-                    class="form-check-input"
-                    type="radio"
-                    name="flexRadioDefault-{{ student._id }}"
-                    id="radio-{{ student._id }}-{{ group._id }}"
-                  />
-                  <label
-                    class="form-check-label"
-                    for="radio-{{ student._id }}-{{ group._id }}"
+                <select
+                  class="form-select"
+                  (change)="getIdGroupValue($event)"
+                  aria-label="Default select example"
+                >
+                  <option aria-readonly="true" value="'none'">
+                    Open this select menu
+                  </option>
+                  @for (group of groups; track group._id) {
+                  <option
+                    [disabled]="IdGroup === group._id"
+                    [value]="group._id"
+                    class="link-option"
                   >
                     {{ group.name }}
-                  </label>
-                </div>
-                }
+                  </option>
+
+                  }
+                </select>
               </div>
             </div>
           </div>
