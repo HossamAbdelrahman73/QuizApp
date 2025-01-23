@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -22,6 +22,7 @@ export class LoginComponent {
     private _FormBuilder: FormBuilder,
     private _AuthService: AuthService,
     private _ToastrService: ToastrService,
+    private _Router : Router
     // private _authRoutes : authRoutes
   ) {}
   sendLoginData() {
