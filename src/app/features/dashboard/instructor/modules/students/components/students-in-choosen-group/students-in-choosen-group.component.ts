@@ -27,6 +27,7 @@ export class StudentsInChoosenGroupComponent {
   choosenGroup: string = '';
   IdStudent: string = '';
   groupName: string = '';
+  IdGroup: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -109,6 +110,16 @@ export class StudentsInChoosenGroupComponent {
         console.log(err);
       },
     });
+  }
+
+  getGroupId(idGroup: string) {
+    this.IdGroup = idGroup;
+  }
+
+  getIdGroupValue(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.choosenGroup = selectElement.value; // Get the selected value
+    console.log('choosenGroup: ', this.choosenGroup);
   }
 
   deleteStudentFromGroup(idStudent: string, idGroup: string) {
