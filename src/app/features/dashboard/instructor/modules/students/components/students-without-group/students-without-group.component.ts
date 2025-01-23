@@ -23,11 +23,6 @@ export class StudentsWithoutGroupComponent {
     private _ToastrService: ToastrService
   ) {}
 
-  // chooseGroup(id: string) {
-  //   this.choosenGroup = id;
-  //   console.log(this.choosenGroup);
-  // }
-
   ngOnInit(): void {
     this.getAllStudentswithoutGroup();
   }
@@ -61,6 +56,12 @@ export class StudentsWithoutGroupComponent {
         console.log(err);
       },
     });
+  }
+
+  getIdGroupValue(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.choosenGroup = selectElement.value; // Get the selected value
+    console.log('choosenGroup: ', this.choosenGroup);
   }
 
   AddStudentToGroup() {

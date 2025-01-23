@@ -7,6 +7,7 @@ import { StudentsInGroupComponent } from './components/students-in-group/student
 import { StudentsWithoutGroupComponent } from './components/students-without-group/students-without-group.component';
 import { SharedModule } from '../../../../../shared/shared.module';
 import { StudentsInChoosenGroupComponent } from './components/students-in-choosen-group/students-in-choosen-group.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,6 @@ import { StudentsInChoosenGroupComponent } from './components/students-in-choose
     StudentsWithoutGroupComponent,
     StudentsInChoosenGroupComponent,
   ],
-  imports: [CommonModule, StudentsRoutingModule, SharedModule],
+  imports: [CommonModule, StudentsRoutingModule, SharedModule, FormsModule],
 })
 export class StudentsModule {}

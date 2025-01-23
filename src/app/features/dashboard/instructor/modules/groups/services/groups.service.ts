@@ -22,4 +22,7 @@ export class GroupsService {
   updateGroup(id: string, data: ICreateGroup) {
     return this._http.put(`group/${id}`, data)
   }
+  deleteGroup(id: string) {
+    return this._http.delete(`group/${id}`)
+  }
 }
