@@ -1,228 +1,227 @@
 <section class="auth">
-  <div class="auth-header">
-    <h1>Create your account and start using QuizWiz!</h1>
-  </div>
-  <div class="auth-content">
-    <div class="auth-links-container">
-      <button routerLinkActive="active" [routerLink]="authRoutes.LOGIN">
-        <span><i class="fa-solid fa-user-tie"></i></span>
-        <p>Sign in</p>
-      </button>
-      <button routerLinkActive="active" [routerLink]="authRoutes.REGISTER">
-        <span><i class="fa-solid fa-user-plus"></i></span>
-        <p>Sign up</p>
-      </button>
+  <div class="container-fluid">
+    <div class="auth-header">
+      <h1>Create your account and start using QuizWiz!</h1>
     </div>
-    <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSignUp()">
-      <div class="row">
-        <div class="col-md-6">
-          <label for="floatingInputGroup2" class="form-label">Your first name</label>
-          <div class="input-group" [ngClass]="{
-            'is-invalid-group':
-              registerForm.get('first_name')?.invalid &&
-              (registerForm.get('first_name')?.dirty ||
-                registerForm.get('first_name')?.touched),
-            'is-valid-group':
-              registerForm.get('first_name')?.valid &&
-              (registerForm.get('first_name')?.dirty ||
-                registerForm.get('first_name')?.touched)
-          }">
-            <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
-            <div class="form-floating">
-              <input formControlName="first_name" type="text" [ngClass]="{
-                'is-invalid':
-                  registerForm.get('first_name')?.invalid &&
-                  (registerForm.get('first_name')?.dirty ||
-                    registerForm.get('first_name')?.touched),
-                'is-valid':
-                  registerForm.get('first_name')?.valid &&
-                  (registerForm.get('first_name')?.dirty ||
-                    registerForm.get('first_name')?.touched)
-              }" class="form-control" id="floatingInputGroup2" placeholder="Type your first name" required />
-            </div>
-          </div>
-          <ng-container *ngIf="
-            registerForm.get('first_name')?.dirty ||
-            registerForm.get('first_name')?.touched
-          ">
-            <div *ngIf="registerForm.get('first_name')?.invalid" class="invalid-message">
-              <span>First name is required</span>
-            </div>
-          </ng-container>
-        </div>
-        <div class="col-md-6">
-          <label>Your last name</label>
-          <div class="input-group" [ngClass]="{
-            'is-invalid-group':
-              registerForm.get('last_name')?.invalid &&
-              (registerForm.get('last_name')?.dirty ||
-                registerForm.get('last_name')?.touched),
-            'is-valid-group':
-              registerForm.get('last_name')?.valid &&
-              (registerForm.get('last_name')?.dirty ||
-                registerForm.get('last_name')?.touched)
-          }">
-            <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
-            <div class="form-floating">
-              <input [ngClass]="{
-                'is-invalid':
-                  registerForm.get('last_name')?.invalid &&
-                  (registerForm.get('last_name')?.dirty ||
-                    registerForm.get('last_name')?.touched),
-                'is-valid':
-                  registerForm.get('last_name')?.valid &&
-                  (registerForm.get('last_name')?.dirty ||
-                    registerForm.get('last_name')?.touched)
-              }" formControlName="last_name" type="text" class="form-control" id="floatingInputGroup2"
-                placeholder="Type your last name" required />
-            </div>
-          </div>
-          <ng-container *ngIf="
-            registerForm.get('last_name')?.dirty ||
-            registerForm.get('last_name')?.touched
-          ">
-            <div *ngIf="registerForm.get('last_name')?.invalid" class="invalid-message">
-              <span>Last name is required</span>
-            </div>
-          </ng-container>
-        </div>
+    <div class="auth-content">
+      <div class="auth-links-container">
+        <button routerLinkActive="active" [routerLink]="authRoutes.LOGIN">
+          <span><i class="fa-solid fa-user-tie"></i></span>
+          <p>Sign in</p>
+        </button>
+        <button routerLinkActive="active" [routerLink]="authRoutes.REGISTER">
+          <span><i class="fa-solid fa-user-plus"></i></span>
+          <p>Sign up</p>
+        </button>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label>Your email address</label>
-          <div class="input-group" [ngClass]="{
-            'is-invalid-group':
-              registerForm.get('email')?.invalid &&
-              (registerForm.get('email')?.dirty ||
-                registerForm.get('email')?.touched),
-            'is-valid-group':
-              registerForm.get('email')?.valid &&
-              (registerForm.get('email')?.dirty ||
-                registerForm.get('email')?.touched)
-          }">
-            <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-            <div class="form-floating">
-              <input [ngClass]="{
-                'is-invalid':
-                  registerForm.get('email')?.invalid &&
-                  (registerForm.get('email')?.dirty ||
-                    registerForm.get('email')?.touched),
-                'is-valid':
-                  registerForm.get('email')?.valid &&
-                  (registerForm.get('email')?.dirty ||
-                    registerForm.get('email')?.touched)
-              }" formControlName="email" type="text" class="form-control" id="floatingInputGroup2"
-                placeholder="Type your email" required />
+      <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSignUp()">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="floatingInputGroup2" class="form-label">Your first name</label>
+            <div class="input-group" [ngClass]="{
+              'is-invalid-group':
+                registerForm.get('first_name')?.invalid &&
+                (registerForm.get('first_name')?.dirty ||
+                  registerForm.get('first_name')?.touched),
+              'is-valid-group':
+                registerForm.get('first_name')?.valid &&
+                (registerForm.get('first_name')?.dirty ||
+                  registerForm.get('first_name')?.touched)
+            }">
+              <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
+              <div class="form-floating">
+                <input formControlName="first_name" type="text" [ngClass]="{
+                  'is-invalid':
+                    registerForm.get('first_name')?.invalid &&
+                    (registerForm.get('first_name')?.dirty ||
+                      registerForm.get('first_name')?.touched),
+                  'is-valid':
+                    registerForm.get('first_name')?.valid &&
+                    (registerForm.get('first_name')?.dirty ||
+                      registerForm.get('first_name')?.touched)
+                }" class="form-control" id="floatingInputGroup2" placeholder="Type your first name" required />
+              </div>
             </div>
-            <!-- <div class="invalid-feedback">
-        Please choose a username.
-      </div> -->
+            <ng-container *ngIf="
+              registerForm.get('first_name')?.dirty ||
+              registerForm.get('first_name')?.touched
+            ">
+              <div *ngIf="registerForm.get('first_name')?.invalid" class="invalid-message">
+                <span>First name is required</span>
+              </div>
+            </ng-container>
           </div>
-          <ng-container *ngIf="
-            registerForm.get('email')?.dirty ||
-            registerForm.get('email')?.touched
-          ">
-            <div *ngIf="registerForm.get('email')?.errors?.['required']" class="invalid-message">
-              <span>Email is required</span>
+          <div class="col-md-6">
+            <label>Your last name</label>
+            <div class="input-group" [ngClass]="{
+              'is-invalid-group':
+                registerForm.get('last_name')?.invalid &&
+                (registerForm.get('last_name')?.dirty ||
+                  registerForm.get('last_name')?.touched),
+              'is-valid-group':
+                registerForm.get('last_name')?.valid &&
+                (registerForm.get('last_name')?.dirty ||
+                  registerForm.get('last_name')?.touched)
+            }">
+              <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
+              <div class="form-floating">
+                <input [ngClass]="{
+                  'is-invalid':
+                    registerForm.get('last_name')?.invalid &&
+                    (registerForm.get('last_name')?.dirty ||
+                      registerForm.get('last_name')?.touched),
+                  'is-valid':
+                    registerForm.get('last_name')?.valid &&
+                    (registerForm.get('last_name')?.dirty ||
+                      registerForm.get('last_name')?.touched)
+                }" formControlName="last_name" type="text" class="form-control" id="floatingInputGroup2"
+                  placeholder="Type your last name" required />
+              </div>
             </div>
-            <div *ngIf="registerForm.get('email')?.getError('email')" class="invalid-message">
-              <span>Email is not valid</span>
-            </div>
-          </ng-container>
+            <ng-container *ngIf="
+              registerForm.get('last_name')?.dirty ||
+              registerForm.get('last_name')?.touched
+            ">
+              <div *ngIf="registerForm.get('last_name')?.invalid" class="invalid-message">
+                <span>Last name is required</span>
+              </div>
+            </ng-container>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label>Your role</label>
-          <div class="input-group" [ngClass]="{
-            'is-invalid-group':
-              registerForm.get('role')?.invalid &&
-              (registerForm.get('role')?.dirty ||
-                registerForm.get('role')?.touched),
-            'is-valid-group':
-              registerForm.get('role')?.valid &&
-              (registerForm.get('role')?.dirty ||
-                registerForm.get('role')?.touched)
-          }">
-            <span class="input-group-text"><i class="fa-solid fa-chalkboard-user"></i></span>
-            <select [ngClass]="{
-              'is-invalid':
+        <div class="row">
+          <div class="col-md-12">
+            <label>Your email address</label>
+            <div class="input-group" [ngClass]="{
+              'is-invalid-group':
+                registerForm.get('email')?.invalid &&
+                (registerForm.get('email')?.dirty ||
+                  registerForm.get('email')?.touched),
+              'is-valid-group':
+                registerForm.get('email')?.valid &&
+                (registerForm.get('email')?.dirty ||
+                  registerForm.get('email')?.touched)
+            }">
+              <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+              <div class="form-floating">
+                <input [ngClass]="{
+                  'is-invalid':
+                    registerForm.get('email')?.invalid &&
+                    (registerForm.get('email')?.dirty ||
+                      registerForm.get('email')?.touched),
+                  'is-valid':
+                    registerForm.get('email')?.valid &&
+                    (registerForm.get('email')?.dirty ||
+                      registerForm.get('email')?.touched)
+                }" formControlName="email" type="text" class="form-control" id="floatingInputGroup2"
+                  placeholder="Type your email" required />
+              </div>
+            </div>
+            <ng-container *ngIf="
+              registerForm.get('email')?.dirty ||
+              registerForm.get('email')?.touched
+            ">
+              <div *ngIf="registerForm.get('email')?.errors?.['required']" class="invalid-message">
+                <span>Email is required</span>
+              </div>
+              <div *ngIf="registerForm.get('email')?.getError('email')" class="invalid-message">
+                <span>Email is not valid</span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label>Your role</label>
+            <div class="input-group" [ngClass]="{
+              'is-invalid-group':
                 registerForm.get('role')?.invalid &&
                 (registerForm.get('role')?.dirty ||
                   registerForm.get('role')?.touched),
-              'is-valid':
+              'is-valid-group':
                 registerForm.get('role')?.valid &&
                 (registerForm.get('role')?.dirty ||
                   registerForm.get('role')?.touched)
-            }" formControlName="role" class="form-select form-select-lg" id="floatingSelectGrid">
-              <option value="" disabled selected hidden>Choose your role</option>
-              <option value="Student">Student</option>
-              <option value="Instructor">Instructor</option>
-            </select>
-            <!-- <span class="input-group-text"><i class="fa-solid fa-arrow-down"></i></span> -->
-          </div>
-          <ng-container *ngIf="
-            registerForm.get('role')?.dirty || registerForm.get('role')?.touched
-          ">
-            <div *ngIf="registerForm.get('role')?.invalid" class="invalid-message">
-              <span>Role is required</span>
-            </div>
-          </ng-container>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <label>Your password</label>
-          <div class="input-group" [ngClass]="{
-            'is-invalid-group':
-              registerForm.get('password')?.invalid &&
-              (registerForm.get('password')?.dirty ||
-                registerForm.get('password')?.touched),
-            'is-valid-group':
-              registerForm.get('password')?.valid &&
-              (registerForm.get('password')?.dirty ||
-                registerForm.get('password')?.touched)
-          }">
-            <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
-            <div class="form-floating is-invalid">
-              <input [ngClass]="{
+            }">
+              <span class="input-group-text"><i class="fa-solid fa-chalkboard-user"></i></span>
+              <select [ngClass]="{
                 'is-invalid':
-                  registerForm.get('password')?.invalid &&
-                  (registerForm.get('password')?.dirty ||
-                    registerForm.get('password')?.touched),
+                  registerForm.get('role')?.invalid &&
+                  (registerForm.get('role')?.dirty ||
+                    registerForm.get('role')?.touched),
                 'is-valid':
-                  registerForm.get('password')?.valid &&
-                  (registerForm.get('password')?.dirty ||
-                    registerForm.get('password')?.touched)
-              }" formControlName="password" [type]="isPasswordVisible ? 'text' : 'password'" class="form-control"
-                id="floatingInputGroup2" placeholder="Type your password" required />
+                  registerForm.get('role')?.valid &&
+                  (registerForm.get('role')?.dirty ||
+                    registerForm.get('role')?.touched)
+              }" formControlName="role" class="form-select form-select-lg" id="floatingSelectGrid">
+                <option value="" disabled selected hidden>Choose your role</option>
+                <option value="Student">Student</option>
+                <option value="Instructor">Instructor</option>
+              </select>
+              <!-- <span class="input-group-text"><i class="fa-solid fa-arrow-down"></i></span> -->
             </div>
-            <span (click)="togglePasswordVisibility()" class="input-group-text"><i [ngClass]="
-                isPasswordVisible ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'
-              "></i></span>
+            <ng-container *ngIf="
+              registerForm.get('role')?.dirty || registerForm.get('role')?.touched
+            ">
+              <div *ngIf="registerForm.get('role')?.invalid" class="invalid-message">
+                <span>Role is required</span>
+              </div>
+            </ng-container>
           </div>
-          <ng-container *ngIf="
-            registerForm.get('password')?.dirty ||
-            registerForm.get('password')?.touched
-          ">
-            <div *ngIf="registerForm.get('password')?.errors?.['required']" class="invalid-message">
-              <span>Password is required</span>
-            </div>
-            <div *ngIf="registerForm.get('password')?.errors?.['pattern']" class="invalid-message">
-              <span>Password is not valid</span>
-            </div>
-            <div *ngIf="registerForm.get('password')?.valid" class="valid-message">
-              Looks good!
-            </div>
-          </ng-container>
         </div>
-      </div>
-      <button class="auth-button" [disabled]="registerForm.invalid" type="submit">
-        <span>Sign up</span>
-        <div class="hovered-div">
-          <i class="fa-solid fa-check-circle"></i>
+        <div class="row">
+          <div class="col-md-12">
+            <label>Your password</label>
+            <div class="input-group" [ngClass]="{
+              'is-invalid-group':
+                registerForm.get('password')?.invalid &&
+                (registerForm.get('password')?.dirty ||
+                  registerForm.get('password')?.touched),
+              'is-valid-group':
+                registerForm.get('password')?.valid &&
+                (registerForm.get('password')?.dirty ||
+                  registerForm.get('password')?.touched)
+            }">
+              <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+              <div class="form-floating is-invalid">
+                <input [ngClass]="{
+                  'is-invalid':
+                    registerForm.get('password')?.invalid &&
+                    (registerForm.get('password')?.dirty ||
+                      registerForm.get('password')?.touched),
+                  'is-valid':
+                    registerForm.get('password')?.valid &&
+                    (registerForm.get('password')?.dirty ||
+                      registerForm.get('password')?.touched)
+                }" formControlName="password" [type]="isPasswordVisible ? 'text' : 'password'" class="form-control"
+                  id="floatingInputGroup2" placeholder="Type your password" required />
+              </div>
+              <span (click)="togglePasswordVisibility()" class="input-group-text"><i [ngClass]="
+                  isPasswordVisible ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'
+                "></i></span>
+            </div>
+            <ng-container *ngIf="
+              registerForm.get('password')?.dirty ||
+              registerForm.get('password')?.touched
+            ">
+              <div *ngIf="registerForm.get('password')?.errors?.['required']" class="invalid-message">
+                <span>Password is required</span>
+              </div>
+              <div *ngIf="registerForm.get('password')?.errors?.['pattern']" class="invalid-message">
+                <span>Password is not valid</span>
+              </div>
+              <div *ngIf="registerForm.get('password')?.valid" class="valid-message">
+                Looks good!
+              </div>
+            </ng-container>
+          </div>
         </div>
-      </button>
-    </form>
+        <button class="auth-button" [disabled]="registerForm.invalid" type="submit">
+          <span>Sign up</span>
+          <div class="hovered-div">
+            <i class="fa-solid fa-check-circle"></i>
+          </div>
+        </button>
+      </form>
+    </div>
   </div>
 </section>

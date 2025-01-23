@@ -21,10 +21,10 @@ export class SharedService {
     this.role = localStorage.getItem('userRole')
   }
   onGetTopFiveStudents(): Observable<any>{
-    return this._HttpClient.get<any>("api/student/top-five");
+    return this._HttpClient.get<any>("student/top-five");
   }
 
   onGetFiveIncomingQuiz(): Observable<any>{
-    return this._HttpClient.get<any>("api/quiz/incomming");
+    return this._HttpClient.get<any>("quiz/incomming");
   }
 }
