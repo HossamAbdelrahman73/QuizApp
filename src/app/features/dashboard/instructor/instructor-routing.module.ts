@@ -25,14 +25,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/quizes/quizes.module').then((m) => m.QuizesModule),
   },
-  {
-    path: 'bank',
-    loadChildren: () =>
-      import('./modules/quizes/modules/bank/bank.module').then(
-        (m) => m.BankModule
-      ),
-  },
-  { path: 'view-quiz', component: ViewQuizComponent },
 ];
 
 @NgModule({
