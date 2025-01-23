@@ -5,11 +5,11 @@ import { ViewQuizComponent } from './components/view-quiz/view-quiz.component';
 
 const routes: Routes = [
   { path: '', component: QuizesComponent },
-  {
-    path: 'bank',
-    loadChildren: () =>
-      import('./modules/question-bank/bank.module').then((m) => m.BankModule),
-  },
+  // {
+  //   path: 'bank',
+  //   loadChildren: () =>
+  //     import('./modules/question-bank/bank.module').then((m) => m.BankModule),
+  // },
   { path: 'view-quiz', component: ViewQuizComponent },
 ];
 
