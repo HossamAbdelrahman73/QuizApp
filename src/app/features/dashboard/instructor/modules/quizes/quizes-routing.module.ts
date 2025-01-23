@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: 'bank',
     loadChildren: () =>
-      import('./modules/bank/bank.module').then((m) => m.BankModule),
+      import('./modules/question-bank/bank.module').then((m) => m.BankModule),
   },
   { path: 'view-quiz', component: ViewQuizComponent },
 ];
