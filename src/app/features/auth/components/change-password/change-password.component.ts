@@ -17,6 +17,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './change-password.component.scss',
 })
 export class ChangePasswordComponent {
+  showPassword:boolean = false;
+  showConfirmPassword:boolean = false;
   private _AuthService = inject(AuthService);
   private _FormBuilder = inject(FormBuilder);
   private _Router = inject(Router);
@@ -82,5 +84,11 @@ export class ChangePasswordComponent {
         },
       });
     }
+  }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
 }
