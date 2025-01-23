@@ -16,11 +16,11 @@ declare var bootstrap: any; // Import Bootstrap JS globally
 export class StudentsInGroupComponent implements OnInit {
   collection: IStudent[] = [];
   page: number = 1;
+  itemsPerPage: number = 5;
   studentview: ISpecificStudent | undefined = {} as ISpecificStudent;
   groups: IGroups[] = [];
   choosenGroup: string = '';
   IdStudent: string = '';
-  IdGroup: string = '';
 
   constructor(
     private _StudentsService: StudentsService,
@@ -75,10 +75,6 @@ export class StudentsInGroupComponent implements OnInit {
     });
   }
 
-  getGroupId(idGroup: string, nameGroup: string) {
-    this.IdGroup = idGroup;
-  }
-
   updateStudentGroup() {
     if (this.choosenGroup !== 'none') {
       this._StudentsService
@@ -98,41 +94,6 @@ export class StudentsInGroupComponent implements OnInit {
         });
     }
   }
-
-  openGroupsToUpdateStudentGroup(idStudent: string) {
-    this.IdStudent = idStudent;
-    console.log('IdStudent ', this.IdStudent);
-    this._StudentsService.getAllGroups().subscribe({
-      next: (res) => {
-        console.log(res);
-        this.groups = res;
-        const modalElement = document.getElementById('updateStudentModal');
-        if (modalElement) {
-          const modalInstance = new bootstrap.Modal(modalElement);
-          modalInstance.show();
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-
-  deleteStudentFromGroup(idStudent: string, idGroup: string) {
-    this._StudentsService
-      .onDeleteStudentFromGroup(idStudent, idGroup)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this._ToastrService.success(res.message);
-          this.getAllStudentsInGroup();
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-  }
-
   deleteStudent(id: string) {
     this._StudentsService.onDeleteStudentById(id).subscribe({
       next: (res) => {
