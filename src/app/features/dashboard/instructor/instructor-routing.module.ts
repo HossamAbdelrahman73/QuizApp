@@ -21,7 +21,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'quizes',
+    path: 'quizzes',
     loadChildren: () =>
       import('./modules/quizes/quizes.module').then((m) => m.QuizesModule),
   },

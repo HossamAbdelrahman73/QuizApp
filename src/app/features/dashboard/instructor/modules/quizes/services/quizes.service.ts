@@ -1,9 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuizesService {
+  constructor(private _HttpClient: HttpClient) {}
 
-  constructor() { }
+  onCreateQuiz(data: any): Observable<any> {
+    return this._HttpClient.post(`quiz`, data);
+  }
+
+  onGetQuizById(id: string): Observable<any> {
+    return this._HttpClient.get(`quiz/${id}`);
+  }
+  onUpdateQuizById(id: string, data: any): Observable<any> {
+    return this._HttpClient.put(`quiz/${id}`, data);
+  }
 }
