@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
-import { SharedModule } from '../../../../../shared/shared.module';
+import { SharedModule } from '../../../../../../shared/shared.module';
 import { AddEditGroupDialogComponent } from './components/add-edit-group-dialog/add-edit-group-dialog.component';
 
 

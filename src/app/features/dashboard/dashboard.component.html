@@ -1,13 +1,33 @@
-<section >
+<section>
   <div class="container-fluid h-100 position-relative">
-    <div class="row h-100" >
-      <div class="p-0" [ngClass]="valueSideBarChanged() ? 'col-2' :   'col-1'">
-        <div class="container-side-bar">
+    <div class="row h-100">
+      <div class="p-0" [ngClass]="valueSideBarChanged() ? 'col-2' : 'col-1'">
+        <div class="container-side-bar w-100">
           <app-sidebar></app-sidebar>
         </div>
       </div>
-      <div  [ngClass]="valueSideBarChanged() ? 'col-10' :   'col-11'">
+      <div class="px-0" [ngClass]="valueSideBarChanged() ? 'col-10' : 'col-11'">
         <app-navbar></app-navbar>
+        <div
+          class="clock-container dark mx-auto text-center p-3 mt-4 border border-1 border-black border-opacity-50 shadow rounded-3"
+        >
+          <div class="time hours py-3 px-2 rounded-3 border border-1 border-black border-opacity-50">
+            <span
+              class="display-2 fw-medium"
+            >
+              {{ currentTime | date : "hh" }}
+            </span>
+            <span class="date fw-lighter">{{ currentTime | date : 'EEE, ddMMM' }}</span>
+            <span class="sparator"></span>
+          </div>
+          <div class="time minutes py-3 px-2 rounded-3 border border-1 border-black border-opacity-50">
+          <span  class="display-2 fw-medium">
+            {{ currentTime | date : "mm" }}
+
+          </span>
+          <span class="sparator"></span>
+          </div>
+        </div>
         <router-outlet></router-outlet>
       </div>
     </div>

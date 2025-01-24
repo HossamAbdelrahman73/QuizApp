@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
 import { ISpecificStudent } from '../../interfaces/ispecific-student';
 import { IStudent } from '../../interfaces/istudent';
-import { StudentsService } from './../../services/students.service';
+import { StudentsService } from '../../services/students.service';
 import { IGroups } from '../../interfaces/igroups';
 
 declare var bootstrap: any; // Import Bootstrap JS globally

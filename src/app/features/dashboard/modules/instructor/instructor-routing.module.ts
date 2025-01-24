@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'groups',
     loadChildren: () =>
-      import('../instructor/modules/groups/groups.module').then(
+      import('./modules/groups/groups.module').then(
         (m) => m.GroupsModule
       ),
   },
