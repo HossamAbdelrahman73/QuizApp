@@ -24,38 +24,7 @@ export class SidebarComponent implements OnInit {
     this._SharedService.onToggle();
   }
   ngOnInit(): void {
-    this.menu = [
-      {
-        link: '/dashboard/instructor/home',
-        text: 'Dashboard',
-        image:'../../../../assets/images/sidebar-images/Dashboard icon.svg',
-        isActive: this.isInstructor() || this.isStudent(),
-      },
-      {
-        link: '/dashboard/instructor/students',
-        text: 'Students',
-        image:'../../../../assets/images/sidebar-images/Students icon.svg',
-        isActive: this.isInstructor(),
-      },
-      {
-        link: '/dashboard/instructor/groups',
-        text: 'Groups',
-        image:'../../../../assets/images/sidebar-images/Students icon.svg',
-        isActive: this.isInstructor()
-      },
-
-      {
-        link: '/dashboard/instructor/quizzes',
-        text: 'Quizzes',
-        image:'../../../../assets/images/sidebar-images/Quiz icon.svg',
-        isActive: this.isInstructor()|| this.isStudent(),
-      },
-      {
-        link: '/dashboard/instructor/results',
-        text: 'Results',
-        image:'../../../../assets/images/sidebar-images/Results icon.svg',
-        isActive: this.isInstructor()|| this.isStudent(),
-      },
-    ];
+    this.isInstructor()
+    this.isInstructor()
   }
 }

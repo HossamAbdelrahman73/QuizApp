@@ -14,14 +14,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     NavbarComponent,
     SidebarComponent,
     DeleteDialogComponent,
     ViewEditDialogComponent,
-    HomeComponent, 
+    HomeComponent,
     NotFoundComponent
   ],
   imports: [
@@ -33,7 +34,9 @@ import { MatIconModule } from '@angular/material/icon'
     MatDialogModule,
     MatSelectModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    MatButtonModule,
+    MatMenuModule
   ],
   exports: [
     ReactiveFormsModule,

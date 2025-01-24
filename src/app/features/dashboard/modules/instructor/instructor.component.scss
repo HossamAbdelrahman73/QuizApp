@@ -1,0 +1,14 @@
+@import"../../../../../assets/styles/abstracts/variables";
+section {
+  .container-fluid {
+    .qwiz-links {
+      i{
+        font-size: 1.5rem;
+        transition: $main-transition;
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+}

@@ -10,14 +10,14 @@ const routes: Routes = [
       {
         path: 'instructor',
         loadChildren: () =>
-          import('../../features/dashboard/instructor/instructor.module').then(
+          import('./modules/instructor/instructor.module').then(
             (m) => m.InstructorModule
           ),
       },
       {
         path: 'student',
         loadChildren: () =>
-          import('../../features/dashboard/student/student.module').then(
+          import('./modules/student/student.module').then(
             (m) => m.StudentModule
           ),
       },

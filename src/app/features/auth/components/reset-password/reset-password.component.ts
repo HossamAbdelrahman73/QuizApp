@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrl: './reset-password.component.scss'
 })
 export class ResetPasswordComponent {
+  showPassword:boolean = false;
+  emailUser: string| null = ""
   private _AuthService = inject(AuthService);
   private _ToastrService = inject(ToastrService);
   private _FormBuilder = inject(FormBuilder);
@@ -33,6 +35,12 @@ export class ResetPasswordComponent {
     [key: string]: AbstractControl<any, any>;
   } {
     return this.resetPasswordForm.controls;
+  }
+  ngOnInit(): void {
+   this.emailUser = localStorage.getItem('email')
+   this.resetPasswordForm.patchValue({
+    email: this.emailUser
+   })
   }
   ResetPassword(data: FormGroup): void {
     // console.log(data.value);
@@ -64,5 +72,7 @@ export class ResetPasswordComponent {
       });
     }
   }
-
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 }
