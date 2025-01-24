@@ -1,5 +1,29 @@
 <section>
   <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="quiz-actions">
+          <button>
+            <img src="../../../../../../assets/images/new quiz icon.svg" alt="new quiz icon">
+            <span>Set up a new quiz</span>
+          </button>
+          <button [routerLink]="quizRoutes.QUESTION_BANK">
+            <img src="../../../../../../assets/images/svg/question-bank-icon.svg" alt="new quiz icon">
+            <span>Question bank</span>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="quiz-list-groups"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="container-fluid">
     <button
       (click)="createQuiz()"
       data-bs-toggle="modal"

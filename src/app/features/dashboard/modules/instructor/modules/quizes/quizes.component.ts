@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { GroupsService } from '../groups/services/groups.service';
 import { IGroup } from '../groups/interfaces/group.interface';
 import { DatePipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { quizRoutes } from './routes/quiz-routes';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
 @Component({
@@ -13,6 +15,8 @@ declare var bootstrap: any; // Import Bootstrap JS globally
   styleUrl: './quizes.component.scss',
 })
 export class QuizesComponent implements OnInit {
+  dialog = inject(MatDialog);
+  quizRoutes = quizRoutes;
   selectedDate: string = '';
   selectedTiem: string = '';
 
@@ -113,3 +117,7 @@ export class QuizesComponent implements OnInit {
     this.removeBackdrop();
   }
 }
+function inject(MatDialog: any) {
+  throw new Error('Function not implemented.');
+}
+
