@@ -1,0 +1,18 @@
+@import "../../../../assets/styles/abstracts/variables";
+section {
+  background-image: url("../../../../assets/images/noFound-page.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  button {
+    border-radius: $rounded-input;
+    color: $color-white;
+    background-color: $color-background-section;
+    border: none;
+    transition: $main-transition;
+    &:hover {
+      background-color: #080c16;
+      transform: scale(1.02);
+    }
+  }
+}
