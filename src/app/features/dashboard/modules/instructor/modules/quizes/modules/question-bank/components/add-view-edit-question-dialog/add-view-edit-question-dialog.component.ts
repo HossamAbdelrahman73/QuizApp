@@ -3,8 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AddEditGroupDialogComponent } from '../../../../../groups/components/add-edit-group-dialog/add-edit-group-dialog.component';
-import { IStudentInGroup } from '../../../../../groups/interfaces/group.interface';
-import { StudentsService } from '../../../../../students/services/students.service';
 
 @Component({
   selector: 'app-add-view-edit-question-dialog',

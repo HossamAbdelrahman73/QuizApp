@@ -1,0 +1,29 @@
+@import "../../../../../../../../../assets/styles/abstracts/_variables";
+.title-input {
+  background-color: $color-input-title;
+  color: black;
+}
+
+.Schedule {
+  border-color: rgb(222, 226, 230);
+  background-color: #ffeddf;
+
+  & > div {
+    border-color: rgb(222, 226, 230);
+  }
+  & > span {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-color: rgb(222, 226, 230);
+  }
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+  line-height: 1;
+}
+.no-pointer {
+  pointer-events: none;
+}
+

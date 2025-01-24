@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { SharedService } from '../../../../shared/services/shared-service/shared.service';
 import { Subscription } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
-import { IStudent } from '../../interfaces/istudent';
+import { IStudent } from './modules/quizes/interfaces/istudent';
 
 @Component({
   selector: 'app-instructor',
