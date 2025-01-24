@@ -39,7 +39,12 @@
               <li class="fs-5">
                 <a
                   class="dropdown-item delete"
-                  (click)="deleteStudent(student._id)"
+                  (click)="
+                    deleteStudent(
+                      student._id,
+                      student.first_name + ' ' + student.last_name
+                    )
+                  "
                 >
                   <i class="fa-solid fa-trash"></i> Delete
                 </a>
