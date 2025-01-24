@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddEditGroupDialogComponent } from './components/add-edit-group-dialog/add-edit-group-dialog.component';
 import { StudentsService } from '../students/services/students.service';
 import { IStudent } from '../students/interfaces/istudent';
-import { DeleteDialogComponent } from '../../../../../shared/components/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from '../../../../../../shared/components/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-groups',
