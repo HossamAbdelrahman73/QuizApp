@@ -6,7 +6,7 @@ import { ViewQuizComponent } from './components/view-quiz/view-quiz.component';
 const routes: Routes = [
   { path: '', component: QuizesComponent },
   { path: 'view-quiz', component: ViewQuizComponent },
-  { path: 'question-bank', loadChildren: () => import('../quizes/modules/question-bank/question-bank.module').then(m => m.QuestionBankModule) },
+  { path: 'question-bank', loadChildren: () => import('./modules/question-bank/question-bank.module').then(m => m.QuestionBankModule) },
 ];
 
 @NgModule({
