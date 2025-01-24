@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InstructorComponent } from './instructor.component';
-import { ViewQuizComponent } from './modules/quizes/components/view-quiz/view-quiz.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

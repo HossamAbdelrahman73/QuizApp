@@ -6,7 +6,7 @@ import { IStudent } from '../../interfaces/istudent';
 import { StudentsService } from '../../services/students.service';
 import { IGroups } from '../../interfaces/igroups';
 import { MatDialog } from '@angular/material/dialog';
-import { DeleteDialogComponent } from '../../../../../../../shared/components/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from '../../../../../../../../shared/components/delete-dialog/delete-dialog.component';
 
 declare var bootstrap: any; // Import Bootstrap JS globally
 
