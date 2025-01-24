@@ -1,0 +1,96 @@
+<section>
+  <div class="dialog-header">
+    <h2 mat-dialog-title>{{data.title}}</h2>
+    <div mat-dialog-actions class="dialog-actions">
+      <button class="submit-btn" [mat-dialog-close]="form.value">
+        <span><i class="fa-solid fa-check"></i></span>
+      </button>
+      <button class="close-btn" mat-dialog-close="">
+        <span><i class="fa-solid fa-xmark"></i></span>
+      </button>
+    </div>
+  </div>
+  <div class="dialog-form" mat-dialog-content>
+    <form [formGroup]="form">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+        <input formControlName="title" type="text" class="form-control" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-default">
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
+        <textarea formControlName="description" type="text" class="form-control" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-default">
+          </textarea>
+      </div>
+      <div formGroupName="options">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default">A</span>
+              <input formControlName="A" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default">B</span>
+              <input formControlName="B" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default">C</span>
+              <input formControlName="C" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default">D</span>
+              <input formControlName="D" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Right answer</span>
+            <mat-select formControlName="answer" class="form-select">
+              <mat-option selected hidden>Choose the right answer</mat-option>
+              <mat-option value="A">A</mat-option>
+              <mat-option value="B">B</mat-option>
+              <mat-option value="C">C</mat-option>
+              <mat-option value="D">D</mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Category type</span>
+            <mat-select formControlName="type" class="form-select">
+              <mat-option value="FE">Frontend</mat-option>
+              <mat-option value="BE">Backend</mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Difficulty</span>
+            <mat-select formControlName="difficulty" class="form-select">
+              <mat-option selected hidden></mat-option>
+              <mat-option value="easy">Easy</mat-option>
+              <mat-option value="medium">Medium</mat-option>
+              <mat-option value="hard">Hard</mat-option>
+            </mat-select>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
