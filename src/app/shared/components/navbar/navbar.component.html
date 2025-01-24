@@ -2,35 +2,22 @@
   <div class="container-fluid h-100">
     <a class="navbar-brand" routerLink="/auth">{{
       sectionTitle | titlecase
-    }}</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+      }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="d-flex align-items-center gap-2 " id="navbarSupportedContent">
-      <ul class="navbar-nav gap-2 ">
+    <div class="d-flex align-items-center gap-2" id="navbarSupportedContent">
+      <ul class="navbar-nav gap-2">
         @if (role === 'Instructor') {
-        <li class="nav-item d-flex justify-content-center align-items-center">
-          <img
-            src="../../../../assets/images/new quiz icon.svg"
-            class=""
-            alt=""
-          />
+        <button class="btn">
+          <mat-icon>alarm_add</mat-icon>
           <span>New quiz</span>
-        </li>
+        </button>
         }
       </ul>
       <div class="user-info ps-4 h-100">
         <button mat-button [matMenuTriggerFor]="menu">
-
-
           <h3 class="m-0 name">
             <span class="me-2">{{ firstName }}</span>
             <span>{{ lastName }}</span>
@@ -38,14 +25,11 @@
           <span class="m-0 role">{{ role }}</span>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="changePassword()"><mat-icon aria-hidden="false" aria-label="Example logout icon" fontIcon="logout"></mat-icon> Change password</button>
-          <button mat-menu-item (click)="logout()"><mat-icon aria-hidden="false" aria-label="Example key icon" fontIcon="key"></mat-icon> Logout</button>
+          <button mat-menu-item (click)="changePassword()"><mat-icon aria-hidden="false"
+              aria-label="Example logout icon" fontIcon="logout"></mat-icon> Change password</button>
+          <button mat-menu-item (click)="logout()"><mat-icon aria-hidden="false" aria-label="Example key icon"
+              fontIcon="key"></mat-icon> Logout</button>
         </mat-menu>
-
-
-
-
-
       </div>
     </div>
   </div>
