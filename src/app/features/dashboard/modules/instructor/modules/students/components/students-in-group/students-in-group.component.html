@@ -1,0 +1,158 @@
+<div
+  class="p-4 my-4 pb-0 rounded-4 border border-1 border-secondary-subtle shadow-sm"
+>
+  <h1 class="h3 mb-0">Students list</h1>
+  <div class="row mt-2 g-3">
+    @for (student of collection | paginate: { itemsPerPage: itemsPerPage,
+    currentPage: page }; track student._id) {
+    <div class="col-md-6">
+      <div
+        class="py-3 px-4 border border-1 border-secondary-subtle rounded-2 d-flex justify-content-between align-items-center h-100"
+      >
+        <div>
+          <h2 class="h4">
+            {{ student.first_name }} {{ student.last_name || "" }}
+          </h2>
+          <h3 class="h6">{{ student.status }} | {{ student.role }}</h3>
+        </div>
+        <div>
+          <div class="dropdown-center">
+            <button
+              class="d-inline-block rounded-circle border-0 bg-transparent fs-4"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="fs-5">
+                <a
+                  class="dropdown-item view"
+                  (click)="viewStudent(student._id)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#viewStudentModal"
+                >
+                  <i class="fa-solid fa-eye"></i> View
+                </a>
+              </li>
+              <li class="fs-5">
+                <a
+                  class="dropdown-item delete"
+                  (click)="
+                    deleteStudent(
+                      student._id,
+                      student.first_name + ' ' + student.last_name
+                    )
+                  "
+                >
+                  <i class="fa-solid fa-trash"></i> Delete
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+    <div class="d-flex justify-content-center" *ngIf="collection">
+      <div class="d-flex">
+        <pagination-controls
+          class="text-center my-pagination"
+          [directionLinks]="true"
+          [autoHide]="true"
+          (pageChange)="page = $event"
+        ></pagination-controls>
+        <div
+          class="d-flex justify-content-between align-items-center mb-3 border border-1 border-secondary rounded-2"
+        >
+          <select
+            class="form-select w-auto border-0"
+            [(ngModel)]="itemsPerPage"
+            (change)="page = 1"
+          >
+            <option *ngFor="let size of [5, 10, 15, 20, 25]" [value]="size">
+              {{ size }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="viewStudentModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalToggleLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div
+            class="border border-2 border-black border-top-0 border-start-0 border-end-0"
+          >
+            <div
+              class="d-flex justify-content-between align-items-center w-100 h-100 px-2"
+            >
+              <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+                Student Details
+              </h1>
+              <div
+                class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
+              >
+                <button
+                  type="button"
+                  class="fs-2 fa-bold border border-0 bg-transparent"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <i class="fa-solid fa-xmark text-danger"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="input-group my-4">
+              <span class="input-group-text title-input">Name</span>
+              <input
+                disabled
+                type="text"
+                [value]="studentview?.first_name + ' ' + studentview?.last_name"
+                class="form-control"
+              />
+            </div>
+            <div class="input-group my-4">
+              <span class="input-group-text title-input">Email</span>
+              <input
+                disabled
+                type="text"
+                [value]="studentview?.email"
+                class="form-control"
+              />
+            </div>
+            <div class="input-group my-4">
+              <span class="input-group-text title-input">Role</span>
+              <input
+                disabled
+                type="text"
+                [value]="studentview?.role"
+                class="form-control"
+              />
+            </div>
+            <div class="input-group my-4">
+              <span class="input-group-text title-input">Status</span>
+              <input
+                disabled
+                type="text"
+                [value]="studentview?.status"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
