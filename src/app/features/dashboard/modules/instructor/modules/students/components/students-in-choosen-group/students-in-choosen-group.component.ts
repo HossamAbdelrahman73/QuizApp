@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StudentsService } from '../../services/students.service';
 import { IGroups } from '../../interfaces/igroups';
 import { ISpecificStudent } from '../../interfaces/ispecific-student';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteDialogComponent } from '../../../../../../../shared/components/delete-dialog/delete-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
 export interface IchoosenStudents {
@@ -122,31 +124,52 @@ export class StudentsInChoosenGroupComponent {
     console.log('choosenGroup: ', this.choosenGroup);
   }
 
-  deleteStudentFromGroup(idStudent: string, idGroup: string) {
-    this._StudentsService
-      .onDeleteStudentFromGroup(idStudent, idGroup)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this._ToastrService.success(res.message);
-          this.getStudentsInChoosenGroup(this.id);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+  dialog = inject(MatDialog);
+  deleteStudentFromGroup(idStudent: string, idGroup: string, student: string) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '500px',
+      data: {
+        title: `${student}`,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this._StudentsService
+          .onDeleteStudentFromGroup(idStudent, idGroup)
+          .subscribe({
+            next: (res) => {
+              console.log(res);
+              this._ToastrService.success(res.message);
+              this.getStudentsInChoosenGroup(this.id);
+            },
+            error: (err) => {
+              console.log(err);
+            },
+          });
+      }
+    });
   }
 
-  deleteStudent(id: string) {
-    this._StudentsService.onDeleteStudentById(id).subscribe({
-      next: (res) => {
-        console.log(res);
-        this._ToastrService.success(res.message);
-        this.getStudentsInChoosenGroup(this.id);
+  deleteStudent(id: string, student: string) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '500px',
+      data: {
+        title: `${student}`,
       },
-      error: (err) => {
-        console.log(err);
-      },
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this._StudentsService.onDeleteStudentById(id).subscribe({
+          next: (res) => {
+            console.log(res);
+            this._ToastrService.success(res.message);
+            this.getStudentsInChoosenGroup(this.id);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+      }
     });
   }
 }

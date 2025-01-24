@@ -19,6 +19,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { loadingInterceptor } from './core/interceptors/loader/loading.interceptor';
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule,
+} from '@danielmoncada/angular-datetime-picker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +30,6 @@ import { loadingInterceptor } from './core/interceptors/loader/loading.intercept
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
     // NgxSpinnerModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule.forRoot({ type: 'timer' }),

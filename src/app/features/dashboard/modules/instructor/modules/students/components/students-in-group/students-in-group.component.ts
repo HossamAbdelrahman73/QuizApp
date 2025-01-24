@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
 import { ISpecificStudent } from '../../interfaces/ispecific-student';
 import { IStudent } from '../../interfaces/istudent';
 import { StudentsService } from '../../services/students.service';
 import { IGroups } from '../../interfaces/igroups';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../../../../../../../shared/components/delete-dialog/delete-dialog.component';
 
 declare var bootstrap: any; // Import Bootstrap JS globally
 
@@ -94,16 +96,28 @@ export class StudentsInGroupComponent implements OnInit {
         });
     }
   }
-  deleteStudent(id: string) {
-    this._StudentsService.onDeleteStudentById(id).subscribe({
-      next: (res) => {
-        console.log(res);
-        this._ToastrService.success(res.message);
-        this.getAllStudentsInGroup();
+  dialog = inject(MatDialog);
+
+  deleteStudent(id: string, student: string) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '500px',
+      data: {
+        title: `${student}`,
       },
-      error: (err) => {
-        console.log(err);
-      },
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this._StudentsService.onDeleteStudentById(id).subscribe({
+          next: (res) => {
+            console.log(res);
+            this._ToastrService.success(res.message);
+            this.getAllStudentsInGroup();
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+      }
     });
   }
 }

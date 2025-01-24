@@ -47,7 +47,15 @@
                   >Add to group</a
                 >
               </li>
-              <li class="fs-5" (click)="deleteStudent(student._id)">
+              <li
+                class="fs-5"
+                (click)="
+                  deleteStudent(
+                    student._id,
+                    student.first_name + ' ' + student.last_name
+                  )
+                "
+              >
                 <a class="dropdown-item delete"
                   ><span class=""><i class="fa-solid fa-trash"></i></span
                   >Delete</a
