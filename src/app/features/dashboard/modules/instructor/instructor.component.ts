@@ -1,19 +1,21 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { SharedService } from '../../../../shared/services/shared-service/shared.service';
 import { Subscription } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { IStudent } from './modules/quizes/interfaces/istudent';
+import { IQuiz } from './modules/quizes/interfaces/iquiz';
 
 @Component({
   selector: 'app-instructor',
   templateUrl: './instructor.component.html',
   styleUrl: './instructor.component.scss',
 })
-export class InstructorComponent implements OnInit {
+export class InstructorComponent implements OnInit, OnDestroy {
   private _DashboardService = inject(DashboardService);
   studentsSub!: Subscription;
   quizSub!: Subscription;
-  studentList : IStudent[] = []
+  studentList: IStudent[] = [];
+  quizList: IQuiz[] = [];
   ngOnInit(): void {
     this.getFiveIncomingQuiz();
     this.getTopFiveStudents();
@@ -21,7 +23,7 @@ export class InstructorComponent implements OnInit {
   getTopFiveStudents(): void {
     this.studentsSub = this._DashboardService.onGetTopFiveStudents().subscribe({
       next: (res) => {
-        this.studentList = res
+        this.studentList = res;
         // console.log(this.studentList);
       },
       error: (err) => {
@@ -32,7 +34,7 @@ export class InstructorComponent implements OnInit {
   getFiveIncomingQuiz(): void {
     this.quizSub = this._DashboardService.onGetFiveIncomingQuiz().subscribe({
       next: (res) => {
-        // console.log(res);
+        this.quizList = res
       },
       error: (err) => {
         console.log(err);

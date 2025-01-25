@@ -50,3 +50,17 @@ section {
     }
   }
 }
+.qwiz-links {
+  display: flex ;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  i{
+    font-size: 1.3rem;
+    transition: $main-transition;
+    &.icon-quiz {
+      color: $color-green;
+    }
+  }
+}

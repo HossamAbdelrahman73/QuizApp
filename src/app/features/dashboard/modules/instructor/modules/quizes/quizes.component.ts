@@ -7,6 +7,9 @@ import { IGroup } from '../groups/interfaces/group.interface';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { quizRoutes } from './routes/quiz-routes';
+import { DashboardService } from '../../../../services/dashboard.service';
+import { Subscription } from 'rxjs';
+import { IQuiz } from './interfaces/iquiz';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
 @Component({
@@ -15,7 +18,7 @@ declare var bootstrap: any; // Import Bootstrap JS globally
   styleUrl: './quizes.component.scss',
 })
 export class QuizesComponent implements OnInit {
-  dialog = inject(MatDialog);
+  // dialog = inject(MatDialog);
   quizRoutes = quizRoutes;
   selectedDate: string = '';
   selectedTiem: string = '';
@@ -33,15 +36,9 @@ export class QuizesComponent implements OnInit {
   });
   toppings = new FormControl('');
   groups: IGroup[] = [];
-
-  toppingList: string[] = [
-    'Extra cheese',
-    'Mushroom',
-    'Onion',
-    'Pepperoni',
-    'Sausage',
-    'Tomato',
-  ];
+  quizSub!: Subscription;
+  upCommingQuizSub!:Subscription;
+  quizList: IQuiz[]= []
   duration: number[] = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
   questionsNumbur: number[] = Array.from({ length: 50 }, (_, i) => i + 1);
   questionScore: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
@@ -51,11 +48,13 @@ export class QuizesComponent implements OnInit {
     private groupsService: GroupsService,
     private _QuizesService: QuizesService,
     private _ToastrService: ToastrService,
+    private _DashboardService : DashboardService,
     private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
     this.getGroups();
+    this.getAllQuizzes()
   }
 
   getGroups() {
@@ -115,5 +114,28 @@ export class QuizesComponent implements OnInit {
     const modal = bootstrap.Modal.getInstance(modalElement);
     modal.hide();
     this.removeBackdrop();
+  }
+  getAllQuizzes():void {
+  this.quizSub =  this._QuizesService.onGetAllQuizzes().subscribe({
+      next:(res)=> {
+        // console.log(res);
+        this.quizList = res
+      }, error:(err)=> {
+        console.log(err);
+      }
+    })
+  }
+  getFiveIncomingQuiz(): void {
+    this.upCommingQuizSub = this._DashboardService.onGetFiveIncomingQuiz().subscribe({
+      next: (res) => {
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+  ngOnDestroy(): void {
+    this.quizSub.unsubscribe()
+    this.upCommingQuizSub.unsubscribe()
   }
 }

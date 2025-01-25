@@ -3,7 +3,7 @@
     <div class="row gap-1 flex-nowrap">
       <div class="col-md-6">
         <div
-          class="quiz-card px-2 py-3 rounded-3 border border-1 border-black border-opacity-50"
+          class="quiz-card p-3 rounded-3 border border-1 border-black border-opacity-50"
         >
           <div
             class="quiz-card-header d-flex justify-content-between align-items-center"
@@ -14,10 +14,14 @@
             </p>
           </div>
           <div class="quiz-card-body">
-            @for (student of studentList; track $index) { @if($index %2 === 0){
-            @if ($index == studentList.length-1 ){
-            <div
-              class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 overflow-hidden"
+            @for (quiz of quizList; track $index)
+
+            { @if($index %2 === 0){
+
+              @if
+            ($index == quizList.length-1 ){
+              <div
+              class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden"
             >
               <div class="row">
                 <div class="col-md-3 px-0">
@@ -29,21 +33,26 @@
                     />
                   </div>
                 </div>
-                <div class="col-md-7 align-content-center">
+                <div class="col-md-6 align-content-center">
                   <div class="quiz-info flex-grow-1">
                     <div class="quiz-info-title mb-2">
                       <h5>
-                        hello {{ student.first_name + " " + student.last_name }}
+                        {{ quiz.title }}
                       </h5>
                     </div>
                     <div class="quiz-info-score">
-                      Average score: {{ student.avg_score + "%" }}
+                      Start date: {{ quiz.schadule | date : "short" }}
                     </div>
                   </div>
                 </div>
-                <div class="col-md-2 align-content-center">
+                <div class="col-md-3 align-content-center">
                   <a class="qwiz-links cursor-pointer text-body">
-                    <i class="fa-solid fa-arrow-alt-circle-right"></i>
+                    <a class="qwiz-links cursor-pointer text-body">
+                      <span>Open</span>
+                      <span>
+                        <i class="fa-solid fa-arrow-alt-circle-right icon-quiz"></i>
+                      </span>
+                    </a>
                   </a>
                 </div>
               </div>
@@ -64,54 +73,64 @@
                     />
                   </div>
                 </div>
-                <div class="col-md-7 align-content-center">
+                <div class="col-md-6 align-content-center">
                   <div class="quiz-info flex-grow-1">
                     <div class="quiz-info-title mb-2">
                       <h5>
-                        {{ student.first_name + " " + student.last_name }}
+                        {{ quiz.title }}
                       </h5>
                     </div>
                     <div class="quiz-info-score">
-                      Average score: {{ student.avg_score + "%" }}
+                      Start date: {{ quiz.schadule | date : "short" }}
                     </div>
                   </div>
                 </div>
-                <div class="col-md-2 align-content-center">
+                <div class="col-md-3 align-content-center">
                   <a class="qwiz-links cursor-pointer text-body">
-                    <i class="fa-solid fa-arrow-alt-circle-right"></i>
+                    <a class="qwiz-links cursor-pointer text-body">
+                      <span>Open</span>
+                      <span>
+                        <i class="fa-solid fa-arrow-alt-circle-right icon-quiz"></i>
+                      </span>
+                    </a>
                   </a>
                 </div>
               </div>
             </div>
             } } @else if ($index %2 !==0) {
-            <div
+              <div
               class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden"
             >
               <div class="row">
                 <div class="col-md-3 px-0">
                   <div class="quiz-image h-100">
                     <img
-                      src="../../../../../assets/images/dashboard images/quiz-psychology.svg"
+                      src="../../../../../assets/images/dashboard images/quiz-computer-science.svg"
                       class="w-100"
                       alt=""
                     />
                   </div>
                 </div>
-                <div class="col-md-7 align-content-center">
+                <div class="col-md-6 align-content-center">
                   <div class="quiz-info flex-grow-1">
                     <div class="quiz-info-title mb-2">
                       <h5>
-                        {{ student.first_name + " " + student.last_name }}
+                        {{ quiz.title }}
                       </h5>
                     </div>
                     <div class="quiz-info-score">
-                      Average score: {{ student.avg_score + "%" }}
+                      Start date: {{ quiz.schadule | date : "short" }}
                     </div>
                   </div>
                 </div>
-                <div class="col-md-2 align-content-center">
+                <div class="col-md-3 align-content-center">
                   <a class="qwiz-links cursor-pointer text-body">
-                    <i class="fa-solid fa-arrow-alt-circle-right"></i>
+                    <a class="qwiz-links cursor-pointer text-body">
+                      <span>Open</span>
+                      <span>
+                        <i class="fa-solid fa-arrow-alt-circle-right icon-quiz"></i>
+                      </span>
+                    </a>
                   </a>
                 </div>
               </div>
@@ -123,7 +142,7 @@
       </div>
       <div class="col-md-6">
         <div
-          class="quiz-card px-2 py-3 rounded-3 border border-1 border-black border-opacity-50"
+          class="quiz-card p-3 rounded-3 border border-1 border-black border-opacity-50"
         >
           <div
             class="quiz-card-header d-flex justify-content-between align-items-center"

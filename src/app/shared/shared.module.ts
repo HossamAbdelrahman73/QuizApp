@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -23,7 +25,8 @@ import {MatButtonModule} from '@angular/material/button';
     DeleteDialogComponent,
     ViewEditDialogComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +39,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     RouterModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatListModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -48,6 +52,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatDialogModule,
     MatSelectModule,
     MatIconModule,
+    MatListModule,
+    BreadcrumbComponent
   ],
 })
 export class SharedModule { }
