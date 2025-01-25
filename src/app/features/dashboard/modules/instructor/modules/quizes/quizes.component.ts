@@ -1,7 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
 import { QuizesService } from './services/quizes.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { GroupsService } from '../groups/services/groups.service';
 import { IGroup } from '../groups/interfaces/group.interface';
 import { DatePipe } from '@angular/common';
@@ -139,7 +139,3 @@ export class QuizesComponent implements OnInit {
     this.upCommingQuizSub.unsubscribe()
   }
 }
-// function inject(MatDialog: any) {
-//   throw new Error('Function not implemented.');
-// }
-

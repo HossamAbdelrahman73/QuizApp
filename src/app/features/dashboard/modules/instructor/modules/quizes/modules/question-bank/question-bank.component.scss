@@ -1,0 +1,30 @@
+@import "../../../../../../../../../assets/styles/abstracts/variables";
+
+table {
+  border-collapse: separate;
+}
+td,
+th {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+th {
+  background-color: black;
+  color: white;
+}
+td.icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Inherit full height from the row */
+  color: #fb7c19;
+  font-size: 20px;
+  span {
+    cursor: pointer;
+  }
+}
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: $color-green;
+}
