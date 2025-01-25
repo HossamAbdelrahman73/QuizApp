@@ -19,12 +19,9 @@
           class="quiz-card p-3 rounded-3 border border-1 border-black border-opacity-50"
         >
           <div
-            class="quiz-card-header d-flex justify-content-between align-items-center"
+            class="quiz-card-header mb-3"
           >
             <h5>Upcoming 5 quizzes</h5>
-            <p class="cursor-pointer">
-              All quizzes <i class="fa-solid fa-arrow-right ms-1"></i>
-            </p>
           </div>
           <div class="quiz-card-body">
             @for (quiz of quizList; track $index)
