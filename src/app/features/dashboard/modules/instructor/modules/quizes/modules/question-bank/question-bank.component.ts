@@ -1,26 +1,49 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddViewEditQuestionDialogComponent } from './components/add-view-edit-question-dialog/add-view-edit-question-dialog.component';
 import { QuestionBankService } from './services/question-bank.service';
 import { ToastrService } from 'ngx-toastr';
+import { IBank } from './interfaces/ibank';
 
 @Component({
   selector: 'app-question-bank',
   templateUrl: './question-bank.component.html',
-  styleUrl: './question-bank.component.scss'
+  styleUrl: './question-bank.component.scss',
 })
-export class QuestionBankComponent {
+export class QuestionBankComponent implements OnInit {
   questionsBankService = inject(QuestionBankService);
   dialog = inject(MatDialog);
+  page: number = 1;
+  itemsPerPage: number = 5;
   toast = inject(ToastrService);
+
+  questions: IBank[] = [];
+  constructor(private _QuestionBankService: QuestionBankService) {}
+
+  ngOnInit(): void {
+    this.getAllQuestions();
+  }
+
+  getAllQuestions() {
+    this._QuestionBankService.onGetQuestions().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.questions = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
   onCreateQuestion() {
     const dialogRef = this.dialog.open(AddViewEditQuestionDialogComponent, {
       width: '800px',
       data: {
-        title: 'Set up a new question'
-      }
-    })
-    dialogRef.afterClosed().subscribe(result => {
+        title: 'Set up a new question',
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.questionsBankService.createQuestion(result).subscribe({
           error: () => {
@@ -28,9 +51,9 @@ export class QuestionBankComponent {
           },
           complete: () => {
             this.toast.success('Question created successfully');
-          }
+          },
         });
       }
-    })
+    });
   }
 }
