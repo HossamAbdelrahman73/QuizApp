@@ -15,9 +15,7 @@ const routes: Routes = [
   {
     path: 'groups',
     loadChildren: () =>
-      import('./modules/groups/groups.module').then(
-        (m) => m.GroupsModule
-      ),
+      import('./modules/groups/groups.module').then((m) => m.GroupsModule),
   },
   {
     path: 'quizzes',
