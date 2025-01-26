@@ -7,8 +7,9 @@ import { IGroup } from '../groups/interfaces/group.interface';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { quizRoutes } from './routes/quiz-routes';
+import { ITableColumnConfig } from '../../../../../../shared/interfaces/table/table-column-config.interface';
 import { DashboardService } from '../../../../services/dashboard.service';
-import { Subscription } from 'rxjs';
+import { take } from 'rxjs';
 import { IQuiz } from './interfaces/iquiz';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
@@ -18,10 +19,19 @@ declare var bootstrap: any; // Import Bootstrap JS globally
   styleUrl: './quizes.component.scss',
 })
 export class QuizesComponent implements OnInit {
-  // dialog = inject(MatDialog);
+  dialog = inject(MatDialog);
+  quizesService = inject(QuizesService);
   quizRoutes = quizRoutes;
   selectedDate: string = '';
   selectedTiem: string = '';
+  completedQuizes: any[] = [];
+  completedQuizesColumns: ITableColumnConfig[] = [
+    { key: 'title', label: 'Title' },
+    { key: 'questions_number', label: 'Question number' },
+    { key: 'difficulty', label: 'Difficulty' },
+    { key: 'schadule', label: 'Schedule', pipe: { type: 'date', format: 'dd/MM/yyyy' } },
+    { key: 'type', label: 'Type' },
+  ];
 
   quizForm = this._FormBuilder.group({
     title: ['', [Validators.required]],
@@ -36,8 +46,6 @@ export class QuizesComponent implements OnInit {
   });
   toppings = new FormControl('');
   groups: IGroup[] = [];
-  quizSub!: Subscription;
-  upCommingQuizSub!:Subscription;
   quizList: IQuiz[]= []
   duration: number[] = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
   questionsNumbur: number[] = Array.from({ length: 50 }, (_, i) => i + 1);
@@ -50,10 +58,11 @@ export class QuizesComponent implements OnInit {
     private _ToastrService: ToastrService,
     private _DashboardService : DashboardService,
     private datePipe: DatePipe
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getGroups();
+    this.getCompletedQuizes();
     this.getAllQuizzes()
   }
 
@@ -116,7 +125,7 @@ export class QuizesComponent implements OnInit {
     this.removeBackdrop();
   }
   getAllQuizzes():void {
-  this.quizSub =  this._QuizesService.onGetAllQuizzes().subscribe({
+  this._QuizesService.onGetAllQuizzes().pipe(take(1)).subscribe({
       next:(res)=> {
         // console.log(res);
         this.quizList = res
@@ -126,7 +135,7 @@ export class QuizesComponent implements OnInit {
     })
   }
   getFiveIncomingQuiz(): void {
-    this.upCommingQuizSub = this._DashboardService.onGetFiveIncomingQuiz().subscribe({
+    this._DashboardService.onGetFiveIncomingQuiz().pipe(take(1)).subscribe({
       next: (res) => {
       },
       error: (err) => {
@@ -134,8 +143,20 @@ export class QuizesComponent implements OnInit {
       },
     });
   }
-  ngOnDestroy(): void {
-    this.quizSub.unsubscribe()
-    this.upCommingQuizSub.unsubscribe()
+
+  getCompletedQuizes() {
+    this._QuizesService.getLastFiveQuizes().subscribe({
+      next: (quizes: any) => {
+        console.log(quizes);
+        this.completedQuizes = quizes;
+      },
+      error: (err) => {
+        this._ToastrService.error(err.message);
+      },
+    });
+  }
+  editQuiz(row: any): void {
+    console.log(row);
   }
 }
+
