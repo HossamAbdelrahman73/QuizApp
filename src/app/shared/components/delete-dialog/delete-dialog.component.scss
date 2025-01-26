@@ -1,3 +1,4 @@
+@import "../../../../assets/styles/abstracts/variables";
 .dialog-header {
   display: flex;
   justify-content: space-between;
@@ -35,8 +36,29 @@
   align-items: center;
   flex-direction: column;
   gap: 1.3rem;
-  span i {
-    font-size: 5rem;
-    color: #FFEDDF;
+  .dialog-content-footer {
+    button {
+      border-radius: 1rem;
+      &.CancelBtn#CancelBtn {
+        border: 1px solid $color-background-section;
+        background-color: #fff;
+        transition: $main-transition;
+        &:hover {
+          border-color: transparent;
+          background-color: rgb(77, 76, 76);
+          color:$color-white
+        }
+      }
+      &.deleteBtn#deleteBtn {
+        border: 1px solid transparent;
+        background-color: rgb(221, 59, 59);
+        color: $color-white;
+        transition: $main-transition;
+        &:hover {
+          border-color: transparent;
+          background-color: rgb(230, 36, 36);
+        }
+      }
+    }
   }
 }
