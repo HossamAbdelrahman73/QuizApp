@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -18,11 +18,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import {MatTableModule} from '@angular/material/table';
+import { TableComponent } from './components/table/table.component';
+import { MatSortModule } from '@angular/material/sort';
+import { TruncatePipe } from './pipes/truncate.pipe';
+
 import {
   OwlDateTimeModule,
   OwlNativeDateTimeModule,
 } from '@danielmoncada/angular-datetime-picker';
-import { DescriptionPipe } from '../features/dashboard/modules/instructor/modules/quizes/modules/question-bank/pipes/description.pipe';
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -32,6 +37,9 @@ import { DescriptionPipe } from '../features/dashboard/modules/instructor/module
     HomeComponent,
     NotFoundComponent,
     BreadcrumbComponent,
+    NotFoundComponent,
+    TableComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,
@@ -48,6 +56,10 @@ import { DescriptionPipe } from '../features/dashboard/modules/instructor/module
     MatListModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    MatListModule,
+    MatMenuModule,
+    MatTableModule,
+    MatSortModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -64,6 +76,10 @@ import { DescriptionPipe } from '../features/dashboard/modules/instructor/module
     MatListModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    BreadcrumbComponent,
+    MatTableModule,
+    TableComponent
   ],
+  providers: [DatePipe, TruncatePipe]
 })
 export class SharedModule {}
