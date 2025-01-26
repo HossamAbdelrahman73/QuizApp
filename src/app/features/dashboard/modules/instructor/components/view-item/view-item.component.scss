@@ -1,0 +1,52 @@
+@import "../../../../../../../assets/styles/abstracts/variables";
+section {
+  background-color: #373737;
+  min-height: 75vh;
+  min-width: 25vw;
+  overflow: hidden;
+  .shape-container {
+    height: 190px;
+    overflow: hidden;
+    .shape {
+      position: absolute;
+      border-radius: 0 0 15px 15px;
+        background-color: $color-green;
+      &.first {
+        top: 0;
+        right: -5px;
+        height: 65%;
+        width: 20px;
+      }
+      &.second {
+        top: 0;
+        right: 30px;
+        height: 78%;
+        width: 30px;
+        &::after {
+          content: '';
+          position: absolute;
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          background-color: $color-green;
+          bottom: -40px;
+        }
+      }
+      &.third {
+        top: 0;
+        right: 75px;
+        height: 25%;
+        width: 20px;
+      }
+    }
+  }
+  .data-details {
+    color:$color-white;
+  }
+  .go-back-icon {
+    color: $color-white;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+  }
+}

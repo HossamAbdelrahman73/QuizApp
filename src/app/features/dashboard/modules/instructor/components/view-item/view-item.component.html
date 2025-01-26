@@ -1,0 +1,38 @@
+<!-- <p>{{data}}</p> -->
+<section class="position-relative">
+  <div class="shape-container position-relative">
+    <div class="shape first">
+
+    </div>
+    <div class="shape second">
+
+    </div>
+    <div class="shape third">
+
+    </div>
+  </div>
+  <div class="data-details py-1">
+@if(data.title === 'Quiz'){
+  <h1 class="text-center fw-bolder mb-2">{{data.data.title | titlecase}}</h1>
+  <div class="qwiz-card-info text-center py-3">
+    <p class=" mb-0">Type: {{data.data.type | titlecase}}</p>
+    <p class=" mb-0">Difficulty: {{data.data.difficulty | titlecase}}</p>
+    <p class=" mb-0">Number of questions: {{data.data.questions_number }}</p>
+    <p class=" mb-0">Status: {{data.data.status | titlecase}}</p>
+    <p class=" mb-0">Schadule: {{data.data.schadule | date:'short'}}</p>
+  </div>
+} @else if (data.title === 'Student'){
+  <h1 class="text-center fw-bolder mb-2">{{data.data.first_name | titlecase}}</h1>
+  <div class="qwiz-card-info text-center py-3">
+    <p class=" mb-0">Full name: {{data.data.first_name + '  ' + data.data.last_name | titlecase}}</p>
+    <p class=" mb-0">Email: {{data.data.email }}</p>
+    <p class=" mb-0">Group: {{data.data.group.name | titlecase}}</p>
+    <p class=" mb-0">Status: {{data.data.status | titlecase}}</p>
+    <p class=" mb-0">ID: {{data.data._id }}</p>
+  </div>
+}
+  </div>
+  <span class="go-back-icon cursor-pointer" mat-dialog-close>
+    <mat-icon>arrow_forward</mat-icon>
+  </span>
+</section>

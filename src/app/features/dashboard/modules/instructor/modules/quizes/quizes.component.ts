@@ -54,7 +54,7 @@ export class QuizesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGroups();
-    this.getAllQuizzes()
+    this.getFiveIncomingQuiz()
   }
 
   getGroups() {
@@ -116,26 +116,28 @@ export class QuizesComponent implements OnInit {
     this.removeBackdrop();
   }
   getAllQuizzes():void {
-  this.quizSub =  this._QuizesService.onGetAllQuizzes().subscribe({
+   this._QuizesService.onGetAllQuizzes().subscribe({
       next:(res)=> {
         // console.log(res);
-        this.quizList = res
       }, error:(err)=> {
         console.log(err);
       }
     })
   }
   getFiveIncomingQuiz(): void {
-    this.upCommingQuizSub = this._DashboardService.onGetFiveIncomingQuiz().subscribe({
+    this.quizSub = this._DashboardService.onGetFiveIncomingQuiz().subscribe({
       next: (res) => {
+        this.quizList = res
+        console.log(this.quizList);
+
       },
       error: (err) => {
         console.log(err);
       },
     });
   }
-  ngOnDestroy(): void {
-    this.quizSub.unsubscribe()
-    this.upCommingQuizSub.unsubscribe()
-  }
+  // ngOnDestroy(): void {
+  //   this.quizSub.unsubscribe()
+  //   this.upCommingQuizSub.unsubscribe()
+  // }
 }

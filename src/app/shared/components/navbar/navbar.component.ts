@@ -9,6 +9,8 @@ import { SharedService } from '../../services/shared-service/shared.service';
 import { IProfile } from '../../interfaces/iprofile';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateProfileComponent } from '../update-profile/update-profile.component';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +20,7 @@ import { filter, Subscription } from 'rxjs';
 export class NavbarComponent implements OnInit, OnDestroy {
   private _SharedService = inject(SharedService);
   private _Router = inject(Router);
+  dialog = inject(MatDialog);
   routerSubscription!: Subscription;
   profile: IProfile = {} as IProfile;
   showMenu: boolean = false;
@@ -27,6 +30,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   userName: string = '';
   currentPath: string = '';
   sectionTitle: string = '';
+  public currentTime = new Date();
+  constructor() {
+    setInterval(() => {
+      this.currentTime = new Date();
+    }, 1000);
+  }
   ngOnInit(): void {
     this.profile = (localStorage.getItem('profile') as string)
       ? JSON.parse(localStorage.getItem('profile') as string)
@@ -61,6 +70,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   changePassword() {
     this._Router.navigate(['/auth/change-password']);
+  }
+  openDialogToUpdateProfile():void {
+    this.dialog.open(UpdateProfileComponent, {
+    });
   }
   ngOnDestroy() {
     this.routerSubscription.unsubscribe();

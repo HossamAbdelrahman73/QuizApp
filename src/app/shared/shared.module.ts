@@ -18,6 +18,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -26,7 +27,8 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     ViewEditDialogComponent,
     HomeComponent,
     NotFoundComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    UpdateProfileComponent
   ],
   imports: [
     CommonModule,

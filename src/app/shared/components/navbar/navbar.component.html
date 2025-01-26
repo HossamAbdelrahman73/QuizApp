@@ -1,36 +1,88 @@
 <nav class="navbar navbar-expand-lg py-0">
   <div class="container-fluid h-100">
-    <a class="navbar-brand" routerLink="/auth">{{
-      sectionTitle | titlecase
-      }}</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand">{{ sectionTitle | titlecase }}</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="d-flex align-items-center gap-2" id="navbarSupportedContent">
-      <ul class="navbar-nav gap-2">
-        @if (role === 'Instructor') {
-        <button class="btn">
-          <mat-icon>alarm_add</mat-icon>
-          <span>New quiz</span>
-        </button>
-        }
-      </ul>
-      <div class="user-info ps-4 h-100">
-        <button mat-button [matMenuTriggerFor]="menu">
-          <h3 class="m-0 name">
-            <span class="me-2">{{ firstName }}</span>
-            <span>{{ lastName }}</span>
-          </h3>
-          <span class="m-0 role">{{ role }}</span>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="changePassword()"><mat-icon aria-hidden="false"
-              aria-label="Example logout icon" fontIcon="logout"></mat-icon> Change password</button>
-          <button mat-menu-item (click)="logout()"><mat-icon aria-hidden="false" aria-label="Example key icon"
-              fontIcon="key"></mat-icon> Logout</button>
-        </mat-menu>
+    <div
+      class="d-flex align-items-center justify-content-between gap-2 w-100"
+      id="navbarSupportedContent"
+    >
+    <div class="row w-100">
+      <div class="col-md-7">
+        <div class="h-100 d-flex justify-content-center align-items-center">
+
+          <ul class="navbar-nav gap-2 w-100 d-flex justify-content-center align-items-center">
+            <li>
+              <span class="display-6">{{ currentTime | date : "mediumTime" }}</span>
+            </li>
+
+          </ul>
+        </div>
       </div>
+      <div class="col-md-5">
+        <div class="d-flex gap-2 align-items-center justify-content-center">
+
+          <div>
+            @if (role === 'Instructor') {
+              <button class="btn">
+                <mat-icon>alarm_add</mat-icon>
+                <span>New quiz</span>
+              </button>
+              }
+          </div>
+          <div class="user-info ps-4 h-100">
+            <div mat-button [matMenuTriggerFor]="menu" class="d-flex justify-content-center align-items-center gap-2">
+              <div>
+                <h3 class="m-0 name">
+                  <span class="me-2">{{ firstName }}</span>
+                  <span>{{ lastName }}</span>
+                </h3>
+                <span class="m-0 role">{{ role }}</span>
+              </div>
+              <span>
+                <mat-icon class="h4">keyboard_arrow_down</mat-icon>
+              </span>
+            </div>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="changePassword()">
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Example logout icon"
+                  fontIcon="logout"
+                ></mat-icon>
+                Change password
+              </button>
+              <button mat-menu-item (click)="logout()">
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Example key icon"
+                  fontIcon="key"
+                ></mat-icon>
+                Logout
+              </button>
+              <button mat-menu-item (click)="openDialogToUpdateProfile()">
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Example update icon"
+                  fontIcon="update"
+                ></mat-icon>
+               update profile
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+
     </div>
   </div>
 </nav>
