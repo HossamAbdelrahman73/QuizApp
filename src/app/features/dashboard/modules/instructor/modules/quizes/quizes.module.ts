@@ -12,21 +12,26 @@ import {
   OwlDateTimeModule,
   OwlNativeDateTimeModule,
 } from '@danielmoncada/angular-datetime-picker';
-import { SharedModule } from '../../../../../../shared/shared.module';
+import { AllQuizesComponent } from './components/all-quizes/all-quizes.component';
+import { CodeQuizComponent } from './components/code-quiz/code-quiz.component';
 
 @NgModule({
-  declarations: [QuizesComponent, ViewQuizComponent],
+  declarations: [
+    QuizesComponent,
+    ViewQuizComponent,
+    AllQuizesComponent,
+    CodeQuizComponent,
+  ],
   imports: [
     CommonModule,
     QuizesRoutingModule,
-    ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
+    ReactiveFormsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    SharedModule
   ],
-  providers: [DatePipe],
+  providers: [],
 })
 export class QuizesModule {}

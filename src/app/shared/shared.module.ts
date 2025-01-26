@@ -13,11 +13,16 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon'
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
-import {MatListModule} from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule,
+} from '@danielmoncada/angular-datetime-picker';
+import { DescriptionPipe } from '../features/dashboard/modules/instructor/modules/quizes/modules/question-bank/pipes/description.pipe';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -26,7 +31,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     ViewEditDialogComponent,
     HomeComponent,
     NotFoundComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +45,9 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     RouterModule,
     MatButtonModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -53,7 +60,10 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     MatSelectModule,
     MatIconModule,
     MatListModule,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    MatListModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
 })
-export class SharedModule { }
+export class SharedModule {}
