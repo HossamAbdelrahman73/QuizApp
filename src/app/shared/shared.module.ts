@@ -13,15 +13,20 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon'
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
-import {MatListModule} from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import {MatTableModule} from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
 import { MatSortModule } from '@angular/material/sort';
 import { TruncatePipe } from './pipes/truncate.pipe';
+
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule,
+} from '@danielmoncada/angular-datetime-picker';
 
 @NgModule({
   declarations: [
@@ -49,9 +54,12 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatButtonModule,
     MatMenuModule,
     MatListModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    MatListModule,
     MatMenuModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -62,12 +70,16 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatCardModule,
     MatDialogModule,
     MatSelectModule,
-    MatIconModule,
     MatListModule,
     BreadcrumbComponent,
+    MatListModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    BreadcrumbComponent,
     MatTableModule,
-    TableComponent
+    TableComponent,
+    MatIconModule
   ],
   providers: [DatePipe, TruncatePipe]
 })
-export class SharedModule { }
+export class SharedModule {}
