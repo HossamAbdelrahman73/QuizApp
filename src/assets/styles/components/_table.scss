@@ -1,0 +1,32 @@
+table {
+  box-shadow: none;
+  border-collapse: separate !important;
+}
+.mat-mdc-header-row {
+  background-color: #0D1321 !important;
+  color: white !important;
+  border-radius: 5px !important;
+  height: 2.5rem !important;
+}
+.mat-mdc-header-cell {
+  border: 1px solid white !important;
+  &:first-child {
+    border-radius: 5px 0 0 5px !important;
+  }
+  &:last-child {
+    border-radius: 0 5px 5px 0 !important;
+  }
+}
+.mat-mdc-row {
+  height: 2.5rem !important;
+  border: none !important;
+}
+.mat-mdc-cell  {
+  border: 1px solid rgba(#000000, .2) !important;
+  &:first-child {
+    border-radius: 5px 0 0 5px !important;
+  }
+  &:last-child {
+    border-radius: 0 5px 5px 0 !important;
+  }
+}

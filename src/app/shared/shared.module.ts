@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -16,6 +16,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
+import { TableComponent } from './components/table/table.component';
+import { MatSortModule } from '@angular/material/sort';
+import { TruncatePipe } from './pipes/truncate.pipe';
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -23,7 +28,9 @@ import {MatButtonModule} from '@angular/material/button';
     DeleteDialogComponent,
     ViewEditDialogComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TableComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,
@@ -36,7 +43,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     RouterModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule,
+    MatSortModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -48,6 +57,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatDialogModule,
     MatSelectModule,
     MatIconModule,
+    MatTableModule,
+    TableComponent
   ],
+  providers: [DatePipe, TruncatePipe]
 })
 export class SharedModule { }
