@@ -31,7 +31,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     ViewEditDialogComponent,
     HomeComponent,
     NotFoundComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
     NotFoundComponent,
     TableComponent,
     TruncatePipe

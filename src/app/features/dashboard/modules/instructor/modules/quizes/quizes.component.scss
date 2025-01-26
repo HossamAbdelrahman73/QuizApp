@@ -68,8 +68,14 @@ section {
     }
   }
 }
+.quiz-card {
+  padding: 1rem
+}
 .quiz-list-groups {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
 }
 .last-5-quizzes {
   padding: 1.3rem;
@@ -91,7 +97,6 @@ section {
     }
   }
   .table-container {
-    width: 100%;
     display: flex;
     justify-content: center;
   }

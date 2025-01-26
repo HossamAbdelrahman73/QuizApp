@@ -19,7 +19,6 @@ declare var bootstrap: any; // Import Bootstrap JS globally
   styleUrl: './quizes.component.scss',
 })
 export class QuizesComponent implements OnInit {
-
   dialog = inject(MatDialog);
   quizesService = inject(QuizesService);
   quizRoutes = quizRoutes;
@@ -32,8 +31,6 @@ export class QuizesComponent implements OnInit {
     { key: 'difficulty', label: 'Difficulty' },
     { key: 'schadule', label: 'Schedule', pipe: { type: 'date', format: 'dd/MM/yyyy' } },
     { key: 'type', label: 'Type' },
-    { key: 'duration', label: 'Duration' },
-    { key: 'score_per_question', label: 'Score/question' },
   ];
 
   quizForm = this._FormBuilder.group({
