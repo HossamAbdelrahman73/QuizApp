@@ -1,29 +1,21 @@
 <section>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6">
+    <div class="row g-1">
+      <div class="col-md-4">
         <div class="quiz-actions">
           <button data-bs-toggle="modal" data-bs-target="#createQuiz">
-            <img
-              src="../../../../../../assets/images/new quiz icon.svg"
-              alt="new quiz icon"
-            />
+            <img src="../../../../../../assets/images/new quiz icon.svg" alt="new quiz icon" />
             <span>Set up a new quiz</span>
           </button>
           <button [routerLink]="quizRoutes.QUESTION_BANK">
-            <img
-              src="../../../../../../assets/images/svg/question-bank-icon.svg"
-              alt="new quiz icon"
-            />
+            <img src="../../../../../../assets/images/svg/question-bank-icon.svg" alt="new quiz icon" />
             <span>Question bank</span>
           </button>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-8">
         <div class="quiz-list-groups">
-          <div
-            class="quiz-card p-3 rounded-3 border border-1 border-black border-opacity-50"
-          >
+          <div class="quiz-card p-3 rounded-3 border border-1 border-black border-opacity-50">
             <div class="quiz-card-header mb-3">
               <h5>Upcoming 5 quizzes</h5>
             </div>
@@ -31,16 +23,12 @@
               @for (quiz of quizList; track $index) { @if($index %2 === 0){ @if
               ($index == quizList.length-1 ){
               <div
-                class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden"
-              >
+                class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden">
                 <div class="row">
                   <div class="col-md-3 px-0">
                     <div class="quiz-image h-100">
-                      <img
-                        src="../../../../../assets/images/dashboard images/quiz-computer-science.svg"
-                        class="w-100"
-                        alt=""
-                      />
+                      <img src="../../../../../assets/images/dashboard images/quiz-computer-science.svg" width="120px" height="120px"
+                        alt="" />
                     </div>
                   </div>
                   <div class="col-md-6 align-content-center">
@@ -60,9 +48,7 @@
                       <a class="qwiz-links cursor-pointer text-body">
                         <span>Open</span>
                         <span>
-                          <i
-                            class="fa-solid fa-arrow-alt-circle-right icon-quiz"
-                          ></i>
+                          <i class="fa-solid fa-arrow-alt-circle-right icon-quiz"></i>
                         </span>
                       </a>
                     </a>
@@ -73,16 +59,12 @@
               } @else {
 
               <div
-                class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden"
-              >
+                class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden">
                 <div class="row">
                   <div class="col-md-3 px-0">
                     <div class="quiz-image h-100">
-                      <img
-                        src="../../../../../assets/images/dashboard images/quiz-computer-science.svg"
-                        class="w-100"
-                        alt=""
-                      />
+                      <img src="../../../../../assets/images/dashboard images/quiz-computer-science.svg" width="120px" height="120px"
+                        alt="" />
                     </div>
                   </div>
                   <div class="col-md-6 align-content-center">
@@ -102,9 +84,7 @@
                       <a class="qwiz-links cursor-pointer text-body">
                         <span>Open</span>
                         <span>
-                          <i
-                            class="fa-solid fa-arrow-alt-circle-right icon-quiz"
-                          ></i>
+                          <i class="fa-solid fa-arrow-alt-circle-right icon-quiz"></i>
                         </span>
                       </a>
                     </a>
@@ -113,16 +93,12 @@
               </div>
               } } @else if ($index %2 !==0) {
               <div
-                class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden"
-              >
+                class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden">
                 <div class="row">
                   <div class="col-md-3 px-0">
                     <div class="quiz-image h-100">
-                      <img
-                        src="../../../../../assets/images/dashboard images/quiz-computer-science.svg"
-                        class="w-100"
-                        alt=""
-                      />
+                      <img src="../../../../../assets/images/dashboard images/quiz-computer-science.svg" width="120px" height="120px"
+                        alt="" />
                     </div>
                   </div>
                   <div class="col-md-6 align-content-center">
@@ -142,9 +118,7 @@
                       <a class="qwiz-links cursor-pointer text-body">
                         <span>Open</span>
                         <span>
-                          <i
-                            class="fa-solid fa-arrow-alt-circle-right icon-quiz"
-                          ></i>
+                          <i class="fa-solid fa-arrow-alt-circle-right icon-quiz"></i>
                         </span>
                       </a>
                     </a>
@@ -155,56 +129,45 @@
               } }
             </div>
           </div>
+          <div class="last-5-quizzes">
+            <div class="quizzes-header">
+              <h5>Completed quizzes</h5>
+              <div class="results-action">
+                <span>Results</span>
+                <button [routerLink]="quizRoutes.RESULTS" class="icon-btn">
+                  <mat-icon class="icon">trending_flat</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="table-container">
+              <app-table [tableColumnsConfig]="completedQuizesColumns" [tableBody]="completedQuizes"></app-table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 <!-- popup create quiz   -->
-<div
-  class="modal fade"
-  id="createQuiz"
-  tabindex="-1"
-  aria-labelledby="exampleModalToggleLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="createQuiz" tabindex="-1" aria-labelledby="exampleModalToggleLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div
-        class="border border-2 border-black border-top-0 border-start-0 border-end-0"
-      >
-        <div
-          class="d-flex justify-content-between align-items-center w-100 h-100 px-2"
-        >
+      <div class="border border-2 border-black border-top-0 border-start-0 border-end-0">
+        <div class="d-flex justify-content-between align-items-center w-100 h-100 px-2">
           <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
             Set up a new quiz
           </h1>
           <div class="d-flex">
-            <div
-              class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
-            >
-              <button
-                (click)="sendData()"
-                type="button"
-                class="fs-2 fa-bold border border-0 bg-transparent"
-                [attr.data-bs-dismiss]="quizForm.valid ? 'modal' : ''"
-                [disabled]="quizForm.invalid"
-                aria-label="Close"
-              >
+            <div class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3">
+              <button (click)="sendData()" type="button" class="fs-2 fa-bold border border-0 bg-transparent"
+                [attr.data-bs-dismiss]="quizForm.valid ? 'modal' : ''" [disabled]="quizForm.invalid" aria-label="Close">
                 <!-- (click)="updateStudentGroup()" -->
                 <i class="fa-solid fa-check color-global"></i>
               </button>
             </div>
-            <div
-              class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
-            >
-              <button
-                type="button"
-                class="fs-2 fa-bold border border-0 bg-transparent"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                (click)="closeModal()"
-              >
+            <div class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3">
+              <button type="button" class="fs-2 fa-bold border border-0 bg-transparent" data-bs-dismiss="modal"
+                aria-label="Close" (click)="closeModal()">
                 <i class="fa-solid fa-xmark text-danger"></i>
               </button>
             </div>
@@ -221,14 +184,8 @@
           <div class="row">
             <div class="col-md-4">
               <div class="input-group mb-4 mt-2">
-                <span class="input-group-text title-input"
-                  >Duration <span class="fs-6">(in minutes)</span></span
-                >
-                <select
-                  formControlName="duration"
-                  class="form-select"
-                  id="inputGroupSelect01"
-                >
+                <span class="input-group-text title-input">Duration <span class="fs-6">(in minutes)</span></span>
+                <select formControlName="duration" class="form-select" id="inputGroupSelect01">
                   @for (dur of duration; track $index) {
                   <option [value]="dur">{{ dur }}</option>
                   }
@@ -237,15 +194,10 @@
             </div>
             <div class="col-md-4">
               <div class="input-group mb-4 mt-2">
-                <span class="input-group-text title-input"
-                  >No. of questions</span
-                >
+                <span class="input-group-text title-input">No. of questions</span>
                 <div class="dropdown-container">
-                  <select
-                    formControlName="questions_number"
-                    class="form-select rounded-start-0"
-                    id="inputGroupSelect01"
-                  >
+                  <select formControlName="questions_number" class="form-select rounded-start-0"
+                    id="inputGroupSelect01">
                     @for (num of questionsNumbur; track $index) {
                     <option [value]="num">{{ num }}</option>
                     }
@@ -255,16 +207,8 @@
             </div>
             <div class="col-md-4">
               <div class="input-group mb-4 mt-2 d-flex">
-                <span
-                  for="inputGroupSelect01"
-                  class="input-group-text title-input"
-                  >Score per question</span
-                >
-                <select
-                  formControlName="score_per_question"
-                  class="form-select"
-                  id="inputGroupSelect01"
-                >
+                <span for="inputGroupSelect01" class="input-group-text title-input">Score per question</span>
+                <select formControlName="score_per_question" class="form-select" id="inputGroupSelect01">
                   @for (score of questionScore; track $index) {
                   <option [value]="score">{{ score }}</option>
                   }
@@ -274,33 +218,18 @@
           </div>
           <div class="input-group">
             <span class="input-group-text title-input">Description</span>
-            <textarea
-              formControlName="description"
-              class="form-control"
-              aria-label="With textarea"
-            ></textarea>
+            <textarea formControlName="description" class="form-control" aria-label="With textarea"></textarea>
           </div>
-          <div
-            class="Schedule my-3 d-flex align-items-center rounded-2 border border-1"
-          >
+          <div class="Schedule my-3 d-flex align-items-center rounded-2 border border-1">
             <div class="">
               <span class="title-input py-2 px-2 my-auto">Schedule</span>
             </div>
-            <div
-              class="border border-1 border-top-0 border-end-0 border-bottom-0 w-100"
-            >
+            <div class="border border-1 border-top-0 border-end-0 border-bottom-0 w-100">
               <div class="modal-body bg-white">
                 <label>
-                  <input
-                    class="border border-2 border-top-0 border-start-0 border-end-0 border-secondary"
-                    placeholder="Date Time"
-                    [owlDateTimeTrigger]="dt"
-                    [owlDateTime]="dt"
-                    formControlName="schadule"
-                  />
-                  <span class="date"
-                    ><i class="fa-regular fa-calendar px-2"></i
-                  ></span>
+                  <input class="border border-2 border-top-0 border-start-0 border-end-0 border-secondary"
+                    placeholder="Date Time" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" formControlName="schadule" />
+                  <span class="date"><i class="fa-regular fa-calendar px-2"></i></span>
                   <span class="date"><i class="fa-regular fa-clock"></i></span>
                   <owl-date-time #dt></owl-date-time>
                 </label>
@@ -310,14 +239,8 @@
           <div class="row">
             <div class="col-md-4">
               <div class="input-group mb-4">
-                <span class="input-group-text title-input"
-                  >Difficulty level</span
-                >
-                <select
-                  formControlName="difficulty"
-                  class="form-select"
-                  id="inputGroupSelect01"
-                >
+                <span class="input-group-text title-input">Difficulty level</span>
+                <select formControlName="difficulty" class="form-select" id="inputGroupSelect01">
                   @for (difficult of ['easy', 'medium', 'hard']; track $index) {
                   <option [value]="difficult">{{ difficult }}</option>
                   }
@@ -327,11 +250,7 @@
             <div class="col-md-4">
               <div class="input-group mb-4">
                 <span class="input-group-text title-input">Category type</span>
-                <select
-                  formControlName="type"
-                  class="form-select"
-                  id="inputGroupSelect01"
-                >
+                <select formControlName="type" class="form-select" id="inputGroupSelect01">
                   @for (type of ['FE', 'BE', 'DO']; track $index) {
                   <option [value]="type">{{ type }}</option>
                   }
@@ -340,16 +259,8 @@
             </div>
             <div class="col-md-4">
               <div class="input-group mb-4 d-flex">
-                <span
-                  for="inputGroupSelect01"
-                  class="input-group-text title-input"
-                  >Group name</span
-                >
-                <select
-                  formControlName="group"
-                  class="form-select"
-                  id="inputGroupSelect01"
-                >
+                <span for="inputGroupSelect01" class="input-group-text title-input">Group name</span>
+                <select formControlName="group" class="form-select" id="inputGroupSelect01">
                   @for (group of groups; track group._id) {
                   <option [value]="group._id">
                     {{ group.name }}
