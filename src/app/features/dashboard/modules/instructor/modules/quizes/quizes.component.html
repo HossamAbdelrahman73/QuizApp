@@ -4,19 +4,131 @@
       <div class="col-md-4">
         <div class="quiz-actions">
           <button data-bs-toggle="modal" data-bs-target="#createQuiz">
-            <img src="../../../../../../assets/images/new quiz icon.svg" alt="new quiz icon">
+            <img src="../../../../../../assets/images/new quiz icon.svg" alt="new quiz icon" />
             <span>Set up a new quiz</span>
           </button>
           <button [routerLink]="quizRoutes.QUESTION_BANK">
-            <img src="../../../../../../assets/images/svg/question-bank-icon.svg" alt="new quiz icon">
+            <img src="../../../../../../assets/images/svg/question-bank-icon.svg" alt="new quiz icon" />
             <span>Question bank</span>
           </button>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-6">
         <div class="quiz-list-groups">
-          <!-- list first 5 upcoming quizzes -->
-          <!-- list last 5 completed quizzes -->
+          <div class="quiz-card p-3 rounded-3 border border-1 border-black border-opacity-50">
+            <div class="quiz-card-header mb-3">
+              <h5>Upcoming 5 quizzes</h5>
+            </div>
+            <div class="quiz-card-body">
+              @for (quiz of quizList; track $index) { @if($index %2 === 0){ @if
+              ($index == quizList.length-1 ){
+              <div
+                class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden">
+                <div class="row">
+                  <div class="col-md-3 px-0">
+                    <div class="quiz-image h-100">
+                      <img src="../../../../../assets/images/dashboard images/quiz-computer-science.svg" class="w-100"
+                        alt="" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 align-content-center">
+                    <div class="quiz-info flex-grow-1">
+                      <div class="quiz-info-title mb-2">
+                        <h5>
+                          {{ quiz.title }}
+                        </h5>
+                      </div>
+                      <div class="quiz-info-score">
+                        Start date: {{ quiz.schadule | date : "short" }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 align-content-center">
+                    <a class="qwiz-links cursor-pointer text-body">
+                      <a class="qwiz-links cursor-pointer text-body">
+                        <span>Open</span>
+                        <span>
+                          <i class="fa-solid fa-arrow-alt-circle-right icon-quiz"></i>
+                        </span>
+                      </a>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              } @else {
+
+              <div
+                class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden">
+                <div class="row">
+                  <div class="col-md-3 px-0">
+                    <div class="quiz-image h-100">
+                      <img src="../../../../../assets/images/dashboard images/quiz-computer-science.svg" class="w-100"
+                        alt="" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 align-content-center">
+                    <div class="quiz-info flex-grow-1">
+                      <div class="quiz-info-title mb-2">
+                        <h5>
+                          {{ quiz.title }}
+                        </h5>
+                      </div>
+                      <div class="quiz-info-score">
+                        Start date: {{ quiz.schadule | date : "short" }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 align-content-center">
+                    <a class="qwiz-links cursor-pointer text-body">
+                      <a class="qwiz-links cursor-pointer text-body">
+                        <span>Open</span>
+                        <span>
+                          <i class="fa-solid fa-arrow-alt-circle-right icon-quiz"></i>
+                        </span>
+                      </a>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              } } @else if ($index %2 !==0) {
+              <div
+                class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden">
+                <div class="row">
+                  <div class="col-md-3 px-0">
+                    <div class="quiz-image h-100">
+                      <img src="../../../../../assets/images/dashboard images/quiz-computer-science.svg" class="w-100"
+                        alt="" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 align-content-center">
+                    <div class="quiz-info flex-grow-1">
+                      <div class="quiz-info-title mb-2">
+                        <h5>
+                          {{ quiz.title }}
+                        </h5>
+                      </div>
+                      <div class="quiz-info-score">
+                        Start date: {{ quiz.schadule | date : "short" }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 align-content-center">
+                    <a class="qwiz-links cursor-pointer text-body">
+                      <a class="qwiz-links cursor-pointer text-body">
+                        <span>Open</span>
+                        <span>
+                          <i class="fa-solid fa-arrow-alt-circle-right icon-quiz"></i>
+                        </span>
+                      </a>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              } }
+            </div>
+          </div>
           <div class="last-5-quizzes">
             <div class="quizzes-header">
               <h5>Completed quizzes</h5>
@@ -115,8 +227,10 @@
             <div class="border border-1 border-top-0 border-end-0 border-bottom-0 w-100">
               <div class="modal-body bg-white">
                 <label>
-                  Date Time:
-                  <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt" formControlName="schadule" />
+                  <input class="border border-2 border-top-0 border-start-0 border-end-0 border-secondary"
+                    placeholder="Date Time" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" formControlName="schadule" />
+                  <span class="date"><i class="fa-regular fa-calendar px-2"></i></span>
+                  <span class="date"><i class="fa-regular fa-clock"></i></span>
                   <owl-date-time #dt></owl-date-time>
                 </label>
               </div>
@@ -127,8 +241,7 @@
               <div class="input-group mb-4">
                 <span class="input-group-text title-input">Difficulty level</span>
                 <select formControlName="difficulty" class="form-select" id="inputGroupSelect01">
-                  @for (difficult of ['easy', 'medium', 'hard']; track
-                  $index) {
+                  @for (difficult of ['easy', 'medium', 'hard']; track $index) {
                   <option [value]="difficult">{{ difficult }}</option>
                   }
                 </select>
@@ -147,7 +260,7 @@
             <div class="col-md-4">
               <div class="input-group mb-4 d-flex">
                 <span for="inputGroupSelect01" class="input-group-text title-input">Group name</span>
-                <select formControlName="group" class="form-select" [disabled]="true" id="inputGroupSelect01">
+                <select formControlName="group" class="form-select" id="inputGroupSelect01">
                   @for (group of groups; track group._id) {
                   <option [value]="group._id">
                     {{ group.name }}

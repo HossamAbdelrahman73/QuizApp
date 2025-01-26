@@ -2,11 +2,16 @@
 section {
   .container-fluid {
     .qwiz-links {
+      display: flex ;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-decoration: none;
       i{
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         transition: $main-transition;
-        &:hover {
-          transform: scale(1.2);
+        &.icon-quiz {
+          color: $color-green;
         }
       }
     }

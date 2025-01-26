@@ -17,6 +17,10 @@
     border-color: rgb(222, 226, 230);
   }
 }
+.date {
+  cursor: pointer;
+  font-size: 20px;
+}
 
 .example-additional-selection {
   opacity: 0.75;
@@ -47,6 +51,20 @@ section {
     span {
       font-weight: 500;
       font-size: 1rem;
+    }
+  }
+}
+.qwiz-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  i {
+    font-size: 1.3rem;
+    transition: $main-transition;
+    &.icon-quiz {
+      color: $color-green;
     }
   }
 }

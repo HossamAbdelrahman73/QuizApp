@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import {MatTableModule} from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
 import { MatSortModule } from '@angular/material/sort';
@@ -28,6 +30,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     DeleteDialogComponent,
     ViewEditDialogComponent,
     HomeComponent,
+    NotFoundComponent,
+    BreadcrumbComponent
     NotFoundComponent,
     TableComponent,
     TruncatePipe
@@ -44,6 +48,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     RouterModule,
     MatButtonModule,
     MatMenuModule,
+    MatListModule,
+    MatMenuModule,
     MatTableModule,
     MatSortModule
   ],
@@ -57,6 +63,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatDialogModule,
     MatSelectModule,
     MatIconModule,
+    MatListModule,
+    BreadcrumbComponent,
     MatTableModule,
     TableComponent
   ],

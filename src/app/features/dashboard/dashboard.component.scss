@@ -118,3 +118,15 @@
 
   }
 }
+mat-list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+mat-list-item:not(:first-child):before {
+  content: "/";
+  margin-right: 5px;
+}
+.active {
+  color: blue;
+}
+
