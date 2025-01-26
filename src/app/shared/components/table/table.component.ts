@@ -5,36 +5,44 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ITableColumnConfig, ITablePipe } from '../../interfaces/table/table-column-config.interface';
 import { DatePipe } from '@angular/common';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+  styleUrls: ['./table.component.scss']
 })
 export class TableComponent {
   page: number = 1;
-  itemsPerPage: number = 5;
-  pageNumbers: number[] = [];
-  @Input() tableColumnsConfig: ITableColumnConfig[] = [];
-  @Input() set tableBody(data: any) {
-    this.displayedColumns = this.tableColumnsConfig.map((column) => column.key);
-    this.dataSource.data = data;
-    this.updatePagination();
-  }
+  pageSize: number = 10;
+  length: number = 0;
+  private _tableBody: any[] = [];
   paginatedData: any[] = [];
   displayedColumns: string[] = [];
-  dataSource = new MatTableDataSource(this.tableBody);
-
-  constructor(private _liveAnnouncer: LiveAnnouncer, private datePipe: DatePipe, private truncatePipe: TruncatePipe) {
-    for(let i = 1; i <= 10; i++) {
-      this.pageNumbers.push(i);
-    }
+  dataSource = new MatTableDataSource<any>([]);
+  @Input() tableColumnsConfig: ITableColumnConfig[] = [];
+  @Input() set tableBody(data: any[]) {
+    this._tableBody = data || [];
+    this.length = this._tableBody.length;
+    this.displayedColumns = this.tableColumnsConfig.map((column) => column.key);
+    this.updatePagination();
+  }
+  get tableBody() {
+    return this._tableBody;
   }
 
+  constructor(
+    private _liveAnnouncer: LiveAnnouncer,
+    private datePipe: DatePipe,
+    private truncatePipe: TruncatePipe
+  ) { }
+
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   announceSortChange(sortState: Sort) {
@@ -44,6 +52,7 @@ export class TableComponent {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
   applyPipe(value: any, pipe: ITablePipe) {
     switch (pipe.type) {
       case 'truncate':
@@ -54,14 +63,17 @@ export class TableComponent {
         return value;
     }
   }
-  onPageChange(page: number) {
-    this.page = page;
+
+  onPageChange(event: PageEvent) {
+    this.page = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
     this.updatePagination();
   }
-  updatePagination() {
-    const start = (this.page - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    this.paginatedData = this.dataSource.data.slice(start, end);
-  }
 
+  updatePagination() {
+    const start = (this.page - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    this.paginatedData = this._tableBody.slice(start, end);
+    this.dataSource.data = this.paginatedData;
+  }
 }

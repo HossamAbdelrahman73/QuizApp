@@ -22,6 +22,7 @@ import {MatTableModule} from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
 import { MatSortModule } from '@angular/material/sort';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatMenuModule,
     MatTableModule,
     MatSortModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -67,7 +69,9 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatListModule,
     BreadcrumbComponent,
     MatTableModule,
-    TableComponent
+    TableComponent,
+    FormsModule,
+    MatPaginatorModule
   ],
   providers: [DatePipe, TruncatePipe]
 })
