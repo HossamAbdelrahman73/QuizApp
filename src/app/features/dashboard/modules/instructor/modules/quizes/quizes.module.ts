@@ -7,7 +7,6 @@ import { ViewQuizComponent } from './components/view-quiz/view-quiz.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { BrowserModule } from '@angular/platform-browser';
 import {
   OwlDateTimeModule,
   OwlNativeDateTimeModule,
