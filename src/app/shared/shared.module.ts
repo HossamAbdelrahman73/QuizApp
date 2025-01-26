@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -13,11 +13,21 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon'
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
-import {MatListModule} from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { MatTableModule } from '@angular/material/table';
+import { TableComponent } from './components/table/table.component';
+import { MatSortModule } from '@angular/material/sort';
+import { TruncatePipe } from './pipes/truncate.pipe';
+
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule,
+} from '@danielmoncada/angular-datetime-picker';
+
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 @NgModule({
   declarations: [
@@ -28,7 +38,11 @@ import { UpdateProfileComponent } from './components/update-profile/update-profi
     HomeComponent,
     NotFoundComponent,
     BreadcrumbComponent,
-    UpdateProfileComponent
+    NotFoundComponent,
+    TableComponent,
+    TruncatePipe,
+    BreadcrumbComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +56,13 @@ import { UpdateProfileComponent } from './components/update-profile/update-profi
     RouterModule,
     MatButtonModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    MatListModule,
+    MatMenuModule,
+    MatTableModule,
+    MatSortModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -53,9 +73,16 @@ import { UpdateProfileComponent } from './components/update-profile/update-profi
     MatCardModule,
     MatDialogModule,
     MatSelectModule,
-    MatIconModule,
     MatListModule,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    MatListModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    BreadcrumbComponent,
+    MatTableModule,
+    TableComponent,
+    MatIconModule,
   ],
+  providers: [DatePipe, TruncatePipe],
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -22,5 +22,7 @@ export class QuizesService {
   onGetAllQuizzes(): Observable<IQuiz[]> {
     return this._HttpClient.get<IQuiz[]>(`quiz`);
   }
-
+  getLastFiveQuizes() {
+    return this._HttpClient.get('quiz/completed');
+  }
 }
