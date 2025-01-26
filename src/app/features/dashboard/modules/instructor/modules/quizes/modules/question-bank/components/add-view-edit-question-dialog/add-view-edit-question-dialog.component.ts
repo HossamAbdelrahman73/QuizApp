@@ -28,7 +28,12 @@ export class AddViewEditQuestionDialogComponent {
       type: new FormControl('', Validators.required),
       difficulty: new FormControl('', Validators.required),
     })
-
+    if (this.data.question) {
+      this.form.patchValue(this.data.question);
+      if (this.data.isViewMode) {
+        this.form.disable();
+      }
+    }
   }
   ngOnInit(): void {
 
