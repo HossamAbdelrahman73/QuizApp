@@ -32,3 +32,12 @@ export interface Options {
   D: string;
   _id: string;
 }
+
+export interface ICompletedQuiz {
+  _id: string;
+  instructor: string;
+  max_students: number;
+  name: string;
+  status: string;
+  students: string[];
+}

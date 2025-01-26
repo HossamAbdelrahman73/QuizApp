@@ -4,6 +4,9 @@ import { AddViewEditQuestionDialogComponent } from './components/add-view-edit-q
 import { QuestionBankService } from './services/question-bank.service';
 import { ToastrService } from 'ngx-toastr';
 import { IBank } from './interfaces/ibank';
+import { IGetQuestion } from './interfaces/question.interface';
+import { ITableColumnConfig } from '../../../../../../../../shared/interfaces/table/table-column-config.interface';
+import { DeleteDialogComponent } from '../../../../../../../../shared/components/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-question-bank',
@@ -17,7 +20,20 @@ export class QuestionBankComponent implements OnInit {
   page: number = 1;
   itemsPerPage: number = 5;
   questions: IBank[] = [];
-  constructor() {}
+  tableColumns: ITableColumnConfig[] = [
+    { key: 'title', label: 'title' },
+    { key: 'description', label: 'description', pipe: { type: 'truncate', format: 50 } },
+    { key: 'answer', label: 'Correct answer' },
+    { key: 'difficulty', label: 'Difficulty' },
+    {
+      key: 'actions', label: 'Actions', isAction: true, actions: [
+        { label: 'View', icon: 'visibility', color: 'orange-color', action: (row: IGetQuestion) => this.viewQuestion(row) },
+        { label: 'Edit', icon: 'edit_square', color: 'orange-color', action: (row: IGetQuestion) => this.editQuestion(row) },
+        { label: 'Delete', icon: 'delete', color: 'orange-color', action: (row: IGetQuestion) => this.deleteQuestion(row._id) },
+      ]
+    },
+  ]
+  constructor() { }
 
   ngOnInit(): void {
     this.getAllQuestions();
@@ -25,8 +41,7 @@ export class QuestionBankComponent implements OnInit {
 
   getAllQuestions() {
     this.questionsBankService.onGetQuestions().subscribe({
-      next: (res) => {
-        console.log(res);
+      next: (res: IGetQuestion[]) => {
         this.questions = res;
       },
       error: (err) => {
@@ -55,4 +70,53 @@ export class QuestionBankComponent implements OnInit {
       }
     });
   }
+  viewQuestion(row: IGetQuestion) {
+    this.openAddViewEditQuestionDialog('View question', row, true);
+  }
+  editQuestion(row: IGetQuestion) {
+    this.openAddViewEditQuestionDialog('Edit question', row, false).afterClosed().subscribe((result) => {
+      if (result) {
+        this.questionsBankService.updateQuestion(result, row._id).subscribe({
+          error: () => {
+            this.toast.error('Failed to update question');
+          },
+          complete: () => {
+            this.toast.success('Question updated successfully');
+            this.getAllQuestions();
+          },
+        });
+      }
+    });
+  }
+  deleteQuestion(id: string) {
+    this.dialog.open(DeleteDialogComponent, {
+      width: '400px',
+      data: {
+        title: 'question',
+      },
+    }).afterClosed().subscribe((result) => {
+      if (result) {
+        this.questionsBankService.deleteQuestion(id).subscribe({
+          error: () => {
+            this.toast.error('Failed to delete question');
+          },
+          complete: () => {
+            this.toast.success('Question deleted successfully');
+            this.getAllQuestions();
+          },
+        });
+      }
+    })
+  }
+  openAddViewEditQuestionDialog(title: string, question: IGetQuestion, isViewMode: boolean) {
+    return this.dialog.open(AddViewEditQuestionDialogComponent, {
+      width: '800px',
+      data: {
+        title,
+        question,
+        isViewMode
+      },
+    });
+  }
+
 }

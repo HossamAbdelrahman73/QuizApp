@@ -9,7 +9,8 @@ import { quizRoutes } from './routes/quiz-routes';
 import { ITableColumnConfig } from '../../../../../../shared/interfaces/table/table-column-config.interface';
 import { DashboardService } from '../../../../services/dashboard.service';
 import { take } from 'rxjs';
-import { IQuiz } from './interfaces/iquiz';
+import { ICompletedQuiz, IQuiz } from './interfaces/iquiz';
+import { MatDialog } from '@angular/material/dialog';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
 @Component({
@@ -23,7 +24,7 @@ export class QuizesComponent implements OnInit {
   quizRoutes = quizRoutes;
   selectedDate: string = '';
   selectedTiem: string = '';
-  completedQuizes: any[] = [];
+  completedQuizes: ICompletedQuiz[] = [];
   completedQuizesColumns: ITableColumnConfig[] = [
     { key: 'title', label: 'Title' },
     { key: 'questions_number', label: 'Question number' },
@@ -123,7 +124,7 @@ export class QuizesComponent implements OnInit {
     this.removeBackdrop();
   }
   getAllQuizzes(): void {
-    this._QuizesService.onGetAllQuizzes().pipe(take(1)).subscribe({
+    this.quizesService.onGetAllQuizzes().pipe(take(1)).subscribe({
       next: (res: any) => {
         // console.log(res);
         this.quizList = res
@@ -143,9 +144,8 @@ export class QuizesComponent implements OnInit {
   }
 
   getCompletedQuizes() {
-    this._QuizesService.getLastFiveQuizes().subscribe({
-      next: (quizes: any) => {
-        console.log(quizes);
+    this.quizesService.getLastFiveQuizes().subscribe({
+      next: (quizes: ICompletedQuiz[]) => {
         this.completedQuizes = quizes;
       },
       error: (err) => {

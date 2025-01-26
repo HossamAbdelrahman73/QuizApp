@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -51,7 +51,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatListModule,
     MatMenuModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    FormsModule
   ],
   exports: [
     ReactiveFormsModule,
