@@ -69,7 +69,6 @@ export class QuizesComponent implements OnInit {
     this.groupsService.getGroups().subscribe({
       next: (groups: IGroup[]) => {
         this.groups = groups;
-        console.log(groups);
       },
       error: (err) => {
         this._ToastrService.error(err.message);
@@ -95,10 +94,8 @@ export class QuizesComponent implements OnInit {
       this.quizForm.get('schadule')?.value,
       'yyyy-MM-ddTHH:mm:ss'
     );
-    console.log(this.quizForm.value);
     this.quizesService.onCreateQuiz(this.quizForm.value).subscribe({
       next: (res) => {
-        console.log(res);
         this._ToastrService.success(res.message);
         this.closeModal();
         this.quizForm.reset();
@@ -126,10 +123,9 @@ export class QuizesComponent implements OnInit {
   getAllQuizzes(): void {
     this.quizesService.onGetAllQuizzes().pipe(take(1)).subscribe({
       next: (res: any) => {
-        // console.log(res);
         this.quizList = res
       }, error: (err) => {
-        console.log(err);
+        this._ToastrService.error(err.message);
       }
     })
   }
@@ -138,7 +134,7 @@ export class QuizesComponent implements OnInit {
       next: (res) => {
       },
       error: (err) => {
-        console.log(err);
+        this._ToastrService.error(err.message);
       },
     });
   }
@@ -152,9 +148,6 @@ export class QuizesComponent implements OnInit {
         this._ToastrService.error(err.message);
       },
     });
-  }
-  editQuiz(row: any): void {
-    console.log(row);
   }
 }
 
