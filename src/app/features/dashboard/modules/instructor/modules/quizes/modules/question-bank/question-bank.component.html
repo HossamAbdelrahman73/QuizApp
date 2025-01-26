@@ -1,6 +1,18 @@
 <section>
   <div class="container-fluid">
-    <div class="d-flex my-3 justify-content-between align-items-center">
+    <div class="questions-container">
+      <div class="questions-header">
+        <h5>Bank of questions</h5>
+        <button class="btn">
+          <i class="fa-solid fa-circle-plus"></i>
+          <span>Add question</span>
+        </button>
+      </div>
+      <div class="table-contianer">
+        <app-table></app-table>
+      </div>
+    </div>
+    <!-- <div class="d-flex my-3 justify-content-between align-items-center">
       <h1 class="h2 text-black">Bank Of Questions</h1>
 
       <button class="btn" (click)="onCreateQuestion()">
@@ -62,6 +74,6 @@
           </select>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </section>

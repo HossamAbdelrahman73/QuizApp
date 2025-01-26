@@ -12,20 +12,19 @@ import { IBank } from './interfaces/ibank';
 })
 export class QuestionBankComponent implements OnInit {
   questionsBankService = inject(QuestionBankService);
+  toast = inject(ToastrService);
   dialog = inject(MatDialog);
   page: number = 1;
   itemsPerPage: number = 5;
-  toast = inject(ToastrService);
-
   questions: IBank[] = [];
-  constructor(private _QuestionBankService: QuestionBankService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.getAllQuestions();
   }
 
   getAllQuestions() {
-    this._QuestionBankService.onGetQuestions().subscribe({
+    this.questionsBankService.onGetQuestions().subscribe({
       next: (res) => {
         console.log(res);
         this.questions = res;
