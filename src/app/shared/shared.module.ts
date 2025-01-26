@@ -59,7 +59,7 @@ import {
     MatListModule,
     MatMenuModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -70,7 +70,6 @@ import {
     MatCardModule,
     MatDialogModule,
     MatSelectModule,
-    MatIconModule,
     MatListModule,
     BreadcrumbComponent,
     MatListModule,
@@ -78,7 +77,8 @@ import {
     OwlNativeDateTimeModule,
     BreadcrumbComponent,
     MatTableModule,
-    TableComponent
+    TableComponent,
+    MatIconModule
   ],
   providers: [DatePipe, TruncatePipe]
 })
