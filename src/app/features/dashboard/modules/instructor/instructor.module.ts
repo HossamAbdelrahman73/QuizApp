@@ -5,9 +5,10 @@ import { InstructorRoutingModule } from './instructor-routing.module';
 import { InstructorComponent } from './instructor.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../../../shared/shared.module';
+import { ViewItemComponent } from './components/view-item/view-item.component';
 
 @NgModule({
-  declarations: [InstructorComponent],
+  declarations: [InstructorComponent, ViewItemComponent],
   imports: [CommonModule, InstructorRoutingModule, RouterModule, SharedModule],
 })
 export class InstructorModule {}

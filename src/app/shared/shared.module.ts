@@ -13,16 +13,21 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon'
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
-import {MatListModule} from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
 import { MatSortModule } from '@angular/material/sort';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule,
+} from '@danielmoncada/angular-datetime-picker';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     BreadcrumbComponent,
     NotFoundComponent,
     TableComponent,
-    TruncatePipe
+    TruncatePipe,
+    BreadcrumbComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +56,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     RouterModule,
     MatButtonModule,
     MatMenuModule,
+    MatListModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     MatListModule,
     MatMenuModule,
     MatTableModule,
@@ -65,14 +75,19 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatCardModule,
     MatDialogModule,
     MatSelectModule,
-    MatIconModule,
     MatListModule,
+    BreadcrumbComponent,
+    MatListModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     BreadcrumbComponent,
     MatTableModule,
     TableComponent,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    TableComponent,
+    MatIconModule,
   ],
-  providers: [DatePipe, TruncatePipe]
+  providers: [DatePipe, TruncatePipe],
 })
-export class SharedModule { }
+export class SharedModule {}

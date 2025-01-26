@@ -24,4 +24,7 @@ export class QuestionBankService {
   deleteQuestion(id: string) {
     return this._http.delete(`question/${id}`);
   }
+  onDeleteQustion(id:string) : Observable<any> {
+    return this._http.delete(`question/${id}`)
+  }
 }

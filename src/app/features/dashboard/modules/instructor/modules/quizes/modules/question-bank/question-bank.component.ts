@@ -118,5 +118,4 @@ export class QuestionBankComponent implements OnInit {
       },
     });
   }
-
 }

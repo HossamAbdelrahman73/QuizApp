@@ -29,9 +29,14 @@ export class QuizesComponent implements OnInit {
     { key: 'title', label: 'Title' },
     { key: 'questions_number', label: 'Question number' },
     { key: 'difficulty', label: 'Difficulty' },
-    { key: 'schadule', label: 'Schedule', pipe: { type: 'date', format: 'dd/MM/yyyy' } },
+    {
+      key: 'schadule',
+      label: 'Schedule',
+      pipe: { type: 'date', format: 'dd/MM/yyyy' },
+    },
     { key: 'type', label: 'Type' },
   ];
+  toppings = new FormControl('');
 
   quizForm = this._FormBuilder.group({
     title: ['', [Validators.required]],
@@ -44,110 +49,60 @@ export class QuizesComponent implements OnInit {
     duration: ['', [Validators.required]],
     score_per_question: ['', [Validators.required]],
   });
-  toppings = new FormControl('');
   groups: IGroup[] = [];
-  quizList: IQuiz[] = []
+  quizList: IQuiz[] = [];
   duration: number[] = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
   questionsNumbur: number[] = Array.from({ length: 50 }, (_, i) => i + 1);
   questionScore: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
 
   constructor(
     private _FormBuilder: FormBuilder,
-    private groupsService: GroupsService,
     private _ToastrService: ToastrService,
     private _DashboardService: DashboardService,
-    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
-    this.getGroups();
     this.getCompletedQuizes();
-    this.getAllQuizzes()
+    this.getAllQuizzes();
+    this.getFiveIncomingQuiz();
   }
 
-  getGroups() {
-    this.groupsService.getGroups().subscribe({
-      next: (groups: IGroup[]) => {
-        this.groups = groups;
-      },
-      error: (err) => {
-        this._ToastrService.error(err.message);
-      },
-    });
-  }
-
-  createQuiz() {
-    const modalElement = document.getElementById('createQuiz');
-    if (modalElement) {
-      const modalInstance = new bootstrap.Modal(modalElement);
-      modalInstance.show();
-    }
-  }
-
-  sendData() {
-    this.quizForm.value.questions_number = Number(
-      this.quizForm.value.questions_number
-    );
-    // this.quizForm.value.schadule=this.quizForm.value.schadule
-
-    this.quizForm.value.schadule = this.datePipe.transform(
-      this.quizForm.get('schadule')?.value,
-      'yyyy-MM-ddTHH:mm:ss'
-    );
-    this.quizesService.onCreateQuiz(this.quizForm.value).subscribe({
-      next: (res) => {
-        this._ToastrService.success(res.message);
-        this.closeModal();
-        this.quizForm.reset();
-      },
-      error: (err) => {
-        err.message.forEach((errMess: string) => {
-          this._ToastrService.error(errMess);
-          this.closeModal();
-          this.quizForm.reset();
-        });
-      },
-    });
-  }
-  removeBackdrop() {
-    const backdrops = document.querySelectorAll('.modal-backdrop');
-    backdrops.forEach((backdrop) => backdrop.remove());
-  }
-
-  closeModal() {
-    const modalElement = document.getElementById('createQuiz');
-    const modal = bootstrap.Modal.getInstance(modalElement);
-    modal.hide();
-    this.removeBackdrop();
-  }
   getAllQuizzes(): void {
-    this.quizesService.onGetAllQuizzes().pipe(take(1)).subscribe({
-      next: (res: any) => {
-        this.quizList = res
-      }, error: (err) => {
-        this._ToastrService.error(err.message);
-      }
-    })
+    this.quizesService
+      .onGetAllQuizzes()
+      .pipe(take(1))
+      .subscribe({
+        next: (res) => {
+          this.quizList = res;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
   getFiveIncomingQuiz(): void {
-    this._DashboardService.onGetFiveIncomingQuiz().pipe(take(1)).subscribe({
-      next: (res) => {
-      },
-      error: (err) => {
-        this._ToastrService.error(err.message);
-      },
-    });
+    this._DashboardService
+      .onGetFiveIncomingQuiz()
+      .pipe(take(1))
+      .subscribe({
+        error: (err) => {
+          this._ToastrService.error(err.message);
+        },
+      });
   }
 
   getCompletedQuizes() {
-    this.quizesService.getLastFiveQuizes().subscribe({
-      next: (quizes: ICompletedQuiz[]) => {
-        this.completedQuizes = quizes;
-      },
-      error: (err) => {
-        this._ToastrService.error(err.message);
-      },
-    });
+    this.quizesService
+      .getLastFiveQuizes()
+      .pipe(take(1))
+      .subscribe({
+        next: (quizes: ICompletedQuiz[]) => {
+          this.completedQuizes = quizes;
+        },
+        error: (err) => {
+          this._ToastrService.error(err.message);
+        },
+      });
+
   }
 }
-

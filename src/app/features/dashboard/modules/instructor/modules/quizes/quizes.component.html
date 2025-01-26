@@ -3,9 +3,12 @@
     <div class="row g-1">
       <div class="col-md-4">
         <div class="quiz-actions">
-          <button data-bs-toggle="modal" data-bs-target="#createQuiz">
-            <img src="../../../../../../assets/images/new quiz icon.svg" alt="new quiz icon" />
-            <span>Set up a new quiz</span>
+          <button routerLink="view-all-quizes">
+            <img
+              src="../../../../../../assets/images/new quiz icon.svg"
+              alt="new quiz icon"
+            />
+            <span>All Quizes</span>
           </button>
           <button [routerLink]="quizRoutes.QUESTION_BANK">
             <img src="../../../../../../assets/images/svg/question-bank-icon.svg" alt="new quiz icon" />
@@ -17,7 +20,7 @@
         <div class="quiz-list-groups">
           <div class="quiz-card p-3 rounded-3 border border-1 border-black border-opacity-50">
             <div class="quiz-card-header mb-3">
-              <h5>Upcoming 5 quizzes</h5>
+              <h5>Upcoming quizzes</h5>
             </div>
             <div class="quiz-card-body">
               @for (quiz of quizList; track $index) { @if($index %2 === 0){ @if
@@ -145,4 +148,3 @@
     </div>
   </div>
 </section>
-<!-- popup create quiz   -->
