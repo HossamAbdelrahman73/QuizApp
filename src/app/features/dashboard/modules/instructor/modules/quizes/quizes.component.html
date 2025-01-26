@@ -1,7 +1,7 @@
 <section>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6">
+    <div class="row g-1">
+      <div class="col-md-4">
         <div class="quiz-actions">
           <button data-bs-toggle="modal" data-bs-target="#createQuiz">
             <img src="../../../../../../assets/images/new quiz icon.svg" alt="new quiz icon">
@@ -13,8 +13,25 @@
           </button>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="quiz-list-groups"></div>
+      <div class="col-md-8">
+        <div class="quiz-list-groups">
+          <!-- list first 5 upcoming quizzes -->
+          <!-- list last 5 completed quizzes -->
+          <div class="last-5-quizzes">
+            <div class="quizzes-header">
+              <h5>Completed quizzes</h5>
+              <div class="results-action">
+                <span>Results</span>
+                <button [routerLink]="quizRoutes.RESULTS" class="icon-btn">
+                  <mat-icon class="icon">trending_flat</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="table-container">
+              <app-table [tableColumnsConfig]="completedQuizesColumns" [tableBody]="completedQuizes"></app-table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

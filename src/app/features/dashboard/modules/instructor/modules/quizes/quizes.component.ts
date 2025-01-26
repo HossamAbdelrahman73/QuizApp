@@ -1,12 +1,13 @@
 import { ToastrService } from 'ngx-toastr';
 import { QuizesService } from './services/quizes.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { GroupsService } from '../groups/services/groups.service';
 import { IGroup } from '../groups/interfaces/group.interface';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { quizRoutes } from './routes/quiz-routes';
+import { ITableColumnConfig } from '../../../../../../shared/interfaces/table/table-column-config.interface';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
 @Component({
@@ -15,10 +16,22 @@ declare var bootstrap: any; // Import Bootstrap JS globally
   styleUrl: './quizes.component.scss',
 })
 export class QuizesComponent implements OnInit {
+
   dialog = inject(MatDialog);
+  quizesService = inject(QuizesService);
   quizRoutes = quizRoutes;
   selectedDate: string = '';
   selectedTiem: string = '';
+  completedQuizes: any[] = [];
+  completedQuizesColumns: ITableColumnConfig[] = [
+    { key: 'title', label: 'Title' },
+    { key: 'questions_number', label: 'Question number' },
+    { key: 'difficulty', label: 'Difficulty' },
+    { key: 'schadule', label: 'Schedule', pipe: { type: 'date', format: 'dd/MM/yyyy' } },
+    { key: 'type', label: 'Type' },
+    { key: 'duration', label: 'Duration' },
+    { key: 'score_per_question', label: 'Score/question' },
+  ];
 
   quizForm = this._FormBuilder.group({
     title: ['', [Validators.required]],
@@ -52,10 +65,11 @@ export class QuizesComponent implements OnInit {
     private _QuizesService: QuizesService,
     private _ToastrService: ToastrService,
     private datePipe: DatePipe
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getGroups();
+    this.getCompletedQuizes();
   }
 
   getGroups() {
@@ -116,8 +130,19 @@ export class QuizesComponent implements OnInit {
     modal.hide();
     this.removeBackdrop();
   }
-}
-function inject(MatDialog: any) {
-  throw new Error('Function not implemented.');
+  getCompletedQuizes() {
+    this._QuizesService.getLastFiveQuizes().subscribe({
+      next: (quizes: any) => {
+        console.log(quizes);
+        this.completedQuizes = quizes;
+      },
+      error: (err) => {
+        this._ToastrService.error(err.message);
+      },
+    });
+  }
+  editQuiz(row: any): void {
+    console.log(row);
+  }
 }
 

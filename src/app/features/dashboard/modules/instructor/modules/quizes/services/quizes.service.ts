@@ -18,4 +18,7 @@ export class QuizesService {
   onUpdateQuizById(id: string, data: any): Observable<any> {
     return this._HttpClient.put(`quiz/${id}`, data);
   }
+  getLastFiveQuizes() {
+    return this._HttpClient.get('quiz/completed');
+  }
 }
