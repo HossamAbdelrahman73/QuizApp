@@ -4,6 +4,7 @@ import { AddViewEditQuestionDialogComponent } from './components/add-view-edit-q
 import { QuestionBankService } from './services/question-bank.service';
 import { ToastrService } from 'ngx-toastr';
 import { IBank } from './interfaces/ibank';
+import { DeleteDialogComponent } from '../../../../../../../../shared/components/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-question-bank',
@@ -56,4 +57,29 @@ export class QuestionBankComponent implements OnInit {
       }
     });
   }
+  deleteQuestion(id: string) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '500px',
+      data: {
+        title: 'question',
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this._QuestionBankService.onDeleteQustion(id).subscribe({
+          next: (res) => {
+            console.log(res);
+          },
+          error: (err) => {
+            this.toast.error(err.error.message);
+          },
+          complete: () => {
+            this.toast.success('Question deleted successfully');
+            this.getAllQuestions()
+          },
+        });
+      }
+    });
+  }
+  
 }

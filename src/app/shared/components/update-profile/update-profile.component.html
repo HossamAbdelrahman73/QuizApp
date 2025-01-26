@@ -1,0 +1,62 @@
+<section class="auth py-0">
+  <div class="shape-container position-relative">
+    <div class="shape first">
+
+    </div>
+    <div class="shape second">
+
+    </div>
+    <div class="shape third">
+
+    </div>
+  </div>
+  <div class="container">
+    <form [formGroup]="updateLastNameForm" (ngSubmit)="updateprofile(updateLastNameForm)">
+      <label for="floatingInputGroup2" class="form-label text-white"
+      >Your last_name</label
+    >
+    <div
+      class="input-group"
+      [ngClass]="{
+        'is-invalid-group':
+          updateLastNameForm.get('last_name')?.invalid &&
+          (updateLastNameForm.get('last_name')?.dirty ||
+            updateLastNameForm.get('last_name')?.touched),
+        'is-valid-group':
+          updateLastNameForm.get('last_name')?.valid &&
+          (updateLastNameForm.get('last_name')?.dirty ||
+            updateLastNameForm.get('last_name')?.touched)
+      }"
+    >
+      <span class="input-group-text"
+        > <i class="fa-solid fa-id-card"></i></span>
+      <div class="form-floating">
+        <input
+          formControlName="last_name"
+          type="last_name"
+          [ngClass]="{
+            'is-invalid':
+              updateLastNameForm.get('last_name')?.invalid &&
+              (updateLastNameForm.get('last_name')?.dirty ||
+                updateLastNameForm.get('last_name')?.touched),
+            'is-valid':
+              updateLastNameForm.get('last_name')?.valid &&
+              (updateLastNameForm.get('last_name')?.dirty ||
+                updateLastNameForm.get('last_name')?.touched)
+          }"
+          class="form-control"
+          id="floatingInputGroup2"
+          placeholder="Type your last_name"
+          required
+        />
+      </div>
+    </div>
+    <button class="auth-button" [disabled]="updateLastNameForm.invalid" type="submit">
+      <span>Send</span>
+      <div class="hovered-div">
+        <i class="fa-solid fa-check-circle"></i>
+      </div>
+    </button>
+    </form>
+  </div>
+</section>

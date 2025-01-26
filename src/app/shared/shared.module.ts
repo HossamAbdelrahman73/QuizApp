@@ -18,7 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
 import { MatSortModule } from '@angular/material/sort';
 import { TruncatePipe } from './pipes/truncate.pipe';
@@ -28,6 +28,7 @@ import {
   OwlNativeDateTimeModule,
 } from '@danielmoncada/angular-datetime-picker';
 
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -39,7 +40,9 @@ import {
     BreadcrumbComponent,
     NotFoundComponent,
     TableComponent,
-    TruncatePipe
+    TruncatePipe,
+    BreadcrumbComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -78,8 +81,8 @@ import {
     BreadcrumbComponent,
     MatTableModule,
     TableComponent,
-    MatIconModule
+    MatIconModule,
   ],
-  providers: [DatePipe, TruncatePipe]
+  providers: [DatePipe, TruncatePipe],
 })
 export class SharedModule {}
