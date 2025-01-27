@@ -12,7 +12,10 @@ export class StudentResultsService {
   onGetFiveIncomingQuiz(): Observable<any> {
     return this._HttpClient.get('quiz/incomming');
   }
-  getLastCompletedQuizes(): Observable<ICompletedQuiz[]> {
+  onGetLastCompletedQuizes(): Observable<ICompletedQuiz[]> {
     return this._HttpClient.get<ICompletedQuiz[]>('quiz/completed');
+  }
+  onGetAllResults(): Observable<any>{
+    return this._HttpClient.get("quiz/result");
   }
 }

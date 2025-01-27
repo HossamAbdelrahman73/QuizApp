@@ -5,6 +5,7 @@ import { QuizesService } from '../instructor/modules/quizes/services/quizes.serv
 import { MatDialog } from '@angular/material/dialog';
 import { ViewItemComponent } from '../instructor/components/view-item/view-item.component';
 import { ITableColumnConfig } from '../../../../shared/interfaces/table/table-column-config.interface';
+import { JoinQuizComponent } from './components/join-quiz/join-quiz.component';
 
 
 @Component({
@@ -53,7 +54,7 @@ export class StudentComponent implements OnInit{
     });
   }
  getCompletedQuizzes():void {
-  this._studentResultsService.getLastCompletedQuizes().subscribe({
+  this._studentResultsService.onGetLastCompletedQuizes().subscribe({
     next: (res)=> {
       this.completedQuizzes = res
     }, error: (err)=> {
@@ -69,5 +70,8 @@ export class StudentComponent implements OnInit{
     console.log(err);
   }
  })
+}
+joinQuiz():void {
+  const dialogRef =  this.dialog.open(JoinQuizComponent);
 }
 }
