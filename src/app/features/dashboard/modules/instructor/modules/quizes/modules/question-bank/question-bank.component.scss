@@ -28,3 +28,17 @@ td.icons {
 .my-pagination ::ng-deep .ngx-pagination .current {
   background: $color-green;
 }
+
+.questions-container {
+  margin-top: 1rem;
+  padding: 1.3rem;
+  border-radius: 10px;
+  border: 1px solid rgba(#000000, .2);
+  .questions-header {
+    display: flex;
+    justify-content: space-between;
+    button i {
+      font-size: 1.3rem;
+    }
+  }
+}

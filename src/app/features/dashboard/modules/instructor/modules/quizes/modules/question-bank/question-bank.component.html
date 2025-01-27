@@ -1,66 +1,15 @@
 <section>
   <div class="container-fluid">
-    <div class="d-flex my-3 justify-content-between align-items-center">
-      <h1 class="h2 text-black">Bank Of Questions</h1>
-
-      <button class="btn" (click)="onCreateQuestion()">
-        <span><i class="fa-solid fa-circle-plus"></i></span>
-        <span>Add Question</span>
-      </button>
-    </div>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Question Title</th>
-          <th scope="col">Question Desc</th>
-          <th scope="col">Question Difficulty Level</th>
-          <th scope="col">Question Type</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (question of questions | paginate: { itemsPerPage: itemsPerPage,
-        currentPage: page }; track question._id) {
-        <tr>
-          <td>{{ question.title }}</td>
-          <td>{{ question.description | description }}</td>
-          <td>{{ question.difficulty }}</td>
-          <td>{{ question.type }}</td>
-          <td class="icons h-100">
-            <div
-              class="d-flex gap-3 h-100 align-items-center justify-content-center"
-            >
-              <span><i class="fa-solid fa-eye"></i></span>
-              <span><i class="fa-solid fa-pen-to-square"></i></span>
-              <span><i class="fa-solid fa-trash" (click)="deleteQuestion(question._id)"></i></span>
-            </div>
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
-    <div class="d-flex justify-content-center w-100 mx-auto" *ngIf="questions">
-      <div class="d-flex">
-        <pagination-controls
-          class="text-center my-pagination"
-          [directionLinks]="true"
-          [autoHide]="true"
-          (pageChange)="page = $event"
-        ></pagination-controls>
-        <div
-          class="d-flex justify-content-between align-items-center mb-3 border border-1 border-secondary rounded-2"
-        >
-          <select
-            class="form-select w-auto border-0"
-            [(ngModel)]="itemsPerPage"
-            (change)="page = 1"
-          >
-            <option *ngFor="let size of [5, 10, 15, 20, 25]" [value]="size">
-              {{ size }}
-            </option>
-          </select>
-        </div>
+    <div class="questions-container">
+      <div class="questions-header">
+        <h5>Bank of questions</h5>
+        <button class="btn">
+          <i class="fa-solid fa-circle-plus"></i>
+          <span>Add question</span>
+        </button>
+      </div>
+      <div class="table-contianer">
+        <app-table [tableBody]="questions" [tableColumnsConfig]="tableColumns"></app-table>
       </div>
     </div>
   </div>

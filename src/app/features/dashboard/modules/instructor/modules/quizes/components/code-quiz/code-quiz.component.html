@@ -1,5 +1,29 @@
 <section>
-  <div class="container">
-    <span> </span>
+  <div class="container p-5 pb-2">
+    <div class="text-center">
+      <span><i class="fa-solid fa-circle-check fs-1"></i></span>
+      <h1 class="h4">Quiz was successfully created</h1>
+    </div>
+    <div class="code-container d-flex align-items-center">
+      <span class="code-text p-2">Code:</span>
+      <div class="d-flex align-items-center justify-content-between w-100 px-3">
+        <h4 class="m-0 p-0 h6">{{ data }}</h4>
+        <span (click)="copyToClipboard(data)"
+          ><i class="fa-solid fa-copy copy-icon"></i
+        ></span>
+      </div>
+    </div>
+
+    <div>
+      <mat-dialog-actions class="text-center">
+        <button
+          mat-button
+          class="py-1 mx-auto mt-4 px-5 rounded-5 border border-0"
+          (click)="onNoClick()"
+        >
+          Close
+        </button>
+      </mat-dialog-actions>
+    </div>
   </div>
 </section>

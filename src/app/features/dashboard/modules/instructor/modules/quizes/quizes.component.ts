@@ -5,12 +5,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { GroupsService } from '../groups/services/groups.service';
 import { IGroup } from '../groups/interfaces/group.interface';
 import { DatePipe } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
 import { quizRoutes } from './routes/quiz-routes';
 import { ITableColumnConfig } from '../../../../../../shared/interfaces/table/table-column-config.interface';
 import { DashboardService } from '../../../../services/dashboard.service';
 import { take } from 'rxjs';
-import { IQuiz } from './interfaces/iquiz';
+import { ICompletedQuiz, IQuiz } from './interfaces/iquiz';
+import { MatDialog } from '@angular/material/dialog';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
 @Component({
@@ -24,7 +24,7 @@ export class QuizesComponent implements OnInit {
   quizRoutes = quizRoutes;
   selectedDate: string = '';
   selectedTiem: string = '';
-  completedQuizes: any[] = [];
+  completedQuizes: ICompletedQuiz[] = [];
   completedQuizesColumns: ITableColumnConfig[] = [
     { key: 'title', label: 'Title' },
     { key: 'questions_number', label: 'Question number' },
@@ -58,8 +58,8 @@ export class QuizesComponent implements OnInit {
   constructor(
     private _FormBuilder: FormBuilder,
     private _ToastrService: ToastrService,
-    private _DashboardService: DashboardService
-  ) {}
+    private _DashboardService: DashboardService,
+  ) { }
 
   ngOnInit(): void {
     this.getCompletedQuizes();
@@ -96,8 +96,7 @@ export class QuizesComponent implements OnInit {
       .getLastFiveQuizes()
       .pipe(take(1))
       .subscribe({
-        next: (quizes: any) => {
-          console.log(quizes);
+        next: (quizes: ICompletedQuiz[]) => {
           this.completedQuizes = quizes;
         },
         error: (err) => {

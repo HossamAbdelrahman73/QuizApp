@@ -1,0 +1,23 @@
+@import "../../../../../../../../../assets/styles/abstracts/variables";
+.code-container {
+  border-radius: 30px;
+  border: 1px solid rgb(171, 171, 171);
+
+  .code-text {
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+    margin: 0px;
+    background-color: #ffeddf;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .copy-icon {
+    cursor: pointer;
+    font-size: 20px;
+  }
+}
+button {
+  background-color: $color-green;
+  outline: none;
+  border: none;
+}
