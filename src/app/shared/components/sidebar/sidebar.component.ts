@@ -28,17 +28,15 @@ export class SidebarComponent implements OnInit {
     this.isStudent();
     this.menu = [
       {
-        link: this.isInstructor()
-          ? '/dashboard/instructor/home'
-          : '/dashboard/student/home',
+        link: '/dashboard/instructor/home',
         image: '../../../../assets/images/sidebar-images/Dashboard icon.svg',
         text: 'home',
-        isActive: this.isInstructor() || this.isStudent(),
+        isActive: this.isInstructor(),
       },
       {
         link: this.isInstructor()
           ? '/dashboard/instructor/quizzes'
-          : '/dashboard/student/student-quizzes',
+          : '/dashboard/student/home',
         image: '../../../../assets/images/sidebar-images/Quiz icon.svg',
         text: 'quizzes',
         isActive: this.isInstructor() || this.isStudent(),
