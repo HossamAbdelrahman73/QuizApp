@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
       {
         link: this.isInstructor()
           ? '/dashboard/instructor/quizzes'
-          : '/dashboard/student/home',
+          : '/dashboard/student/quizzes',
         image: '../../../../assets/images/sidebar-images/Quiz icon.svg',
         text: 'quizzes',
         isActive: this.isInstructor() || this.isStudent(),
@@ -56,7 +56,7 @@ export class SidebarComponent implements OnInit {
       {
         link: this.isInstructor()
           ? '/dashboard/instructor/results'
-          : '/dashboard/student/student-results',
+          : '/dashboard/student/results',
         image: '../../../../assets/images/sidebar-images/Results icon.svg',
         text: 'Results',
         isActive: this.isInstructor() || this.isStudent(),
