@@ -34,16 +34,21 @@
           <div class="d-flex gap-2 align-items-center justify-content-center">
             <div>
               @if (role === 'Instructor') {
-              <button class="btn">
+              <button
+                class="btn"
+                (click)="createQuiz()"
+                data-bs-toggle="modal"
+                data-bs-target="#createQuiz"
+              >
                 <mat-icon>alarm_add</mat-icon>
                 <span>New quiz</span>
               </button>
-              }  @else if (role === 'Student') {
-                <button class="btn">
-                  <mat-icon>alarm_add</mat-icon>
-                  <span>Join quiz</span>
-                </button>
-                }
+              } @else if (role === 'Student') {
+              <button class="btn">
+                <mat-icon>alarm_add</mat-icon>
+                <span>Join quiz</span>
+              </button>
+              }
             </div>
             <div class="user-info ps-4 h-100">
               <div
