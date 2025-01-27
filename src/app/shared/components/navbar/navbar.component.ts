@@ -18,6 +18,7 @@ import { IQuiz } from '../../../features/dashboard/modules/instructor/modules/qu
 import { quizRoutes } from '../../../features/dashboard/modules/instructor/modules/quizes/routes/quiz-routes';
 import { QuizesService } from '../../../features/dashboard/modules/instructor/modules/quizes/services/quizes.service';
 import { DashboardService } from '../../../features/dashboard/services/dashboard.service';
+import { CodeQuizComponent } from '../../../features/dashboard/modules/instructor/modules/quizes/components/code-quiz/code-quiz.component';
 declare var bootstrap: any; // Import Bootstrap JS globally
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateProfileComponent } from '../update-profile/update-profile.component';
@@ -127,6 +128,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this._ToastrService.success(res.message);
         this.closeModal();
         this.quizForm.reset();
+        this.getCode(res.data.code);
       },
       error: (err) => {
         err.message.forEach((errMess: string) => {
@@ -135,6 +137,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
           this.quizForm.reset();
         });
       },
+    });
+  }
+
+  getCode(code: string) {
+    const dialogRef = this.dialog.open(CodeQuizComponent, {
+      data: code,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
     });
   }
 
