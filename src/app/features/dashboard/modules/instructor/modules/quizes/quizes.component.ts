@@ -73,7 +73,6 @@ export class QuizesComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (res) => {
-          this.quizList = res;
         },
         error: (err) => {
           console.log(err);
@@ -85,6 +84,9 @@ export class QuizesComponent implements OnInit {
       .onGetFiveIncomingQuiz()
       .pipe(take(1))
       .subscribe({
+        next:(res)=> {
+          this.quizList = res;
+            },
         error: (err) => {
           this._ToastrService.error(err.message);
         },
