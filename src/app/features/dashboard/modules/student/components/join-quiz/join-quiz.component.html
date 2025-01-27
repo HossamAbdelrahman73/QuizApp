@@ -20,7 +20,7 @@
       <div
         class="dialog-actions d-flex justify-content-center align-items-center"
       >
-        <button class="submit-btn" type="submit">
+        <button class="submit-btn" type="submit" [disabled]="!joinQuizForm.valid">
           <span><i class="fa-solid fa-check"></i></span>
         </button>
         <button class="close-btn" mat-dialog-close="">
@@ -30,3 +30,4 @@
     </form>
   </div>
 </section>
+

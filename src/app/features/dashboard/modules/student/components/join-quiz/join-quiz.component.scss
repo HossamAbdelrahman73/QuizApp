@@ -1,20 +1,24 @@
 section {
   min-width: 40vw;
   button {
-    border-left: 1px solid rgba(#000000, 0.3);
-    border-block: none;
-    border-right: none;
+    border: 1px solid rgba(#000000, 0.3);
     background-color: transparent;
     padding: 1rem;
     height: 100%;
     transition: all 0.3s ease;
-    &.submit-btn:hover {
-      background-color: rgb(26, 128, 0);
-      color: white;
+    &.submit-btn {
+      border-radius: 10px 0 0 0;
+      &:hover {
+        background-color: rgb(26, 128, 0);
+        color: white;
+      }
     }
-    &.close-btn:hover {
-      background-color: red;
-      color: white;
+    &.close-btn {
+      border-radius: 0 10px 0 0;
+      &:hover {
+        background-color: red;
+        color: white;
+      }
     }
     span i {
       font-size: 1.5rem;
@@ -26,16 +30,14 @@ section {
       .input-group-text {
         background-color: #ffeddf;
       }
-      .form-control:focus {
-        outline: 0px none #fff !important;
+      input.form-control {
+        border: 1px solid #c7c7c7;
+      }
+      input.form-control:focus {
+        outline: 0px none #fff;
         box-shadow: 1px 0 0 1px #ffeddf;
-        border: 1px solid #ffeddf;
+        // border: 1px solid #ffeddf;
       }
     }
   }
 }
-
-
-
-
-
