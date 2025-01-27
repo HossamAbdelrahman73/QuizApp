@@ -49,7 +49,6 @@ export class LoginComponent {
       complete: () => {
         this._ToastrService.success(this.loggedInDetails.message);
         this.role = this._SharedService.role;
-        console.log(this.role);
         if (this.role === 'Instructor') {
 
           this._Router.navigate(['/dashboard/instructor']);
