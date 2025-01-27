@@ -94,7 +94,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.groupsService.getGroups().subscribe({
       next: (groups: IGroup[]) => {
         this.groups = groups;
-        console.log(groups);
       },
       error: (err) => {
         this._ToastrService.error(err.message);

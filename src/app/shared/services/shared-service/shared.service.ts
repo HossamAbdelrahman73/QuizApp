@@ -1,30 +1,28 @@
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
-import { IUpdateProfile } from '../../interfaces/iprofile';
+import { IProfile, IUpdateProfile } from '../../interfaces/iprofile';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
 @Injectable({
   providedIn: 'root',
 })
 export class SharedService {
-  private _HttpClient = inject(HttpClient)
-  role: string | null = '';
+  private _HttpClient = inject(HttpClient);
+  role: string | undefined = '';
+  lastName: string | undefined = '';
+  profile: IProfile = {} as IProfile;
   sideBarChanged: WritableSignal<boolean> = signal(true);
   onToggle(): void {
     this.sideBarChanged.update((value) => !value);
   }
   getProfile() {
-    let finalToken: any = localStorage.getItem('token');
-    let decodedToken: any = jwtDecode(finalToken);
-    localStorage.setItem('userRole', decodedToken.role);
-    this.role = localStorage.getItem('userRole');
+    this.profile = JSON.parse(localStorage.getItem('profile') as string);
+    this.role = this.profile.role;
+    this.lastName = this.profile.last_name;
   }
-
-updateInstrucorProfile(data:IUpdateProfile) : Observable<any> {
-return this._HttpClient.put('instructor', data)
-}
-updateStudentProfile(data:IUpdateProfile) : Observable<any> {
-  return this._HttpClient.put('student', data)
+  updateInstrucorProfile(data: IUpdateProfile): Observable<any> {
+    return this._HttpClient.put('instructor', data);
+  }
+  updateStudentProfile(data: IUpdateProfile): Observable<any> {
+    return this._HttpClient.put('student', data);
   }
 }
