@@ -105,7 +105,4 @@ export class QuizesComponent implements OnInit {
         },
       });
   }
-  editQuiz(row: any): void {
-    console.log(row);
-  }
 }

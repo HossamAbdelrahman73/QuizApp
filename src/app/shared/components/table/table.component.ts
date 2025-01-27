@@ -2,7 +2,10 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ITableColumnConfig, ITablePipe } from '../../interfaces/table/table-column-config.interface';
+import {
+  ITableColumnConfig,
+  ITablePipe,
+} from '../../interfaces/table/table-column-config.interface';
 import { DatePipe } from '@angular/common';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 export interface PeriodicElement {
@@ -26,7 +29,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+  styleUrl: './table.component.scss',
 })
 export class TableComponent {
   @Input() tableColumnsConfig: ITableColumnConfig[] = [];
@@ -37,8 +40,11 @@ export class TableComponent {
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor(private _liveAnnouncer: LiveAnnouncer, private datePipe: DatePipe, private truncatePipe: TruncatePipe) {
-  }
+  constructor(
+    private _liveAnnouncer: LiveAnnouncer,
+    private datePipe: DatePipe,
+    private truncatePipe: TruncatePipe
+  ) {}
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -56,12 +62,17 @@ export class TableComponent {
   applyPipe(value: any, pipe: ITablePipe) {
     switch (pipe.type) {
       case 'truncate':
-        return this.truncatePipe.transform(value, pipe.format as number || 50);
+        return this.truncatePipe.transform(
+          value,
+          (pipe.format as number) || 50
+        );
       case 'date':
-        return this.datePipe.transform(value, pipe.format as string || 'short');
+        return this.datePipe.transform(
+          value,
+          (pipe.format as string) || 'short'
+        );
       default:
         return value;
     }
   }
-
 }
