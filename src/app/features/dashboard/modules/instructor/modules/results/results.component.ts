@@ -12,11 +12,10 @@ import { IQuiz } from '../quizes/interfaces/iquiz';
 export class ResultsComponent implements OnInit{
 private _resultsInstructorService = inject(ResultsInstructorService)
 tableColumns :ITableColumnConfig[] = [
-  { key: 'quiz.title', label: 'Title' },
-  { key: 'difficulty', label: 'Difficulty' },
-  { key: 'participants', label: 'Participants' },
-  { key: 'type', label: 'Type' },
-  { key: 'schadule', label: 'Schadule' },
+  { key: 'quiz.title', label: 'Student name' },
+  { key: 'difficulty', label: 'Score' },
+  { key: 'participants', label: 'Average' },
+  { key: 'type', label: 'Time submitted' },
 ]
 resultsList :IResultInstructor[]= []
 quizDetails : Iquiz[] =[]
