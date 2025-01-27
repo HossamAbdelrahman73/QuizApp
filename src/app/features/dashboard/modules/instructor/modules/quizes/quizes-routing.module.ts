@@ -6,7 +6,7 @@ import { AllQuizesComponent } from './components/all-quizes/all-quizes.component
 
 const routes: Routes = [
   { path: '', component: QuizesComponent },
-  { path: 'view-quiz', component: ViewQuizComponent },
+  { path: 'view-quiz/:id', component: ViewQuizComponent },
   {
     path: 'question-bank',
     loadChildren: () =>

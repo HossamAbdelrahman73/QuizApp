@@ -25,4 +25,7 @@ export class QuizesService {
   getLastFiveQuizes(): Observable<ICompletedQuiz[]> {
     return this._HttpClient.get<ICompletedQuiz[]>('quiz/completed');
   }
+  deleteQuiz (id: string) {
+    return this._HttpClient.delete(`quiz/${id}`);
+  }
 }

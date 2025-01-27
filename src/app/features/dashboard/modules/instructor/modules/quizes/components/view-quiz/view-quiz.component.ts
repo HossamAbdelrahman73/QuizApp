@@ -1,11 +1,15 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Validators, FormControl, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IGroup } from '../../../groups/interfaces/group.interface';
 import { GroupsService } from '../../../groups/services/groups.service';
 import { QuizesService } from '../../services/quizes.service';
 import { IQuiz } from '../../interfaces/iquiz';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../../../../../../../../shared/components/delete-dialog/delete-dialog.component';
+import { take } from 'rxjs';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
 @Component({
@@ -14,9 +18,12 @@ declare var bootstrap: any; // Import Bootstrap JS globally
   styleUrl: './view-quiz.component.scss',
 })
 export class ViewQuizComponent implements OnInit {
+  dialog = inject(MatDialog);
   selectedDate: string = '';
   selectedTiem: string = '';
-
+  route = inject(ActivatedRoute)
+  router = inject(Router)
+  id: string | null = null;
   quizForm = this._FormBuilder.group({
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
@@ -48,8 +55,11 @@ export class ViewQuizComponent implements OnInit {
     private groupsService: GroupsService,
     private _QuizesService: QuizesService,
     private _ToastrService: ToastrService,
-    private datePipe: DatePipe
-  ) {}
+    private datePipe: DatePipe,
+  ) {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.quizForm.disable();
+  }
 
   ngOnInit(): void {
     this.getQuiz();
@@ -57,26 +67,18 @@ export class ViewQuizComponent implements OnInit {
   }
 
   getQuiz() {
-    this._QuizesService.onGetQuizById('6793a20533ff46523502fac3').subscribe({
-      next: (res) => {
-        console.log(res);
-        this.quiz = res;
-        this.quizForm.patchValue({
-          title: this.quiz.title,
-          description: this.quiz.description,
-          score_per_question: this.quiz.score_per_question.toString(),
-          schadule: this.quiz.schadule,
-          duration: this.quiz.duration.toString(),
-          group: this.quiz.group,
-          questions_number: this.quiz.questions_number,
-          difficulty: this.quiz.difficulty,
-          type: this.quiz.type,
-        });
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    if (this.id) {
+      this._QuizesService.onGetQuizById(this.id).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.quiz = res;
+          this.quizForm.patchValue(res);
+        },
+        error: (err) => {
+          this._ToastrService.error(err.message);
+        },
+      });
+    }
   }
 
   getGroups() {
@@ -144,5 +146,25 @@ export class ViewQuizComponent implements OnInit {
     const modal = bootstrap.Modal.getInstance(modalElement);
     modal.hide();
     this.removeBackdrop();
+  }
+  deleteQuiz() {
+    this.dialog.open(DeleteDialogComponent, {
+      width: '500px',
+      data: {
+        title: 'quiz',
+      },
+    }).afterClosed().pipe(take(1)).subscribe((result) => {
+      if (result) {
+        this._QuizesService.deleteQuiz(this.id!).subscribe({
+          error: (err) => {
+            this._ToastrService.error(err.message);
+          },
+          complete: () => {
+            this._ToastrService.success('Quiz deleted successfully');
+            this.router.navigate(['/dashboard/instructor/quizzes']);
+          }
+        });
+      }
+    })
   }
 }
