@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentComponent } from './student.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
   declarations: [
-    StudentComponent
+    StudentComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
