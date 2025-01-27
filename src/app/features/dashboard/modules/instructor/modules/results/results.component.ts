@@ -2,8 +2,6 @@ import { Iquiz, IResultInstructor } from './interfaces/iresult-instructor';
 import { Component, inject, OnInit } from '@angular/core';
 import { ResultsInstructorService } from './services/results-instructor.service';
 import { ITableColumnConfig } from '../../../../../../shared/interfaces/table/table-column-config.interface';
-import { IQuiz } from '../quizes/interfaces/iquiz';
-
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
