@@ -2,48 +2,52 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ITableColumnConfig, ITablePipe } from '../../interfaces/table/table-column-config.interface';
+import {
+  ITableColumnConfig,
+  ITablePipe,
+} from '../../interfaces/table/table-column-config.interface';
 import { DatePipe } from '@angular/common';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+  styleUrl: './table.component.scss',
 })
 export class TableComponent {
+  page: number = 1;
+  pageSize: number = 10;
+  length: number = 0;
+  private _tableBody: any[] = [];
+  paginatedData: any[] = [];
+  displayedColumns: string[] = [];
+  dataSource = new MatTableDataSource<any>([]);
   @Input() tableColumnsConfig: ITableColumnConfig[] = [];
-  @Input() set tableBody(data: any) {
+  @Input() set tableBody(data: any[]) {
+    this._tableBody = data || [];
+    this.length = this._tableBody.length;
     this.displayedColumns = this.tableColumnsConfig.map((column) => column.key);
-    this.dataSource.data = data;
+    this.updatePagination();
   }
+
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor(private _liveAnnouncer: LiveAnnouncer, private datePipe: DatePipe, private truncatePipe: TruncatePipe) {
+  constructor(
+    private _liveAnnouncer: LiveAnnouncer,
+    private datePipe: DatePipe,
+    private truncatePipe: TruncatePipe
+  ) {}
+  get tableBody() {
+    return this._tableBody;
   }
-
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   announceSortChange(sortState: Sort) {
@@ -53,15 +57,33 @@ export class TableComponent {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
   applyPipe(value: any, pipe: ITablePipe) {
     switch (pipe.type) {
       case 'truncate':
-        return this.truncatePipe.transform(value, pipe.format as number || 50);
+        return this.truncatePipe.transform(
+          value,
+          (pipe.format as number) || 50
+        );
       case 'date':
-        return this.datePipe.transform(value, pipe.format as string || 'short');
+        return this.datePipe.transform(
+          value,
+          (pipe.format as string) || 'short'
+        );
       default:
         return value;
     }
   }
+  onPageChange(event: PageEvent) {
+    this.page = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+    this.updatePagination();
+  }
 
+  updatePagination() {
+    const start = (this.page - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    this.paginatedData = this._tableBody.slice(start, end);
+    this.dataSource.data = this.paginatedData;
+  }
 }

@@ -17,10 +17,8 @@ color: $color-background-section;
         border-right: 3px solid $color-background-section;
         color:#fff;
         .image-container {
-        background-color: $color-background-section;
-          svg {
-            fill:#fcfbfb
-          }
+        background-color:rgba(0, 0, 0, 0.404);
+
         }
       }
       &:hover {

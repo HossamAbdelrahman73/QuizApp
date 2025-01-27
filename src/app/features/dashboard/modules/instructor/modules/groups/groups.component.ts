@@ -49,7 +49,6 @@ export class GroupsComponent implements OnInit {
     this.groupsService.getGroups().subscribe({
       next: (groups: IGroup[]) => {
         this.groups = groups;
-        console.log(groups);
       },
       error: (err) => {
         this.toast.error(err.error.message);

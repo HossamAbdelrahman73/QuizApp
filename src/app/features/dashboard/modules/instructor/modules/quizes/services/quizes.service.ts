@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IQuiz } from '../interfaces/iquiz';
+import { ICompletedQuiz, IQuiz } from '../interfaces/iquiz';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +22,8 @@ export class QuizesService {
   onGetAllQuizzes(): Observable<IQuiz[]> {
     return this._HttpClient.get<IQuiz[]>(`quiz`);
   }
-  getLastFiveQuizes() {
-    return this._HttpClient.get('quiz/completed');
+  getLastFiveQuizes(): Observable<ICompletedQuiz[]> {
+    return this._HttpClient.get<ICompletedQuiz[]>('quiz/completed');
   }
   deleteQuiz (id: string) {
     return this._HttpClient.delete(`quiz/${id}`);

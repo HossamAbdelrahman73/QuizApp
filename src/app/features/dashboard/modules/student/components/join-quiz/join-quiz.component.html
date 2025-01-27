@@ -1,0 +1,33 @@
+<section class="pt-4 px-3">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold mb-4">Join Quiz</h2>
+    <p>Input the code received for the quiz below to join</p>
+  </div>
+  <div class="dialog-form">
+    <form [formGroup]="joinQuizForm" (ngSubmit)="joinQuiz(joinQuizForm)">
+      <div class="input-group mb-5">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+          >Code</span
+        >
+        <input
+          formControlName="code"
+          type="text"
+          class="form-control py-2"
+          aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </div>
+      <div
+        class="dialog-actions d-flex justify-content-center align-items-center"
+      >
+        <button class="submit-btn" type="submit" [disabled]="!joinQuizForm.valid">
+          <span><i class="fa-solid fa-check"></i></span>
+        </button>
+        <button class="close-btn" mat-dialog-close="">
+          <span><i class="fa-solid fa-xmark"></i></span>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
