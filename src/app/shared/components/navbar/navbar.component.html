@@ -14,253 +14,290 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="d-flex align-items-center gap-2" id="navbarSupportedContent">
-      <ul class="navbar-nav gap-2">
-        @if (role === 'Instructor') {
-        <button class="btn" data-bs-toggle="modal" data-bs-target="#createQuiz">
-          <mat-icon>alarm_add</mat-icon>
-          <span>New quiz</span>
-        </button>
-        }
-      </ul>
-      <div class="user-info ps-4 h-100">
-        <button mat-button [matMenuTriggerFor]="menu">
-          <h3 class="m-0 name">
-            <span class="me-2">{{ firstName }}</span>
-            <span>{{ lastName }}</span>
-          </h3>
-          <span class="m-0 role">{{ role }}</span>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="changePassword()">
-            <mat-icon
-              aria-hidden="false"
-              aria-label="Example logout icon"
-              fontIcon="logout"
-            ></mat-icon>
-            Change password
-          </button>
-          <button mat-menu-item (click)="logout()">
-            <mat-icon
-              aria-hidden="false"
-              aria-label="Example key icon"
-              fontIcon="key"
-            ></mat-icon>
-            Logout
-          </button>
-        </mat-menu>
-      </div>
-    </div>
-
-    <!-- popup create quiz   -->
     <div
-      class="modal fade"
-      id="createQuiz"
-      tabindex="-1"
-      aria-labelledby="exampleModalToggleLabel"
-      aria-hidden="true"
+      class="d-flex align-items-center justify-content-between gap-2 w-100"
+      id="navbarSupportedContent"
     >
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div
-            class="border border-2 border-black border-top-0 border-start-0 border-end-0"
-          >
-            <div
-              class="d-flex justify-content-between align-items-center w-100 h-100 px-2"
+      <div class="row w-100">
+        <div class="col-md-7">
+          <div class="h-100 d-flex justify-content-center align-items-center">
+            <ul
+              class="navbar-nav gap-2 w-100 d-flex justify-content-center align-items-center"
             >
-              <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
-                Set up a new quiz
-              </h1>
-              <div class="d-flex">
-                <div
-                  class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
-                >
-                  <button
-                    (click)="sendData()"
-                    type="button"
-                    class="fs-2 fa-bold border border-0 bg-transparent"
-                    [attr.data-bs-dismiss]="quizForm.valid ? 'modal' : ''"
-                    [disabled]="quizForm.invalid"
-                    aria-label="Close"
-                  >
-                    <!-- (click)="updateStudentGroup()" -->
-                    <i class="fa-solid fa-check color-global"></i>
-                  </button>
+              <li>
+                <span class="h3">{{ currentTime | date : "mediumTime" }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="d-flex gap-2 align-items-center justify-content-center">
+            <div>
+              @if (role === 'Instructor') {
+              <button class="btn">
+                <mat-icon>alarm_add</mat-icon>
+                <span>New quiz</span>
+              </button>
+              }
+            </div>
+            <div class="user-info ps-4 h-100">
+              <div
+                mat-button
+                [matMenuTriggerFor]="menu"
+                class="d-flex justify-content-center align-items-center gap-2"
+              >
+                <div>
+                  <h3 class="m-0 name">
+                    <span class="me-2">{{ firstName }}</span>
+                    <span>{{ lastName }}</span>
+                  </h3>
+                  <span class="m-0 role">{{ role }}</span>
                 </div>
-                <div
-                  class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
-                >
-                  <button
-                    type="button"
-                    class="fs-2 fa-bold border border-0 bg-transparent"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                    (click)="closeModal()"
+                <span>
+                  <mat-icon class="h4">keyboard_arrow_down</mat-icon>
+                </span>
+              </div>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="changePassword()">
+                  <mat-icon
+                    aria-hidden="false"
+                    aria-label="Example logout icon"
+                    fontIcon="logout"
+                  ></mat-icon>
+                  Change password
+                </button>
+                <button mat-menu-item (click)="logout()">
+                  <mat-icon
+                    aria-hidden="false"
+                    aria-label="Example key icon"
+                    fontIcon="key"
+                  ></mat-icon>
+                  Logout
+                </button>
+                <button mat-menu-item (click)="openDialogToUpdateProfile()">
+                  <mat-icon
+                    aria-hidden="false"
+                    aria-label="Example update icon"
+                    fontIcon="update"
+                  ></mat-icon>
+                  update profile
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- popup create quiz   -->
+      <div
+        class="modal fade"
+        id="createQuiz"
+        tabindex="-1"
+        aria-labelledby="exampleModalToggleLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div
+              class="border border-2 border-black border-top-0 border-start-0 border-end-0"
+            >
+              <div
+                class="d-flex justify-content-between align-items-center w-100 h-100 px-2"
+              >
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+                  Set up a new quiz
+                </h1>
+                <div class="d-flex">
+                  <div
+                    class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
                   >
-                    <i class="fa-solid fa-xmark text-danger"></i>
-                  </button>
+                    <button
+                      (click)="sendData()"
+                      type="button"
+                      class="fs-2 fa-bold border border-0 bg-transparent"
+                      [attr.data-bs-dismiss]="quizForm.valid ? 'modal' : ''"
+                      [disabled]="quizForm.invalid"
+                      aria-label="Close"
+                    >
+                      <!-- (click)="updateStudentGroup()" -->
+                      <i class="fa-solid fa-check color-global"></i>
+                    </button>
+                  </div>
+                  <div
+                    class="border border-2 border-black border-top-0 border-bottom-0 border-end-0 p-3"
+                  >
+                    <button
+                      type="button"
+                      class="fs-2 fa-bold border border-0 bg-transparent"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                      (click)="closeModal()"
+                    >
+                      <i class="fa-solid fa-xmark text-danger"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="modal-body">
-            <h2 class="h6">Details</h2>
-            <form [formGroup]="quizForm">
-              <div class="input-group mb-4 mt-2">
-                <span class="input-group-text title-input">Title</span>
-                <input
-                  formControlName="title"
-                  type="text"
-                  class="form-control"
-                />
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="input-group mb-4 mt-2">
-                    <span class="input-group-text title-input"
-                      >Duration <span class="fs-6">(in minutes)</span></span
-                    >
-                    <select
-                      formControlName="duration"
-                      class="form-select"
-                      id="inputGroupSelect01"
-                    >
-                      @for (dur of duration; track $index) {
-                      <option [value]="dur">{{ dur }}</option>
-                      }
-                    </select>
-                  </div>
+            <div class="modal-body">
+              <h2 class="h6">Details</h2>
+              <form [formGroup]="quizForm">
+                <div class="input-group mb-4 mt-2">
+                  <span class="input-group-text title-input">Title</span>
+                  <input
+                    formControlName="title"
+                    type="text"
+                    class="form-control"
+                  />
                 </div>
-                <div class="col-md-4">
-                  <div class="input-group mb-4 mt-2">
-                    <span class="input-group-text title-input"
-                      >No. of questions</span
-                    >
-                    <div class="dropdown-container">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="input-group mb-4 mt-2">
+                      <span class="input-group-text title-input"
+                        >Duration <span class="fs-6">(in minutes)</span></span
+                      >
                       <select
-                        formControlName="questions_number"
-                        class="form-select rounded-start-0"
+                        formControlName="duration"
+                        class="form-select"
                         id="inputGroupSelect01"
                       >
-                        @for (num of questionsNumbur; track $index) {
-                        <option [value]="num">{{ num }}</option>
+                        @for (dur of duration; track $index) {
+                        <option [value]="dur">{{ dur }}</option>
+                        }
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group mb-4 mt-2">
+                      <span class="input-group-text title-input"
+                        >No. of questions</span
+                      >
+                      <div class="dropdown-container">
+                        <select
+                          formControlName="questions_number"
+                          class="form-select rounded-start-0"
+                          id="inputGroupSelect01"
+                        >
+                          @for (num of questionsNumbur; track $index) {
+                          <option [value]="num">{{ num }}</option>
+                          }
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group mb-4 mt-2 d-flex">
+                      <span
+                        for="inputGroupSelect01"
+                        class="input-group-text title-input"
+                        >Score per question</span
+                      >
+                      <select
+                        formControlName="score_per_question"
+                        class="form-select"
+                        id="inputGroupSelect01"
+                      >
+                        @for (score of questionScore; track $index) {
+                        <option [value]="score">{{ score }}</option>
                         }
                       </select>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="input-group mb-4 mt-2 d-flex">
-                    <span
-                      for="inputGroupSelect01"
-                      class="input-group-text title-input"
-                      >Score per question</span
-                    >
-                    <select
-                      formControlName="score_per_question"
-                      class="form-select"
-                      id="inputGroupSelect01"
-                    >
-                      @for (score of questionScore; track $index) {
-                      <option [value]="score">{{ score }}</option>
-                      }
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="input-group">
-                <span class="input-group-text title-input">Description</span>
-                <textarea
-                  formControlName="description"
-                  class="form-control"
-                  aria-label="With textarea"
-                ></textarea>
-              </div>
-              <div
-                class="Schedule my-3 d-flex align-items-center rounded-2 border border-1"
-              >
-                <div class="">
-                  <span class="title-input py-2 px-2 my-auto">Schedule</span>
+                <div class="input-group">
+                  <span class="input-group-text title-input">Description</span>
+                  <textarea
+                    formControlName="description"
+                    class="form-control"
+                    aria-label="With textarea"
+                  ></textarea>
                 </div>
                 <div
-                  class="border border-1 border-top-0 border-end-0 border-bottom-0 w-100"
+                  class="Schedule my-3 d-flex align-items-center rounded-2 border border-1"
                 >
-                  <div class="modal-body bg-white">
-                    <label>
-                      <input
-                        class="ddd border border-0 border-top-0 border-start-0 border-end-0 border-secondary"
-                        placeholder="mm/dd/yyyy"
-                        [owlDateTimeTrigger]="dt"
-                        [owlDateTime]="dt"
-                        formControlName="schadule"
-                      />
-                      <span class="date"
-                        ><i class="fa-regular fa-calendar px-2"></i
-                      ></span>
-                      <span class="date"
-                        ><i class="fa-regular fa-clock"></i
-                      ></span>
-                      <owl-date-time #dt></owl-date-time>
-                    </label>
+                  <div class="">
+                    <span class="title-input py-2 px-2 my-auto">Schedule</span>
+                  </div>
+                  <div
+                    class="border border-1 border-top-0 border-end-0 border-bottom-0 w-100"
+                  >
+                    <div class="modal-body bg-white">
+                      <label>
+                        <input
+                          class="ddd border border-0 border-top-0 border-start-0 border-end-0 border-secondary"
+                          placeholder="mm/dd/yyyy"
+                          [owlDateTimeTrigger]="dt"
+                          [owlDateTime]="dt"
+                          formControlName="schadule"
+                        />
+                        <span class="date"
+                          ><i class="fa-regular fa-calendar px-2"></i
+                        ></span>
+                        <span class="date"
+                          ><i class="fa-regular fa-clock"></i
+                        ></span>
+                        <owl-date-time #dt></owl-date-time>
+                      </label>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="input-group mb-4">
-                    <span class="input-group-text title-input"
-                      >Difficulty level</span
-                    >
-                    <select
-                      formControlName="difficulty"
-                      class="form-select"
-                      id="inputGroupSelect01"
-                    >
-                      @for (difficult of ['easy', 'medium', 'hard']; track
-                      $index) {
-                      <option [value]="difficult">{{ difficult }}</option>
-                      }
-                    </select>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="input-group mb-4">
+                      <span class="input-group-text title-input"
+                        >Difficulty level</span
+                      >
+                      <select
+                        formControlName="difficulty"
+                        class="form-select"
+                        id="inputGroupSelect01"
+                      >
+                        @for (difficult of ['easy', 'medium', 'hard']; track
+                        $index) {
+                        <option [value]="difficult">{{ difficult }}</option>
+                        }
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group mb-4">
+                      <span class="input-group-text title-input"
+                        >Category type</span
+                      >
+                      <select
+                        formControlName="type"
+                        class="form-select"
+                        id="inputGroupSelect01"
+                      >
+                        @for (type of ['FE', 'BE', 'DO']; track $index) {
+                        <option [value]="type">{{ type }}</option>
+                        }
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group mb-4 d-flex">
+                      <span
+                        for="inputGroupSelect01"
+                        class="input-group-text title-input"
+                        >Group name</span
+                      >
+                      <select
+                        formControlName="group"
+                        class="form-select"
+                        id="inputGroupSelect01"
+                      >
+                        @for (group of groups; track group._id) {
+                        <option [value]="group._id">
+                          {{ group.name }}
+                        </option>
+                        }
+                      </select>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="input-group mb-4">
-                    <span class="input-group-text title-input"
-                      >Category type</span
-                    >
-                    <select
-                      formControlName="type"
-                      class="form-select"
-                      id="inputGroupSelect01"
-                    >
-                      @for (type of ['FE', 'BE', 'DO']; track $index) {
-                      <option [value]="type">{{ type }}</option>
-                      }
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="input-group mb-4 d-flex">
-                    <span
-                      for="inputGroupSelect01"
-                      class="input-group-text title-input"
-                      >Group name</span
-                    >
-                    <select
-                      formControlName="group"
-                      class="form-select"
-                      id="inputGroupSelect01"
-                    >
-                      @for (group of groups; track group._id) {
-                      <option [value]="group._id">
-                        {{ group.name }}
-                      </option>
-                      }
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>

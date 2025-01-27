@@ -6,3 +6,8 @@ export interface IProfile {
   status?: string;
   _id?: string;
 }
+
+export interface IUpdateProfile {
+  last_name: string;
+}
+

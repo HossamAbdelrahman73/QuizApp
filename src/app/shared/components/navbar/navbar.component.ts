@@ -18,9 +18,10 @@ import { IQuiz } from '../../../features/dashboard/modules/instructor/modules/qu
 import { quizRoutes } from '../../../features/dashboard/modules/instructor/modules/quizes/routes/quiz-routes';
 import { QuizesService } from '../../../features/dashboard/modules/instructor/modules/quizes/services/quizes.service';
 import { DashboardService } from '../../../features/dashboard/services/dashboard.service';
-import { MatDialog } from '@angular/material/dialog';
 import { CodeQuizComponent } from '../../../features/dashboard/modules/instructor/modules/quizes/components/code-quiz/code-quiz.component';
 declare var bootstrap: any; // Import Bootstrap JS globally
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateProfileComponent } from '../update-profile/update-profile.component';
 
 @Component({
   selector: 'app-navbar',
@@ -30,6 +31,7 @@ declare var bootstrap: any; // Import Bootstrap JS globally
 export class NavbarComponent implements OnInit, OnDestroy {
   private _SharedService = inject(SharedService);
   private _Router = inject(Router);
+  dialog = inject(MatDialog);
   routerSubscription!: Subscription;
   profile: IProfile = {} as IProfile;
   showMenu: boolean = false;
@@ -39,6 +41,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   userName: string = '';
   currentPath: string = '';
   sectionTitle: string = '';
+  public currentTime = new Date();
   quizRoutes = quizRoutes;
   selectedDate: string = '';
   selectedTiem: string = '';
@@ -69,9 +72,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private _QuizesService: QuizesService,
     private _ToastrService: ToastrService,
     private _DashboardService: DashboardService,
-    private datePipe: DatePipe,
-    public dialog: MatDialog
-  ) {}
+    private datePipe: DatePipe
+  ) {
+    setInterval(() => {
+      this.currentTime = new Date();
+    }, 1000);
+  }
 
   ngOnInit(): void {
     this.getGroups();
@@ -180,6 +186,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   changePassword() {
     this._Router.navigate(['/auth/change-password']);
+  }
+  openDialogToUpdateProfile(): void {
+    this.dialog.open(UpdateProfileComponent, {});
   }
   ngOnDestroy() {
     // this.routerSubscription.unsubscribe();

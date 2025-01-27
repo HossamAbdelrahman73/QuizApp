@@ -14,4 +14,7 @@ export class DashboardService {
   onGetFiveIncomingQuiz(): Observable<any> {
     return this._HttpClient.get<any>('quiz/incomming');
   }
+  onGetStudentById(id: string): Observable<any> {
+    return this._HttpClient.get(`student/${id}`);
+  }
 }

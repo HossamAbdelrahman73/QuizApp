@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -18,11 +18,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
 import { MatSortModule } from '@angular/material/sort';
 import { TruncatePipe } from './pipes/truncate.pipe';
-
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import {
   OwlDateTimeModule,
   OwlNativeDateTimeModule,
@@ -39,7 +40,9 @@ import {
     BreadcrumbComponent,
     NotFoundComponent,
     TableComponent,
-    TruncatePipe
+    TruncatePipe,
+    BreadcrumbComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +63,8 @@ import {
     MatMenuModule,
     MatTableModule,
     MatSortModule,
+    FormsModule,
+    MatPaginatorModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -78,8 +83,11 @@ import {
     BreadcrumbComponent,
     MatTableModule,
     TableComponent,
-    MatIconModule
+    FormsModule,
+    MatPaginatorModule,
+    TableComponent,
+    MatIconModule,
   ],
-  providers: [DatePipe, TruncatePipe]
+  providers: [DatePipe, TruncatePipe],
 })
 export class SharedModule {}
