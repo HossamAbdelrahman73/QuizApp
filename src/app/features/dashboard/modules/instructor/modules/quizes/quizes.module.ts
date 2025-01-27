@@ -14,6 +14,7 @@ import {
 import { AllQuizesComponent } from './components/all-quizes/all-quizes.component';
 import { CodeQuizComponent } from './components/code-quiz/code-quiz.component';
 import { SharedModule } from '../../../../../../shared/shared.module';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SharedModule } from '../../../../../../shared/shared.module';
     ReactiveFormsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    SharedModule
+    SharedModule,
+    ClipboardModule,
   ],
   providers: [],
 })
