@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -22,13 +22,13 @@ import { MatTableModule } from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
 import { MatSortModule } from '@angular/material/sort';
 import { TruncatePipe } from './pipes/truncate.pipe';
-
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import {
   OwlDateTimeModule,
   OwlNativeDateTimeModule,
 } from '@danielmoncada/angular-datetime-picker';
 
-import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -63,6 +63,8 @@ import { UpdateProfileComponent } from './components/update-profile/update-profi
     MatMenuModule,
     MatTableModule,
     MatSortModule,
+    FormsModule,
+    MatPaginatorModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -80,6 +82,9 @@ import { UpdateProfileComponent } from './components/update-profile/update-profi
     OwlNativeDateTimeModule,
     BreadcrumbComponent,
     MatTableModule,
+    TableComponent,
+    FormsModule,
+    MatPaginatorModule,
     TableComponent,
     MatIconModule,
   ],
