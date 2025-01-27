@@ -2,7 +2,10 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ITableColumnConfig, ITablePipe } from '../../interfaces/table/table-column-config.interface';
+import {
+  ITableColumnConfig,
+  ITablePipe,
+} from '../../interfaces/table/table-column-config.interface';
 import { DatePipe } from '@angular/common';
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -10,7 +13,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  styleUrl: './table.component.scss',
 })
 export class TableComponent {
   page: number = 1;
@@ -27,16 +30,18 @@ export class TableComponent {
     this.displayedColumns = this.tableColumnsConfig.map((column) => column.key);
     this.updatePagination();
   }
-  get tableBody() {
-    return this._tableBody;
-  }
+
+  displayedColumns: string[] = [];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
     private datePipe: DatePipe,
     private truncatePipe: TruncatePipe
-  ) { }
-
+  ) {}
+  get tableBody() {
+    return this._tableBody;
+  }
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -56,14 +61,19 @@ export class TableComponent {
   applyPipe(value: any, pipe: ITablePipe) {
     switch (pipe.type) {
       case 'truncate':
-        return this.truncatePipe.transform(value, pipe.format as number || 50);
+        return this.truncatePipe.transform(
+          value,
+          (pipe.format as number) || 50
+        );
       case 'date':
-        return this.datePipe.transform(value, pipe.format as string || 'short');
+        return this.datePipe.transform(
+          value,
+          (pipe.format as string) || 'short'
+        );
       default:
         return value;
     }
   }
-
   onPageChange(event: PageEvent) {
     this.page = event.pageIndex + 1;
     this.pageSize = event.pageSize;

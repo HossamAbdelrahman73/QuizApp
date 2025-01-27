@@ -103,6 +103,5 @@ export class QuizesComponent implements OnInit {
           this._ToastrService.error(err.message);
         },
       });
-
   }
 }
