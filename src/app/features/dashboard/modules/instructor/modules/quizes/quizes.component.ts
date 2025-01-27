@@ -11,6 +11,7 @@ import { DashboardService } from '../../../../services/dashboard.service';
 import { take } from 'rxjs';
 import { ICompletedQuiz, IQuiz } from './interfaces/iquiz';
 import { MatDialog } from '@angular/material/dialog';
+import { ViewItemComponent } from '../../components/view-item/view-item.component';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
 @Component({
@@ -36,8 +37,6 @@ export class QuizesComponent implements OnInit {
     },
     { key: 'type', label: 'Type' },
   ];
-  toppings = new FormControl('');
-
   quizForm = this._FormBuilder.group({
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
@@ -54,11 +53,12 @@ export class QuizesComponent implements OnInit {
   duration: number[] = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
   questionsNumbur: number[] = Array.from({ length: 50 }, (_, i) => i + 1);
   questionScore: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
-
+  quizDetails: IQuiz = {} as IQuiz;
   constructor(
     private _FormBuilder: FormBuilder,
     private _ToastrService: ToastrService,
     private _DashboardService: DashboardService,
+    private _QuizesService : QuizesService
   ) { }
 
   ngOnInit(): void {
@@ -103,5 +103,24 @@ export class QuizesComponent implements OnInit {
           this._ToastrService.error(err.message);
         },
       });
+  }
+  getQuizById(id: string): void {
+    this._QuizesService.onGetQuizById(id).subscribe({
+      next: (res) => {
+        this.quizDetails = res
+        console.log(this.quizDetails);
+        this.quizDetails = res;
+      },error:(err)=> {
+        console.log(err);
+
+      }, complete: ()=> {
+        this.dialog.open(ViewItemComponent, {
+          data : {
+            data: this.quizDetails,
+            title: 'Quiz'
+          },
+        });
+      }
+    });
   }
 }

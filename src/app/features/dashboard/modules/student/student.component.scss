@@ -1,0 +1,24 @@
+.last-5-quizzes {
+  padding: 1.3rem;
+  border: 1px solid rgba(#000000, 0.2);
+  border-radius: 10px;
+  width: 100%;
+  .quizzes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .results-action {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      .icon {
+        color: #C5D86D;
+        font-weight: 700;
+      }
+    }
+  }
+  .table-container {
+    display: flex;
+    justify-content: center;
+  }
+}

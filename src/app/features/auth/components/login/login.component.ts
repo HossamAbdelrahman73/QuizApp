@@ -1,9 +1,11 @@
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { authRoutes } from '../../routes/routes-enum';
+import { Ilogin } from '../../interfaces/ilogin';
+import { SharedService } from '../../../../shared/services/shared-service/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,9 @@ import { authRoutes } from '../../routes/routes-enum';
 })
 export class LoginComponent {
   authRoutes = authRoutes;
-  showPassword:boolean = false;
+  showPassword: boolean = false;
+  loggedInDetails: Ilogin = {} as Ilogin;
+  role: string | undefined = '';
   loginForm = this._FormBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
@@ -22,22 +26,35 @@ export class LoginComponent {
     private _FormBuilder: FormBuilder,
     private _AuthService: AuthService,
     private _ToastrService: ToastrService,
-    private _Router : Router
-    // private _authRoutes : authRoutes
+    private _Router: Router,
+    private _SharedService: SharedService
   ) {}
   sendLoginData() {
-    console.log(this.loginForm.value);
     this._AuthService.onSubmited(this.loginForm.value).subscribe({
       next: (res) => {
-        console.log(res);
-        this._ToastrService.success(res.message);
-        localStorage.setItem('token', res.data.accessToken);
-        localStorage.setItem('profile', JSON.stringify(res.data.profile));
-        this._Router.navigate(['/dashboard/instructor']);
+        this.loggedInDetails = res;
+        localStorage.setItem('token', this.loggedInDetails.data.accessToken);
+        localStorage.setItem(
+          'profile',
+          JSON.stringify(this.loggedInDetails.data.profile)
+        );
+        this._SharedService.getProfile();
+
+
       },
       error: (err) => {
         console.log(err);
         this._ToastrService.error('Login Error', err.error.message);
+      },
+      complete: () => {
+        this._ToastrService.success(this.loggedInDetails.message);
+        this.role = this._SharedService.role;
+        if (this.role === 'Instructor') {
+
+          this._Router.navigate(['/dashboard/instructor']);
+        } else if (this.role === 'Student') {
+          this._Router.navigate(['/dashboard/student']);
+        }
       },
     });
   }

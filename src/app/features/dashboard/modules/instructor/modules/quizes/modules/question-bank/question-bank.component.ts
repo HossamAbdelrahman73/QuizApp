@@ -43,6 +43,8 @@ export class QuestionBankComponent implements OnInit {
     this.questionsBankService.onGetQuestions().subscribe({
       next: (res: IGetQuestion[]) => {
         this.questions = res;
+        console.log(this.questions);
+
       },
       error: (err) => {
         console.log(err);

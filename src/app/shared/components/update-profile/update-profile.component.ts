@@ -14,16 +14,12 @@ export class UpdateProfileComponent {
 private _SharedService = inject(SharedService)
 private _ToastrService = inject(ToastrService)
 public _MatDialogRef = inject(MatDialogRef<UpdateProfileComponent>)
-role : string | null = ''
-lastName : string | null = ''
-profile: IProfile = {} as IProfile;
+role : string | undefined = ''
+lastName : string | undefined = ''
 ngOnInit(): void {
-  this.profile = (localStorage.getItem('profile') as string)
-  ? JSON.parse(localStorage.getItem('profile') as string)
-  : undefined;
-this.role = this.profile.role as string;
-this.lastName = this.profile.last_name as string;
-this.updateLastNameForm.patchValue({
+this.lastName = this._SharedService.lastName
+this.role = this._SharedService.role
+this.updateLastNameForm.patchValue ({
   last_name: this.lastName
 })
 }
