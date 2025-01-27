@@ -39,8 +39,8 @@ export class LoginComponent {
           JSON.stringify(this.loggedInDetails.data.profile)
         );
         this._SharedService.getProfile();
-        this.role = this._SharedService.role;
-        console.log(this.role);
+
+
       },
       error: (err) => {
         console.log(err);
@@ -48,7 +48,9 @@ export class LoginComponent {
       },
       complete: () => {
         this._ToastrService.success(this.loggedInDetails.message);
+        this.role = this._SharedService.role;
         if (this.role === 'Instructor') {
+
           this._Router.navigate(['/dashboard/instructor']);
         } else if (this.role === 'Student') {
           this._Router.navigate(['/dashboard/student']);
