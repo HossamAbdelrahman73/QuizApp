@@ -31,9 +31,6 @@ export class TableComponent {
     this.updatePagination();
   }
 
-  displayedColumns: string[] = [];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
     private datePipe: DatePipe,
