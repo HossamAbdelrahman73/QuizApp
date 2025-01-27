@@ -25,4 +25,7 @@ export class QuizesService {
   getLastFiveQuizes() {
     return this._HttpClient.get('quiz/completed');
   }
+  deleteQuiz (id: string) {
+    return this._HttpClient.delete(`quiz/${id}`);
+  }
 }
