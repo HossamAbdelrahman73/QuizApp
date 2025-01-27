@@ -16,6 +16,7 @@ export class LoginComponent {
   authRoutes = authRoutes;
   showPassword: boolean = false;
   loggedInDetails: Ilogin = {} as Ilogin;
+  role: string | undefined = '';
   loginForm = this._FormBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
@@ -38,6 +39,8 @@ export class LoginComponent {
           JSON.stringify(this.loggedInDetails.data.profile)
         );
         this._SharedService.getProfile();
+        this.role = this._SharedService.role;
+        console.log(this.role);
       },
       error: (err) => {
         console.log(err);
@@ -45,7 +48,11 @@ export class LoginComponent {
       },
       complete: () => {
         this._ToastrService.success(this.loggedInDetails.message);
-        this._Router.navigate(['/dashboard']);
+        if (this.role === 'Instructor') {
+          this._Router.navigate(['/dashboard/instructor']);
+        } else if (this.role === 'Student') {
+          this._Router.navigate(['/dashboard/student']);
+        }
       },
     });
   }

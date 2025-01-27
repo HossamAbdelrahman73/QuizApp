@@ -27,7 +27,7 @@ import { UpdateProfileComponent } from '../update-profile/update-profile.compone
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class NavbarComponent implements OnInit {
   private _SharedService = inject(SharedService);
   private _Router = inject(Router);
   dialog = inject(MatDialog);
@@ -176,8 +176,5 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   openDialogToUpdateProfile(): void {
     this.dialog.open(UpdateProfileComponent, {});
-  }
-  ngOnDestroy() {
-    // this.routerSubscription.unsubscribe();
   }
 }

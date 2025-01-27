@@ -10,14 +10,14 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: 'instructor', canActivate:[instructorGuard],
+        path: 'instructor',
         loadChildren: () =>
           import('./modules/instructor/instructor.module').then(
             (m) => m.InstructorModule
           ),
       },
       {
-        path: 'student', canActivate:[studentGuard],
+        path: 'student',
         loadChildren: () =>
           import('./modules/student/student.module').then(
             (m) => m.StudentModule
