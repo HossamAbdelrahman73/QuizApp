@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { IResetPassword } from '../interfaces/ireset-password';
 import { IChangePassword } from '../interfaces/ichange-password';
-import { IRegisterBody } from '../../interfaces/register-body.interface';
+import { IRegisterBody } from '../interfaces/register-body.interface';
 
 @Injectable({
   providedIn: 'root',

@@ -50,7 +50,6 @@ export class LoginComponent {
         this._ToastrService.success(this.loggedInDetails.message);
         this.role = this._SharedService.role;
         if (this.role === 'Instructor') {
-
           this._Router.navigate(['/dashboard/instructor']);
         } else if (this.role === 'Student') {
           this._Router.navigate(['/dashboard/student']);
