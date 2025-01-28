@@ -28,6 +28,7 @@ import {
   OwlDateTimeModule,
   OwlNativeDateTimeModule,
 } from '@danielmoncada/angular-datetime-picker';
+import { NoDataComponent } from './components/no-data/no-data.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {
     TruncatePipe,
     BreadcrumbComponent,
     UpdateProfileComponent,
+    NoDataComponent,
   ],
   imports: [
     CommonModule,

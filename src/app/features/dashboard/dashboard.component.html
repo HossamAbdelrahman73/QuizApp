@@ -8,37 +8,6 @@
       </div>
       <div class="px-0" [ngClass]="valueSideBarChanged() ? 'col-10' : 'col-11'">
         <app-navbar></app-navbar>
-        <!-- <app-breadcrumb></app-breadcrumb> -->
-        <!-- <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item cursor-pointer" routerLink="/dashboard/instructor/home" routerLinkActive="active"><a>Home</a></li>
-            <li class="breadcrumb-item cursor-pointer" aria-current="page" routerLink="/dashboard/instructor/students/students-in-group" routerLinkActive="active">Students</li>
-            <li class="breadcrumb-item cursor-pointer" routerLink="/dashboard/instructor/groups" routerLinkActive="active"><a>Groups</a></li>
-            <li class="breadcrumb-item cursor-pointer" aria-current="page" routerLink="/dashboard/instructor/quizzes" routerLinkActive="active">Quizzes</li>
-            <li class="breadcrumb-item cursor-pointer" aria-current="page" routerLink="/dashboard/instructor/results" routerLinkActive="active">Results</li>
-
-          </ol>
-        </nav> -->
-        <!-- <div
-          class="clock-container dark mx-auto text-center p-3 mt-4 border border-1 border-black border-opacity-50 shadow rounded-3"
-        >
-          <div class="time hours py-3 px-2 rounded-3 border border-1 border-black border-opacity-50">
-            <span
-              class="display-2 fw-medium"
-            >
-              {{ currentTime | date : "hh" }}
-            </span>
-            <span class="date fw-lighter">{{ currentTime | date : 'EEE, ddMMM' }}</span>
-            <span class="sparator"></span>
-          </div>
-          <div class="time minutes py-3 px-2 rounded-3 border border-1 border-black border-opacity-50">
-          <span  class="display-2 fw-medium">
-            {{ currentTime | date : "mm" }}
-
-          </span>
-          <span class="sparator"></span>
-          </div>
-        </div> -->
         <router-outlet></router-outlet>
       </div>
     </div>
