@@ -7,28 +7,30 @@ import { ITableColumnConfig } from '../../../../../../shared/interfaces/table/ta
   templateUrl: './results.component.html',
   styleUrl: './results.component.scss'
 })
-export class ResultsComponent implements OnInit{
-private _resultsInstructorService = inject(ResultsInstructorService)
-tableColumns :ITableColumnConfig[] = [
-  { key: 'quiz.title', label: 'Student name' },
-  { key: 'difficulty', label: 'Score' },
-  { key: 'participants', label: 'Average' },
-  { key: 'type', label: 'Time submitted' },
-]
-resultsList :IResultInstructor[]= []
-quizDetails : Iquiz[] =[]
-ngOnInit(): void {
- this.getAllResults()
-}
-getAllResults(): void{
-this._resultsInstructorService.onGetAllResults().subscribe({
-  next:(res)=> {
-    console.log(res);
-    this.resultsList = res
-    this.quizDetails = res.quiz
-  }, error:(err)=> {
-    console.log(err);
+export class ResultsComponent implements OnInit {
+  private _resultsInstructorService = inject(ResultsInstructorService)
+  tableColumns: ITableColumnConfig[] = [
+    { key: 'title', label: 'Title' },
+    { key: 'duration', label: 'Duration' },
+    { key: 'difficulty', label: 'Difficulty' },
+    { key: 'type', label: 'Type' },
+    { key: 'schadule', label: 'Date', pipe: {type: 'date', format: 'dd / MM / yyyy'} },
+  ]
+  resultsList: IResultInstructor[] = []
+  quizDetails: Iquiz[] = []
+  ngOnInit(): void {
+    this.getAllResults()
   }
-})
-}
+  getAllResults(): void {
+    this._resultsInstructorService.onGetAllResults().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.quizDetails = res.map((quiz: any) => {
+          return quiz.quiz
+        })
+      }, error: (err) => {
+        console.log(err);
+      }
+    })
+  }
 }
