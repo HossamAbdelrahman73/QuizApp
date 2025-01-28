@@ -80,7 +80,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getGroups();
+    if (localStorage.getItem('role') !== 'Student') {
+      this.getGroups();
+    }
     this.profile = (localStorage.getItem('profile') as string)
       ? JSON.parse(localStorage.getItem('profile') as string)
       : undefined;

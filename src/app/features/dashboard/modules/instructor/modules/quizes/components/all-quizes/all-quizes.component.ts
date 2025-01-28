@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { QuizesService } from '../../services/quizes.service';
 import { IQuiz } from '../../interfaces/iquiz';
 import { ITableColumnConfig } from '../../../../../../../../shared/interfaces/table/table-column-config.interface';
+import { Route, Router } from '@angular/router';
+import { quizRoutes } from '../../routes/quiz-routes';
 
 @Component({
   selector: 'app-all-quizes',
@@ -23,17 +25,19 @@ export class AllQuizesComponent implements OnInit {
     {
       key: 'actions',
       label: 'Actions',
+      isAction: true,
       actions: [
         {
           label: 'view',
-          icon: '<i class="fa-solid fa-eye"></i>',
-          color: '#FB7C19',
-          action: () => this.viewQuiz(),
+          icon: 'visibility',
+          color: 'orange-color',
+          action: (quiz: IQuiz) =>
+            this._Router.navigate([quizRoutes.VIEW_QUIZ, quiz._id]),
         },
       ],
     },
   ];
-  constructor(private _QuizesService: QuizesService) {}
+  constructor(private _QuizesService: QuizesService, private _Router: Router) {}
 
   ngOnInit(): void {
     this.getAllquizes();
