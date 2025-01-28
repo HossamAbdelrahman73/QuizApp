@@ -1,4 +1,8 @@
+@import "../../../assets/styles/abstracts/variables";
 .cursor-pointer
  {
   cursor: pointer;
  }
+ .icon-quiz {
+  color: $color-green;
+}

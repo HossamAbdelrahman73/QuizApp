@@ -36,7 +36,7 @@ export class StudentComponent implements OnInit{
     this.getIncommingQuizzes()
   }
   getQuizById(id: string): void {
-    this._QuizesService.onGetQuizById(id).subscribe({
+  this._QuizesService.onGetQuizById(id).subscribe({
       next: (res) => {
         this.quizDetails = res
         this.quizDetails = res;

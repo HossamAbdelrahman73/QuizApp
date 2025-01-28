@@ -22,6 +22,7 @@ import { CodeQuizComponent } from '../../../features/dashboard/modules/instructo
 declare var bootstrap: any; // Import Bootstrap JS globally
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateProfileComponent } from '../update-profile/update-profile.component';
+import { JoinQuizComponent } from '../../../features/dashboard/modules/student/components/join-quiz/join-quiz.component';
 
 @Component({
   selector: 'app-navbar',
@@ -78,7 +79,6 @@ export class NavbarComponent implements OnInit {
       this.currentTime = new Date();
     }, 1000);
   }
-
   ngOnInit(): void {
     if (localStorage.getItem('role') !== 'Student') {
       this.getGroups();
@@ -92,7 +92,6 @@ export class NavbarComponent implements OnInit {
     this.userName = this.firstName + this.lastName;
     this.getUrl();
   }
-
   getGroups() {
     this.groupsService.getGroups().subscribe({
       next: (groups: IGroup[]) => {
@@ -103,7 +102,6 @@ export class NavbarComponent implements OnInit {
       },
     });
   }
-
   createQuiz() {
     const modalElement = document.getElementById('createQuiz');
     if (modalElement) {
@@ -111,13 +109,10 @@ export class NavbarComponent implements OnInit {
       modalInstance.show();
     }
   }
-
   sendData() {
     this.quizForm.value.questions_number = Number(
       this.quizForm.value.questions_number
     );
-    // this.quizForm.value.schadule=this.quizForm.value.schadule
-
     this.quizForm.value.schadule = this.datePipe.transform(
       this.quizForm.get('schadule')?.value,
       'yyyy-MM-ddTHH:mm:ss'
@@ -140,7 +135,6 @@ export class NavbarComponent implements OnInit {
       },
     });
   }
-
   getCode(code: string) {
     const dialogRef = this.dialog.open(CodeQuizComponent, {
       data: code,
@@ -150,19 +144,16 @@ export class NavbarComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-
   removeBackdrop() {
     const backdrops = document.querySelectorAll('.modal-backdrop');
     backdrops.forEach((backdrop) => backdrop.remove());
   }
-
   closeModal() {
     const modalElement = document.getElementById('createQuiz');
     const modal = bootstrap.Modal.getInstance(modalElement);
     modal.hide();
     this.removeBackdrop();
   }
-
   getUrl(): void {
     this.routerSubscription = this._Router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -190,5 +181,8 @@ export class NavbarComponent implements OnInit {
   }
   openDialogToUpdateProfile(): void {
     this.dialog.open(UpdateProfileComponent, {});
+  }
+  joinQuiz():void {
+    const dialogRef =  this.dialog.open(JoinQuizComponent);
   }
 }

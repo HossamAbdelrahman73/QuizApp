@@ -11,9 +11,6 @@ section {
   i {
     font-size: 1.3rem;
     transition: $main-transition;
-    &.icon-quiz {
-      color: $color-green;
-    }
   }
 }
 .quiz-card {
