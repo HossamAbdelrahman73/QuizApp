@@ -42,3 +42,28 @@ td.icons {
     }
   }
 }
+.input-group-text {
+  background-color: #ffeddf;
+}
+input.form-control {
+  border: 1px solid #c7c7c7;
+}
+input.form-control:focus {
+  outline: 0px none #fff;
+  box-shadow: 1px 0 0 1px #ffeddf;
+}
+mat-select {
+  &:focus {
+    box-shadow: none;
+    border: 1px solid #ffeddf
+  }
+}
+button {
+  border-radius: 10px;
+&.btn.search, &.btn.reset{
+  &:hover {
+    background-color: #ffeddf;
+    color: $color-background-section;
+  }
+}
+}

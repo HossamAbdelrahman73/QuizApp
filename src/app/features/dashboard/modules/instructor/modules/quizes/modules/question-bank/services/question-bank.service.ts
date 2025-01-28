@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICreateQuestion, IGetQuestion } from '../interfaces/question.interface';
+import { IParams } from '../interfaces/iparams';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +28,8 @@ export class QuestionBankService {
   }
   onDeleteQustion(id:string) : Observable<any> {
     return this._http.delete(`question/${id}`)
+  }
+  onSearchQuestion(params : IParams):Observable<any> {
+    return this._http.post(`question/search?difficulty=${params.difficulty}&type=${params.type}`, params )
   }
 }
