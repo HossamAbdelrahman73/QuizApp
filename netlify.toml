@@ -2,7 +2,7 @@
 [build]
   command = "ng build"
   functions = "netlify/functions"
-  publish = "dist/quiz-app"
+  publish = "dist/quiz-app/browser"
 
   [[redirects]]
     from = "/*"
