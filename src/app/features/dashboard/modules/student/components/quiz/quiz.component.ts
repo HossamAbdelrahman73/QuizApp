@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -6,9 +6,9 @@ import { interval, Subject, takeUntil } from 'rxjs';
 import { IAnswer } from '../../interfaces/answer.interface';
 import { IQuestion, IQuestionsWithoutAnswers } from '../../interfaces/questions-without-answers.interface';
 import { ISubmitQuizRes } from '../../interfaces/submit-quiz-res.interface';
+import { studentRoutes } from '../../routes/student-routes';
 import { QuizService } from '../../services/quiz/quiz.service';
 import { ViewResultDialogComponent } from '../view-result/view-result-dialog.component';
-import { studentRoutes } from '../../routes/student-routes';
 
 @Component({
   selector: 'app-quiz',

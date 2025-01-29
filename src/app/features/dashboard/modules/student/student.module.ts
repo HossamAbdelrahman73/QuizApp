@@ -6,6 +6,7 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { ViewResultDialogComponent } from './components/view-result/view-result-dialog.component';
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentComponent } from './student.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StudentComponent } from './student.component';
   imports: [
     CommonModule,
     StudentRoutingModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ]
 })
 export class StudentModule { }
