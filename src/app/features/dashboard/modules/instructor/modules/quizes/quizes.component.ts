@@ -12,6 +12,7 @@ import { take } from 'rxjs';
 import { ICompletedQuiz, IQuiz } from './interfaces/iquiz';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewItemComponent } from '../../components/view-item/view-item.component';
+import { IBreadcrumb } from '../../../../../../shared/interfaces/breadcrumb/ibreadcrumb';
 declare var bootstrap: any; // Import Bootstrap JS globally
 
 @Component({
@@ -20,6 +21,13 @@ declare var bootstrap: any; // Import Bootstrap JS globally
   styleUrl: './quizes.component.scss',
 })
 export class QuizesComponent implements OnInit {
+  navigationList: IBreadcrumb[] = [
+    { label: 'Quizzes', url: '/dashboard/instructor/quizzes' },
+    { label: 'All Quizzes', url: '/dashboard/instructor/quizzes/view-all-quizes' },
+    { label: 'View Quiz' }
+  ]
+  btnText: string = 'Quizzes';
+  btnIcon: string = "";
   dialog = inject(MatDialog);
   quizesService = inject(QuizesService);
   quizRoutes = quizRoutes;
@@ -60,13 +68,11 @@ export class QuizesComponent implements OnInit {
     private _DashboardService: DashboardService,
     private _QuizesService : QuizesService
   ) { }
-
   ngOnInit(): void {
     this.getCompletedQuizes();
     this.getAllQuizzes();
     this.getFiveIncomingQuiz();
   }
-
   getAllQuizzes(): void {
     this.quizesService
       .onGetAllQuizzes()
@@ -92,7 +98,6 @@ export class QuizesComponent implements OnInit {
         },
       });
   }
-
   getCompletedQuizes() {
     this.quizesService
       .getLastFiveQuizes()
@@ -110,7 +115,6 @@ export class QuizesComponent implements OnInit {
     this._QuizesService.onGetQuizById(id).subscribe({
       next: (res) => {
         this.quizDetails = res
-        console.log(this.quizDetails);
         this.quizDetails = res;
       },error:(err)=> {
         console.log(err);

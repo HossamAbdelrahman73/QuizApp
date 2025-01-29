@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SharedService {
   private _HttpClient = inject(HttpClient);
-  role: any = '';
-  lastName: any = '';
+  role: string | undefined = '';
+  lastName: string | undefined = '';
   profile: IProfile = {} as IProfile;
   sideBarChanged: WritableSignal<boolean> = signal(true);
   onToggle(): void {
@@ -18,8 +18,8 @@ export class SharedService {
     this.profile = JSON.parse(localStorage.getItem('profile') as string);
     this.role = this.profile.role;
     this.lastName = this.profile.last_name;
-    localStorage.setItem('role', this.role)
-    localStorage.setItem('lastName', this.lastName)
+    localStorage.setItem('role', this.role as string)
+    localStorage.setItem('lastName', this.lastName as string)
   }
   updateInstrucorProfile(data: IUpdateProfile): Observable<any> {
     return this._HttpClient.put('instructor', data);
