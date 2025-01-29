@@ -1,0 +1,100 @@
+.questions-header {
+  margin-top: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  .answers {
+    margin: 1rem 0 0 2rem;
+  }
+  .timer {
+    margin: 1rem 2rem;
+    height: fit-content;
+    background-color: #0D1321;
+    color: white;
+    padding: .5rem 2rem;
+    border-radius: .3rem;
+  }
+}
+.question-answers-squares {
+  width: 100%;
+  padding: 2rem;
+  button {
+    background-color: transparent;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(#000000, 0.2);
+    font-weight: 500;
+    &:hover,
+    &.selected {
+      background-color: #c5d86d;
+      color: white;
+      span {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.questions-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  .prev-btn {
+    background-color: transparent;
+    color: #c5d86d;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(#000000, 0.2);
+    border-radius: 0.3rem;
+    transition: all 0.3s ease;
+    &:hover {
+      background-color: #c5d86d;
+      color: white;
+    }
+  }
+  .next-btn {
+    background-color: #c5d86d;
+    color: white;
+    padding: 0.3rem 5rem;
+    border: none;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 5px 1px #c5d86d;
+  }
+  .reset-btn {
+    background-color: transparent;
+    color: #c5d86d;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 1rem;
+    border: 1px solid rgba(#000000, 0.2);
+    border-radius: 0.3rem;
+    transition: all 0.3s ease;
+    &:hover {
+      background-color: #c5d86d;
+      color: white;
+    }
+  }
+}
+.progress-bar-container {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: column;
+  p {
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #d1d1d1f0;
+  }
+  .progress-bar {
+    width: 35%;
+  }
+}
