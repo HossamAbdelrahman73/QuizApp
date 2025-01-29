@@ -1,0 +1,95 @@
+<section>
+  <div class="container-fluid py-2">
+    <div class="quiz-actions">
+      <button (click)="joinQuiz()">
+        <img
+          src="../../../../../assets/images/new quiz icon.svg"
+          alt="new quiz icon"
+        />
+        <span>Join Quiz</span>
+      </button>
+    </div>
+    <div class="row gap-1 flex-nowrap py-3">
+      <div class="col-md-6">
+        <div
+          class="quiz-card p-3 rounded-3 border border-1 border-black border-opacity-50"
+        >
+          <div
+            class="quiz-card-header d-flex justify-content-between align-items-center"
+          >
+            <h5>Upcoming 5 quizzes</h5>
+            <p class="cursor-pointer">
+              All quizzes <i class="fa-solid fa-arrow-right ms-1"></i>
+            </p>
+          </div>
+          <div class="quiz-card-body">
+            @for (quiz of quizList; track $index) {
+            <div
+              class="quiz-card-content rounded-3 border border-1 border-black border-opacity-50 mb-3 overflow-hidden"
+            >
+              <div class="row">
+                <div class="col-md-3 px-0">
+                  <div class="quiz-image h-100">
+                    <img
+                      src="../../../../../assets/images/dashboard images/quiz-computer-science.svg"
+                      class="w-100"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6 align-content-center">
+                  <div class="quiz-info flex-grow-1">
+                    <div class="quiz-info-title mb-2">
+                      <h5>
+                        {{ quiz.title }}
+                      </h5>
+                    </div>
+                    <div class="quiz-info-score">
+                      Start date: {{ quiz.schadule | date : "short" }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 align-content-center">
+                  <a class="qwiz-links cursor-pointer text-body">
+                    <a
+                      class="qwiz-links cursor-pointer text-body"
+                      (click)="getQuizById(quiz._id)"
+                    >
+                      <span>Open</span>
+                      <span>
+                        <i
+                          class="fa-solid fa-arrow-alt-circle-right icon-quiz"
+                        ></i>
+                      </span>
+                    </a>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            }
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="last-5-quizzes">
+          <div class="quizzes-header">
+            <h5>Completed quizzes</h5>
+            <div class="results-action">
+              <span>Results</span>
+              <button class="icon-btn">
+                <mat-icon class="icon">trending_flat</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="table-container">
+            <app-table
+              [tableColumnsConfig]="completedQuizesColumns"
+              [tableBody]="completedQuizzes"
+            ></app-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

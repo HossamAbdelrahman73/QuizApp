@@ -1,0 +1,11 @@
+
+[build]
+  command = "ng build"
+  functions = "netlify/functions"
+  publish = "dist/quiz-app/browser"
+
+  [[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
+

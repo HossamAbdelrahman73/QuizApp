@@ -11,6 +11,6 @@ const routes: Routes = [{ path: '', redirectTo: 'quizzes', pathMatch: 'full' },
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class StudentRoutingModule { }
+export class StudentRoutingModule {}
