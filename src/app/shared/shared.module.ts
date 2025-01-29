@@ -29,6 +29,8 @@ import {
   OwlNativeDateTimeModule,
 } from '@danielmoncada/angular-datetime-picker';
 import { NoDataComponent } from './components/no-data/no-data.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { NoDataComponent } from './components/no-data/no-data.component';
     MatTableModule,
     MatSortModule,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressBarModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -89,6 +92,8 @@ import { NoDataComponent } from './components/no-data/no-data.component';
     MatPaginatorModule,
     TableComponent,
     MatIconModule,
+    NoDataComponent,
+    MatProgressBarModule
   ],
   providers: [DatePipe, TruncatePipe],
 })

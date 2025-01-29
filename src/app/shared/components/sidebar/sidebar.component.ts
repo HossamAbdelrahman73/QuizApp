@@ -56,7 +56,7 @@ export class SidebarComponent implements OnInit {
       {
         link: this.isInstructor()
           ? '/dashboard/instructor/results'
-          : '/dashboard/student/results',
+          : '/dashboard/student/quizzes/results',
         image: '../../../../assets/images/sidebar-images/Results icon.svg',
         text: 'Results',
         isActive: this.isInstructor() || this.isStudent(),

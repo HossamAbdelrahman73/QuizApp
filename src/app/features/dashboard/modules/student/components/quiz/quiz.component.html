@@ -1,0 +1,49 @@
+<section>
+  <div class="container">
+    @if (questions[currentQuestionNumber]) {
+    <div class="questions-header">
+      <div>
+        <h3>Question {{currentQuestionNumber + 1}}</h3>
+        <h6>{{questions[currentQuestionNumber].title}}</h6>
+        <div class="answers">
+          @for (item of questions[currentQuestionNumber].options | keyvalue; track $index) {
+          @if (item.key !== '_id') {
+          <p>{{item.key}}) {{item.value}}</p>
+          }
+          }
+        </div>
+      </div>
+      <div class="timer">
+        <span>{{displayTime}}</span>
+      </div>
+    </div>
+    <div class="question-answers-squares">
+      <div class="row">
+        @for (item of ['A', 'B', 'C', 'D']; track $index) {
+        <div class="col-md-3">
+          <button (click)="selectAnswer(item)" [ngClass]="{'selected': selectedAnswer === item}">
+            <span>{{item}}</span>
+          </button>
+        </div>
+        }
+      </div>
+    </div>
+    <div class="questions-actions">
+      <button [disabled]="currentQuestionNumber === 0" class="prev-btn" (click)="prevQuestion()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <button class="next-btn" (click)="nextQuestion()">
+        <span>{{(currentQuestionNumber === questions.length - 1) ? 'Submit' : 'Next'}}</span>
+      </button>
+      <button class="reset-btn" (click)="resetAnswers()"><span>Reset</span></button>
+    </div>
+    <div class="progress-bar-container">
+      <div class="progress-bar">
+        <mat-progress-bar mode="determinate"
+          [value]="((currentQuestionNumber + 1)  / questions.length) * 100"></mat-progress-bar>
+      </div>
+      <p>Step {{currentQuestionNumber + 1}} out of {{questions.length}}</p>
+    </div>
+    }
+  </div>
+</section>
