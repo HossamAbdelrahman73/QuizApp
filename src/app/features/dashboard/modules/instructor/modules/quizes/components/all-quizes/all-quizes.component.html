@@ -1,5 +1,12 @@
 <section>
   <div class="container-fluid">
+    <app-breadcrumb
+    [breadCrumbs]="navigationList"
+    [btnIcon]="btnIcon"
+    [btnText]="btnText"
+    [btnVisibility]="false"
+    ></app-breadcrumb>
+
     <app-table
       [tableColumnsConfig]="completedQuizesColumns"
       [tableBody]="quizes"
