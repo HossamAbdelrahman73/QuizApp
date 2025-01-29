@@ -7,6 +7,7 @@ import { IBank } from './interfaces/ibank';
 import { IGetQuestion } from './interfaces/question.interface';
 import { ITableColumnConfig } from '../../../../../../../../shared/interfaces/table/table-column-config.interface';
 import { DeleteDialogComponent } from '../../../../../../../../shared/components/delete-dialog/delete-dialog.component';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-question-bank',
@@ -20,6 +21,8 @@ export class QuestionBankComponent implements OnInit {
   page: number = 1;
   itemsPerPage: number = 5;
   questions: IBank[] = [];
+  difficulty: any;
+  type: any;
   tableColumns: ITableColumnConfig[] = [
     { key: 'title', label: 'title' },
     { key: 'description', label: 'description', pipe: { type: 'truncate', format: 50 } },
@@ -34,7 +37,10 @@ export class QuestionBankComponent implements OnInit {
     },
   ]
   constructor() { }
-
+serchQuestionForm: FormGroup = new FormGroup({
+  difficulty: new FormControl(['']),
+  type: new FormControl(['']),
+})
   ngOnInit(): void {
     this.getAllQuestions();
   }
@@ -43,8 +49,6 @@ export class QuestionBankComponent implements OnInit {
     this.questionsBankService.onGetQuestions().subscribe({
       next: (res: IGetQuestion[]) => {
         this.questions = res;
-        console.log(this.questions);
-
       },
       error: (err) => {
         console.log(err);
@@ -120,4 +124,31 @@ export class QuestionBankComponent implements OnInit {
       },
     });
   }
+  searchQuestion(data : FormGroup):void {
+    this.questionsBankService.onSearchQuestion(data.value).subscribe({
+      next:(res)=> {
+        this.questions = res;
+      }, error:(err)=> {
+        console.log(err);
+      }
+    })
+  }
+  resetInputs():void {
+console.log('hello');
+
+//     this.difficulty = null
+//     this.type = null
+// this.serchQuestionForm.patchValue({
+//   difficulty: null,
+//   type: null
+// })
+// this.getAllQuestions()
+//
+}
+
+sayHi():void {
+  console.log("hello");
+
+}
+
 }
