@@ -1,3 +1,4 @@
+@import "../../../../assets/styles/abstracts/variables";
 .breadcrumb {
   background-color: transparent;
   padding: 0;
@@ -15,7 +16,7 @@
   color: #6c757d;
 nav{
   .breadcrumb-item::before{
-    color: $green-color;
+    color: $color-green;
     font-weight: bold;
   }
 }
