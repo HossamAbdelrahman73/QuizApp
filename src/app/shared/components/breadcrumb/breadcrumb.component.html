@@ -1,4 +1,4 @@
-<nav *ngIf="breadcrumbs.length" aria-label="breadcrumb">
+<!-- <nav *ngIf="breadcrumbs.length" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li
       *ngFor="let breadcrumb of breadcrumbs; let last = last"
@@ -9,4 +9,32 @@
       <span *ngIf="last">{{ breadcrumb.label }}</span>
     </li>
   </ol>
-</nav>
+</nav> -->
+
+
+
+
+<section class="w-100">
+  <div class="mt-3 d-flex align-items-center justify-content-between">
+    <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+      <ol class="breadcrumb" #ol>
+        <li class="breadcrumb-item" *ngFor="let breadcrumb of breadCrumbs; let last = last"  [class.not-active-crumb]="!last" [class.active-crumb]="last">
+          <ng-container *ngIf="!last; else activeCrumb">
+            <a [routerLink]="breadcrumb.url"> {{ breadcrumb.label }} </a>
+          </ng-container>
+
+          <ng-template #activeCrumb>
+            {{ breadcrumb.label }}
+          </ng-template>
+
+        </li>
+      </ol>
+    </nav>
+    <div class="content text-end" #button *ngIf="btnVisibility">
+        <button class="btn headerBtn " (click)="openAddDialog()">
+            <i [class]="btnIcon" aria-hidden="true"></i>
+            {{btnText}}
+        </button>
+    </div>
+  </div>
+</section>
