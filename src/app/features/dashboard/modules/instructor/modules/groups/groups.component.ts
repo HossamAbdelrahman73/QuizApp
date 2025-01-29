@@ -7,6 +7,7 @@ import { AddEditGroupDialogComponent } from './components/add-edit-group-dialog/
 import { StudentsService } from '../students/services/students.service';
 import { IStudent } from '../students/interfaces/istudent';
 import { DeleteDialogComponent } from '../../../../../../shared/components/delete-dialog/delete-dialog.component';
+import { pipe, take } from 'rxjs';
 
 @Component({
   selector: 'app-groups',
@@ -46,7 +47,7 @@ export class GroupsComponent implements OnInit {
   }
 
   getGroups() {
-    this.groupsService.getGroups().subscribe({
+    this.groupsService.getGroups().pipe(take(1)).subscribe({
       next: (groups: IGroup[]) => {
         this.groups = groups;
       },
@@ -56,7 +57,7 @@ export class GroupsComponent implements OnInit {
     })
   }
   getStudentsWithoutGroup() {
-    this.studentsService.onGetStudentsWithoutGroup().subscribe({
+    this.studentsService.onGetStudentsWithoutGroup().pipe(take(1)).subscribe({
       next: (students: IStudent[]) => {
         this.students = students.map((student) => {
           return {
@@ -83,7 +84,7 @@ export class GroupsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.groupsService.createGroup(result).subscribe({
+        this.groupsService.createGroup(result).pipe(take(1)).subscribe({
           error: (err) => {
             this.toast.error(err.error.message);
           },
@@ -100,7 +101,7 @@ export class GroupsComponent implements OnInit {
     this.getGroupById(group._id);
   }
   getGroupById(id: string) {
-    this.groupsService.getGroupById(id).subscribe({
+    this.groupsService.getGroupById(id).pipe(take(1)).subscribe({
       next: (group: IGroupById) => {
         this.group = group;
       },
@@ -120,7 +121,7 @@ export class GroupsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
           this.getStudentsWithoutGroup();
           if (result) {
-            this.groupsService.updateGroup(this.group._id, result).subscribe({
+            this.groupsService.updateGroup(this.group._id, result).pipe(take(1)).subscribe({
               error: (err) => {
                 this.toast.error(err.error.message);
               },

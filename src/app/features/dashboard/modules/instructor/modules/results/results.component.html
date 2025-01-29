@@ -1,5 +1,12 @@
-<div class="table-contianer">
+<section>
   <div class="container-fluid">
-    <app-table [tableBody] = "quizDetails" [tableColumnsConfig]="tableColumns"></app-table>
+    <div class="results-container">
+      <div class="results-header">
+        <h5>Completed quizzes</h5>
+      </div>
+      <div class="table-contianer">
+        <app-table [tableBody]="quizDetails" [tableColumnsConfig]="tableColumns"></app-table>
+      </div>
+    </div>
   </div>
-</div>
+</section>
