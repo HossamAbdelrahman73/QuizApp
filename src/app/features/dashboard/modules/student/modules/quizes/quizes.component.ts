@@ -1,3 +1,4 @@
+import { studentRoutes } from './../../routes/student-routes';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ITableColumnConfig } from '../../../../../../shared/interfaces/table/table-column-config.interface';
@@ -17,6 +18,7 @@ import { quizRoutes } from '../../../instructor/modules/quizes/routes/quiz-route
   styleUrl: './quizes.component.scss',
 })
 export class QuizesComponent implements OnInit {
+  studentRoutes = studentRoutes;
   private _studentResultsService = inject(StudentResultsService);
   private _QuizesService = inject(QuizesService);
   dialog = inject(MatDialog);

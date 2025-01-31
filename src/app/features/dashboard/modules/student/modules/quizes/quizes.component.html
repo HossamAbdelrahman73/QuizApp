@@ -12,7 +12,7 @@
     <div class="row gap-1 flex-nowrap py-3">
       <div class="col-md-5">
         <div
-          class="quiz-card p-3 rounded-3 border border-1 border-black border-opacity-50"
+          class="quiz-card"
         >
           <div
             class="quiz-card-header d-flex justify-content-between align-items-center"
@@ -74,7 +74,7 @@
             <h5>Completed quizzes</h5>
             <div class="results-action" [routerLink]="quizRoutes.RESULTS_STUDENT">
               <span>Results</span>
-              <button class="icon-btn">
+              <button class="icon-btn" [routerLink]="studentRoutes.RESULTS">
                 <mat-icon class="icon">trending_flat</mat-icon>
               </button>
             </div>

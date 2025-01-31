@@ -192,7 +192,7 @@ export class NavbarComponent implements OnInit {
   openDialogToUpdateProfile(): void {
     this.dialog.open(UpdateProfileComponent, {});
   }
-  joinQuiz(): void {
-    const dialogRef = this.dialog.open(JoinQuizComponent);
+  joinQuiz() {
+    this.dialog.open(JoinQuizComponent)
   }
 }
