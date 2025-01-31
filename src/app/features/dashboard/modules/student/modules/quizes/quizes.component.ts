@@ -10,6 +10,7 @@ import {
 import { QuizesService } from '../../../instructor/modules/quizes/services/quizes.service';
 import { JoinQuizComponent } from '../../components/join-quiz/join-quiz.component';
 import { StudentResultsService } from '../student-results/services/student-results.service';
+import { quizRoutes } from '../../../instructor/modules/quizes/routes/quiz-routes';
 
 @Component({
   selector: 'app-quizes',
@@ -24,6 +25,7 @@ export class QuizesComponent implements OnInit {
   completedQuizzes: ICompletedQuiz[] = [];
   quizList: IQuiz[] = [];
   quizDetails: IQuiz = {} as IQuiz;
+  quizRoutes = quizRoutes;
   completedQuizesColumns: ITableColumnConfig[] = [
     { key: 'title', label: 'Title' },
     { key: 'questions_number', label: 'Question number' },
