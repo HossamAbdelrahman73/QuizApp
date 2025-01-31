@@ -44,7 +44,7 @@
                 <span>New quiz</span>
               </button>
               } @else if (role === 'Student') {
-              <button class="btn">
+              <button class="btn" (click)="joinQuiz()">
                 <mat-icon>alarm_add</mat-icon>
                 <span>Join quiz</span>
               </button>
