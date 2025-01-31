@@ -3,17 +3,6 @@
     <a class="navbar-brand" routerLink="/auth">{{
       sectionTitle | titlecase
     }}</a>
-    <!-- <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
     <div
       class="d-flex align-items-center justify-content-between gap-2 w-100"
       id="navbarSupportedContent"
@@ -44,7 +33,7 @@
                 <span>New quiz</span>
               </button>
               } @else if (role === 'Student') {
-              <button class="btn">
+              <button class="btn" (click)="joinQuiz()">
                 <mat-icon>alarm_add</mat-icon>
                 <span>Join quiz</span>
               </button>

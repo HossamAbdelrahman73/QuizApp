@@ -22,6 +22,7 @@ import { CodeQuizComponent } from '../../../features/dashboard/modules/instructo
 declare var bootstrap: any; // Import Bootstrap JS globally
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateProfileComponent } from '../update-profile/update-profile.component';
+import { JoinQuizComponent } from '../../../features/dashboard/modules/student/components/join-quiz/join-quiz.component';
 
 @Component({
   selector: 'app-navbar',
@@ -190,5 +191,8 @@ export class NavbarComponent implements OnInit {
   }
   openDialogToUpdateProfile(): void {
     this.dialog.open(UpdateProfileComponent, {});
+  }
+  joinQuiz(): void {
+    const dialogRef = this.dialog.open(JoinQuizComponent);
   }
 }
