@@ -24,7 +24,6 @@ export class ResultsComponent implements OnInit {
   getAllResults(): void {
     this._resultsInstructorService.onGetAllResults().subscribe({
       next: (res) => {
-        console.log(res);
         this.quizDetails = res.map((quiz: any) => {
           return quiz.quiz
         })

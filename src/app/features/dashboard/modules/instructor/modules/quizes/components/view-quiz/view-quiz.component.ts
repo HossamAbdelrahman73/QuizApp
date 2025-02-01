@@ -35,21 +35,11 @@ export class ViewQuizComponent implements OnInit {
     duration: ['', [Validators.required]],
     score_per_question: ['', [Validators.required]],
   });
-  toppings = new FormControl('');
   groups: IGroup[] = [];
-  toppingList: string[] = [
-    'Extra cheese',
-    'Mushroom',
-    'Onion',
-    'Pepperoni',
-    'Sausage',
-    'Tomato',
-  ];
   duration: number[] = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
   questionsNumbur: number[] = Array.from({ length: 50 }, (_, i) => i + 1);
   questionScore: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
   quiz!: IQuiz;
-
   constructor(
     private _FormBuilder: FormBuilder,
     private groupsService: GroupsService,
@@ -60,17 +50,14 @@ export class ViewQuizComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.quizForm.disable();
   }
-
   ngOnInit(): void {
     this.getQuiz();
     this.getGroups();
   }
-
   getQuiz() {
     if (this.id) {
       this._QuizesService.onGetQuizById(this.id).subscribe({
         next: (res) => {
-          console.log(res);
           this.quiz = res;
           this.quizForm.patchValue(res);
         },
@@ -80,12 +67,10 @@ export class ViewQuizComponent implements OnInit {
       });
     }
   }
-
   getGroups() {
     this.groupsService.getGroups().subscribe({
       next: (groups: IGroup[]) => {
         this.groups = groups;
-        console.log(groups);
       },
       error: (err) => {
         this._ToastrService.error(err.message);
@@ -113,18 +98,14 @@ export class ViewQuizComponent implements OnInit {
       schadule: this.quizForm?.value?.schadule,
       duration: this.quizForm?.value?.duration,
     };
-    // this.quizForm.value.schadule=this.quizForm.value.schadule
-
     updatedForm.schadule = this.datePipe.transform(
       updatedForm.schadule,
       'yyyy-MM-ddTHH:mm:ss'
     );
-    console.log(this.quizForm.value);
     this._QuizesService
       .onUpdateQuizById('6793a20533ff46523502fac3', updatedForm)
       .subscribe({
         next: (res) => {
-          console.log(res);
           this._ToastrService.success(res.message);
           this.closeModal();
         },

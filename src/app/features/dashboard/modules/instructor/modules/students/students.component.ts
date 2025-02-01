@@ -13,7 +13,6 @@ export class StudentsComponent implements OnInit {
   ngOnInit(): void {
     this._StudentsService.getAllGroups().subscribe({
       next: (res) => {
-        console.log(res);
         this.groups = res;
       },
       error: (err) => {

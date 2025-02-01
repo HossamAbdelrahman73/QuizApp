@@ -10,7 +10,5 @@ export class ViewItemComponent {
   readonly dialogRef = inject(MatDialogRef<ViewItemComponent>);
   readonly data = inject(MAT_DIALOG_DATA);
   ngOnInit(): void {
-console.log(this.data);
-
   }
 }

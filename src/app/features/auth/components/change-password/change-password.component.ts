@@ -56,11 +56,9 @@ export class ChangePasswordComponent {
     return this.changePasswordForm.controls;
   }
   changePassword(data: FormGroup): void {
-    console.log(data.value);
     if (this.changePasswordForm.valid) {
       this._AuthService.onChangePassword(data.value).subscribe({
         next: (res) => {
-          console.log(res);
         },
         error: (err) => {
           console.log(err);

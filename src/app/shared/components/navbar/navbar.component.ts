@@ -123,10 +123,8 @@ export class NavbarComponent implements OnInit {
       this.quizForm.get('schadule')?.value,
       'yyyy-MM-ddTHH:mm:ss'
     );
-    console.log(this.quizForm.value);
     this._QuizesService.onCreateQuiz(this.quizForm.value).subscribe({
       next: (res) => {
-        console.log(res);
         this._ToastrService.success(res.message);
         this.closeModal();
         this.quizForm.reset();
@@ -148,7 +146,6 @@ export class NavbarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
     });
   }
 

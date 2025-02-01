@@ -25,22 +25,44 @@ export class QuestionBankComponent implements OnInit {
   type: any;
   tableColumns: ITableColumnConfig[] = [
     { key: 'title', label: 'title' },
-    { key: 'description', label: 'description', pipe: { type: 'truncate', format: 50 } },
+    {
+      key: 'description',
+      label: 'description',
+      pipe: { type: 'truncate', format: 50 },
+    },
     { key: 'answer', label: 'Correct answer' },
     { key: 'difficulty', label: 'Difficulty' },
     {
-      key: 'actions', label: 'Actions', isAction: true, actions: [
-        { label: 'View', icon: 'visibility', color: 'orange-color', action: (row: IGetQuestion) => this.viewQuestion(row) },
-        { label: 'Edit', icon: 'edit_square', color: 'orange-color', action: (row: IGetQuestion) => this.editQuestion(row) },
-        { label: 'Delete', icon: 'delete', color: 'orange-color', action: (row: IGetQuestion) => this.deleteQuestion(row._id) },
-      ]
+      key: 'actions',
+      label: 'Actions',
+      isAction: true,
+      actions: [
+        {
+          label: 'View',
+          icon: 'visibility',
+          color: 'orange-color',
+          action: (row: IGetQuestion) => this.viewQuestion(row),
+        },
+        {
+          label: 'Edit',
+          icon: 'edit_square',
+          color: 'orange-color',
+          action: (row: IGetQuestion) => this.editQuestion(row),
+        },
+        {
+          label: 'Delete',
+          icon: 'delete',
+          color: 'orange-color',
+          action: (row: IGetQuestion) => this.deleteQuestion(row._id),
+        },
+      ],
     },
-  ]
-  constructor() { }
-serchQuestionForm: FormGroup = new FormGroup({
-  difficulty: new FormControl(['']),
-  type: new FormControl(['']),
-})
+  ];
+  constructor() {}
+  serchQuestionForm: FormGroup = new FormGroup({
+    difficulty: new FormControl(['']),
+    type: new FormControl(['']),
+  });
   ngOnInit(): void {
     this.getAllQuestions();
   }
@@ -80,75 +102,67 @@ serchQuestionForm: FormGroup = new FormGroup({
     this.openAddViewEditQuestionDialog('View question', row, true);
   }
   editQuestion(row: IGetQuestion) {
-    this.openAddViewEditQuestionDialog('Edit question', row, false).afterClosed().subscribe((result) => {
-      if (result) {
-        this.questionsBankService.updateQuestion(result, row._id).subscribe({
-          error: () => {
-            this.toast.error('Failed to update question');
-          },
-          complete: () => {
-            this.toast.success('Question updated successfully');
-            this.getAllQuestions();
-          },
-        });
-      }
-    });
+    this.openAddViewEditQuestionDialog('Edit question', row, false)
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.questionsBankService.updateQuestion(result, row._id).subscribe({
+            error: () => {
+              this.toast.error('Failed to update question');
+            },
+            complete: () => {
+              this.toast.success('Question updated successfully');
+              this.getAllQuestions();
+            },
+          });
+        }
+      });
   }
   deleteQuestion(id: string) {
-    this.dialog.open(DeleteDialogComponent, {
-      width: '400px',
-      data: {
-        title: 'question',
-      },
-    }).afterClosed().subscribe((result) => {
-      if (result) {
-        this.questionsBankService.deleteQuestion(id).subscribe({
-          error: () => {
-            this.toast.error('Failed to delete question');
-          },
-          complete: () => {
-            this.toast.success('Question deleted successfully');
-            this.getAllQuestions();
-          },
-        });
-      }
-    })
+    this.dialog
+      .open(DeleteDialogComponent, {
+        width: '400px',
+        data: {
+          title: 'question',
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.questionsBankService.deleteQuestion(id).subscribe({
+            error: () => {
+              this.toast.error('Failed to delete question');
+            },
+            complete: () => {
+              this.toast.success('Question deleted successfully');
+              this.getAllQuestions();
+            },
+          });
+        }
+      });
   }
-  openAddViewEditQuestionDialog(title: string, question: IGetQuestion, isViewMode: boolean) {
+  openAddViewEditQuestionDialog(
+    title: string,
+    question: IGetQuestion,
+    isViewMode: boolean
+  ) {
     return this.dialog.open(AddViewEditQuestionDialogComponent, {
       width: '800px',
       data: {
         title,
         question,
-        isViewMode
+        isViewMode,
       },
     });
   }
-  searchQuestion(data : FormGroup):void {
+  searchQuestion(data: FormGroup): void {
     this.questionsBankService.onSearchQuestion(data.value).subscribe({
-      next:(res)=> {
+      next: (res) => {
         this.questions = res;
-      }, error:(err)=> {
+      },
+      error: (err) => {
         console.log(err);
-      }
-    })
+      },
+    });
   }
-  resetInputs():void {
-console.log('hello');
-
-//     this.difficulty = null
-//     this.type = null
-// this.serchQuestionForm.patchValue({
-//   difficulty: null,
-//   type: null
-// })
-// this.getAllQuestions()
-//
-}
-
-sayHi():void {
-  console.log("hello");
-
-}
-
 }

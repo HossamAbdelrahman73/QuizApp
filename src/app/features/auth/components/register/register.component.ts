@@ -29,7 +29,6 @@ export class RegisterComponent {
   }
 
   onSignUp() {
-    console.log(this.registerForm.value);
     this._authService.register(this.registerForm.value).subscribe({
       error: (err) => {
         this._toast.error(err.error.message);

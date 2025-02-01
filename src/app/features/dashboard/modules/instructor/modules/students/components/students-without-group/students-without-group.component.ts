@@ -17,22 +17,19 @@ export class StudentsWithoutGroupComponent {
   page: number = 1;
   studentview: ISpecificStudent | undefined = {} as ISpecificStudent;
   groups: IGroups[] = [];
+  dialog = inject(MatDialog);
   choosenGroup: string = '';
   IdStudent: string = '';
-
   constructor(
     private _StudentsService: StudentsService,
     private _ToastrService: ToastrService
   ) {}
-
   ngOnInit(): void {
     this.getAllStudentswithoutGroup();
   }
-
   getAllStudentswithoutGroup() {
     this._StudentsService.onGetStudentsWithoutGroup().subscribe({
       next: (res) => {
-        console.log(res);
         this.collection = res;
       },
       error: (err) => {
@@ -44,10 +41,8 @@ export class StudentsWithoutGroupComponent {
   viewStudent(id: string) {
     this._StudentsService.onGetStudentById(id).subscribe({
       next: (res) => {
-        console.log(res);
         this.studentview = res;
         this.flagView = true;
-
         const modalElement = document.getElementById('viewStudentModal');
         if (modalElement) {
           const modalInstance = new bootstrap.Modal(modalElement);
@@ -59,20 +54,16 @@ export class StudentsWithoutGroupComponent {
       },
     });
   }
-
   getIdGroupValue(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.choosenGroup = selectElement.value; // Get the selected value
-    console.log('choosenGroup: ', this.choosenGroup);
+    this.choosenGroup = selectElement.value;
   }
-
   AddStudentToGroup() {
     if (this.choosenGroup && this.IdStudent) {
       this._StudentsService
         .onAddStudentToGroup(this.IdStudent, this.choosenGroup)
         .subscribe({
           next: (res) => {
-            console.log(res);
             this._ToastrService.success(res.message);
             this.getAllStudentswithoutGroup();
           },
@@ -82,13 +73,10 @@ export class StudentsWithoutGroupComponent {
         });
     }
   }
-  dialog = inject(MatDialog);
-
   openGroupsToAddStudent(idStudent: string) {
     this.IdStudent = idStudent;
     this._StudentsService.getAllGroups().subscribe({
       next: (res) => {
-        console.log(res);
         this.groups = res;
         const modalElement = document.getElementById('AddStudentModal');
         if (modalElement) {
@@ -113,7 +101,6 @@ export class StudentsWithoutGroupComponent {
       if (result) {
         this._StudentsService.onDeleteStudentById(id).subscribe({
           next: (res) => {
-            console.log(res);
             this._ToastrService.success(res.message);
             this.getAllStudentswithoutGroup();
           },
