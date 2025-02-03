@@ -2,15 +2,14 @@
   <div class="container-fluid">
     <div class="results-container">
       <div class="results-header">
-        <h5>Quiz results</h5>
+        <h5>Quiz Results</h5>
       </div>
-      @if (quizDetails.length === 0) {
-      <app-no-data></app-no-data>
-      }
-      @else {
-      <div class="table-contianer">
-        <app-table [tableBody]="quizDetails" [tableColumnsConfig]="tableColumns"></app-table>
+      @if (results$ | async) {
+      <div class="table-container">
+        <app-table [tableBody]="results$ | async" [tableColumnsConfig]="tableColumns"></app-table>
       </div>
+      }@else {
+        <app-no-data></app-no-data>
       }
     </div>
   </div>

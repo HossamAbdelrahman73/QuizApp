@@ -24,10 +24,12 @@ export class TableComponent {
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource<any>([]);
   @Input() tableColumnsConfig: ITableColumnConfig[] = [];
-  @Input() set tableBody(data: any[]) {
+  @Input() set tableBody(data: any[] | null) {
     this._tableBody = data || [];
     this.length = this._tableBody.length;
     this.displayedColumns = this.tableColumnsConfig.map((column) => column.key);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.updatePagination();
   }
 
@@ -41,11 +43,6 @@ export class TableComponent {
   }
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-  }
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
