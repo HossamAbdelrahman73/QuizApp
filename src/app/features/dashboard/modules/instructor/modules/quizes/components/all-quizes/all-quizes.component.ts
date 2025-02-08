@@ -48,10 +48,6 @@ export class AllQuizesComponent implements OnInit {
   ngOnInit(): void {
     this.getAllquizes();
   }
-
-  viewQuiz() {
-    // console.log('view quiz');
-  }
   getAllquizes() {
     this._QuizesService.onGetAllQuizzes().subscribe({
       next: (res) => {

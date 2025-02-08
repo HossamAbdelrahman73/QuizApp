@@ -22,6 +22,7 @@ import { CodeQuizComponent } from '../../../features/dashboard/modules/instructo
 declare var bootstrap: any; // Import Bootstrap JS globally
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateProfileComponent } from '../update-profile/update-profile.component';
+import { JoinQuizComponent } from '../../../features/dashboard/modules/student/components/join-quiz/join-quiz.component';
 
 @Component({
   selector: 'app-navbar',
@@ -122,10 +123,8 @@ export class NavbarComponent implements OnInit {
       this.quizForm.get('schadule')?.value,
       'yyyy-MM-ddTHH:mm:ss'
     );
-    console.log(this.quizForm.value);
     this._QuizesService.onCreateQuiz(this.quizForm.value).subscribe({
       next: (res) => {
-        console.log(res);
         this._ToastrService.success(res.message);
         this.closeModal();
         this.quizForm.reset();
@@ -147,7 +146,6 @@ export class NavbarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
     });
   }
 
@@ -190,5 +188,8 @@ export class NavbarComponent implements OnInit {
   }
   openDialogToUpdateProfile(): void {
     this.dialog.open(UpdateProfileComponent, {});
+  }
+  joinQuiz() {
+    this.dialog.open(JoinQuizComponent)
   }
 }

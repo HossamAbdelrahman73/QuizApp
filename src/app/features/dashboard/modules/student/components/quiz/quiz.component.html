@@ -5,13 +5,6 @@
       <div>
         <h3>Question {{currentQuestionNumber + 1}}</h3>
         <h6>{{questions[currentQuestionNumber].title}}</h6>
-        <div class="answers">
-          @for (item of questions[currentQuestionNumber].options | keyvalue; track $index) {
-          @if (item.key !== '_id') {
-          <p>{{item.key}}) {{item.value}}</p>
-          }
-          }
-        </div>
       </div>
       <div class="timer">
         <span>{{displayTime}}</span>
@@ -19,11 +12,13 @@
     </div>
     <div class="question-answers-squares">
       <div class="row">
-        @for (item of ['A', 'B', 'C', 'D']; track $index) {
+        @for (item of questions[currentQuestionNumber].options | keyvalue; track $index) {
         <div class="col-md-3">
-          <button (click)="selectAnswer(item)" [ngClass]="{'selected': selectedAnswer === item}">
-            <span>{{item}}</span>
+          @if (item.key !== '_id') {
+          <button (click)="selectAnswer(item.key)" [ngClass]="{'selected': selectedAnswer === item.key}">
+            <p>{{item.value}}</p>
           </button>
+          }
         </div>
         }
       </div>

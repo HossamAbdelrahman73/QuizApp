@@ -43,11 +43,9 @@ export class ResetPasswordComponent {
    })
   }
   ResetPassword(data: FormGroup): void {
-    // console.log(data.value);
     if (this.resetPasswordForm.valid) {
       this._AuthService.onResetPassword(data.value).subscribe({
         next: (res) => {
-          console.log(res);
         },
         error: (err) => {
           console.log(err);

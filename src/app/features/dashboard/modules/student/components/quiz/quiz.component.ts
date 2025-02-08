@@ -34,6 +34,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   timeLeft = 0;
   timeUpWarning = false;
   private timerStarted = false;
+  quizSubmitted = false;
 
   constructor() {
     this.id = this._route.snapshot.paramMap.get('id');
@@ -73,7 +74,7 @@ export class QuizComponent implements OnInit, OnDestroy {
             this.timeUpWarning = true;
           }
         } else {
-          if (this.timerStarted) {
+          if (this.timerStarted && !this.quizSubmitted) {
             this.timerStarted = false;
             this.submitQuizAutomatically();
           }
@@ -117,6 +118,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       next: (res: ISubmitQuizRes) => {
         this.submitQuizRes = res;
         localStorage.removeItem(`quiz_${this.id}_timeLeft`);
+        this.quizSubmitted = true;
         this.timeLeft = 0;
         this.updateDisplayTime();
         this.viewResultDialog(res);

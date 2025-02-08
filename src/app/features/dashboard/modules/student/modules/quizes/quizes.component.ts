@@ -1,3 +1,4 @@
+import { studentRoutes } from './../../routes/student-routes';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ITableColumnConfig } from '../../../../../../shared/interfaces/table/table-column-config.interface';
@@ -9,6 +10,7 @@ import {
 import { QuizesService } from '../../../instructor/modules/quizes/services/quizes.service';
 import { JoinQuizComponent } from '../../components/join-quiz/join-quiz.component';
 import { StudentResultsService } from '../student-results/services/student-results.service';
+import { quizRoutes } from '../../../instructor/modules/quizes/routes/quiz-routes';
 
 @Component({
   selector: 'app-quizes',
@@ -16,12 +18,14 @@ import { StudentResultsService } from '../student-results/services/student-resul
   styleUrl: './quizes.component.scss',
 })
 export class QuizesComponent implements OnInit {
+  studentRoutes = studentRoutes;
   private _studentResultsService = inject(StudentResultsService);
   private _QuizesService = inject(QuizesService);
   dialog = inject(MatDialog);
   completedQuizzes: ICompletedQuiz[] = [];
   quizList: IQuiz[] = [];
   quizDetails: IQuiz = {} as IQuiz;
+  quizRoutes = quizRoutes;
   completedQuizesColumns: ITableColumnConfig[] = [
     { key: 'title', label: 'Title' },
     { key: 'questions_number', label: 'Question number' },

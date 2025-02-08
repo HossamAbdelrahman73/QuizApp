@@ -7,9 +7,7 @@ import { StudentsService } from '../../services/students.service';
 import { IGroups } from '../../interfaces/igroups';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../../../../../../../../shared/components/delete-dialog/delete-dialog.component';
-
-declare var bootstrap: any; // Import Bootstrap JS globally
-
+declare var bootstrap: any;
 @Component({
   selector: 'app-students-in-group',
   templateUrl: './students-in-group.component.html',
@@ -23,22 +21,19 @@ export class StudentsInGroupComponent implements OnInit {
   groups: IGroups[] = [];
   choosenGroup: string = '';
   IdStudent: string = '';
-
+  flagView: boolean = false;
+  dialog = inject(MatDialog);
   constructor(
     private _StudentsService: StudentsService,
     private _ToastrService: ToastrService
   ) {}
-
   ngOnInit(): void {
     this.getAllStudentsInGroup();
   }
-
   getIdGroupValue(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.choosenGroup = selectElement.value; // Get the selected value
-    console.log('choosenGroup: ', this.choosenGroup);
+    this.choosenGroup = selectElement.value;
   }
-
   getAllStudentsInGroup() {
     this._StudentsService
       .onGetStudentsInGroup()
@@ -49,7 +44,6 @@ export class StudentsInGroupComponent implements OnInit {
       )
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.collection = res;
         },
         error: (err) => {
@@ -57,14 +51,11 @@ export class StudentsInGroupComponent implements OnInit {
         },
       });
   }
-  flagView: boolean = false;
   viewStudent(id: string) {
     this._StudentsService.onGetStudentById(id).subscribe({
       next: (res) => {
-        console.log(res);
         this.studentview = res;
         this.flagView = true;
-
         const modalElement = document.getElementById('viewStudentModal');
         if (modalElement) {
           const modalInstance = new bootstrap.Modal(modalElement);
@@ -76,18 +67,15 @@ export class StudentsInGroupComponent implements OnInit {
       },
     });
   }
-
   updateStudentGroup() {
     if (this.choosenGroup !== 'none') {
       this._StudentsService
         .onUpdateStudentGroup(this.IdStudent, this.choosenGroup)
         .subscribe({
           next: (res) => {
-            console.log(res);
             this._ToastrService.success(res.message);
             this.choosenGroup = '';
             this.IdStudent = '';
-            console.log(this.choosenGroup, this.IdStudent);
             this.getAllStudentsInGroup();
           },
           error: (err) => {
@@ -96,8 +84,6 @@ export class StudentsInGroupComponent implements OnInit {
         });
     }
   }
-  dialog = inject(MatDialog);
-
   deleteStudent(id: string, student: string) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '500px',
@@ -109,7 +95,6 @@ export class StudentsInGroupComponent implements OnInit {
       if (result) {
         this._StudentsService.onDeleteStudentById(id).subscribe({
           next: (res) => {
-            console.log(res);
             this._ToastrService.success(res.message);
             this.getAllStudentsInGroup();
           },

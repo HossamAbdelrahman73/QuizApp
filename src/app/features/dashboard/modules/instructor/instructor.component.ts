@@ -31,7 +31,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
     this.studentsSub = this._DashboardService.onGetTopFiveStudents().subscribe({
       next: (res) => {
         this.studentList = res;
-        // console.log(this.studentList);
       },
       error: (err) => {
         console.log(err);
@@ -52,7 +51,6 @@ export class InstructorComponent implements OnInit, OnDestroy {
    this._DashboardService.onGetStudentById(id).subscribe({
     next: (res)=> {
       this.studentDetails = res
-      console.log(this.studentDetails);
     }, error:(err)=> {
       console.log(err);
     }, complete:()=> {
@@ -69,11 +67,9 @@ export class InstructorComponent implements OnInit, OnDestroy {
     this._QuizesService.onGetQuizById(id).subscribe({
       next: (res) => {
         this.quizDetails = res
-        console.log(this.quizDetails);
         this.quizDetails = res;
       },error:(err)=> {
         console.log(err);
-
       }, complete: ()=> {
         this.dialog.open(ViewItemComponent, {
           data : {

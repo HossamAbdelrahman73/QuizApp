@@ -30,7 +30,6 @@ updateprofile(data: FormGroup) : void {
   if(this.role === 'Instructor') {
     this._SharedService.updateInstrucorProfile(data.value).subscribe({
       next:(res)=> {
-        console.log(res);
         this._ToastrService.success(res.message)
       }, error: (err)=> {
         console.log(err);
@@ -41,7 +40,6 @@ updateprofile(data: FormGroup) : void {
   } else if (this.role === 'Student') {
     this._SharedService.updateStudentProfile(data.value).subscribe({
       next:(res)=> {
-        console.log(res);
       }, error: (err)=> {
         console.log(err);
       }, complete: ()=> {
