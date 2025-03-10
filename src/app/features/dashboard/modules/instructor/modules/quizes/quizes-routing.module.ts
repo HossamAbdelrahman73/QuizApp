@@ -13,8 +13,9 @@ const routes: Routes = [
       import('./modules/question-bank/question-bank.module').then(
         (m) => m.QuestionBankModule
       ),
+      data: {breadcrumb: "Question bank"}
   },
-  { path: 'view-all-quizes', component: AllQuizesComponent },
+  { path: 'view-all-quizes', component: AllQuizesComponent, data: {breadcrumb: "View quizzes"} },
 ];
 
 @NgModule({

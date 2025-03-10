@@ -1,5 +1,10 @@
 <section>
   <div class="container-fluid">
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <app-breadcrumb></app-breadcrumb>
+      </div>
+    </div>
     <div class="questions-container">
       <div class="questions-header mb-3">
         <h5>Bank of questions</h5>
@@ -11,41 +16,41 @@
       <div class="table-contianer">
         <div class="search mb-3">
           <form [formGroup]="serchQuestionForm" (ngSubmit)="searchQuestion(serchQuestionForm)">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="input-group">
-                <span class="input-group-text" id="inputGroup-sizing-default">Difficulty</span>
-                <mat-select class="form-control"  formControlName="difficulty" >
-                  <mat-option selected hidden></mat-option>
-                  <mat-option value="easy">Easy</mat-option>
-                  <mat-option value="medium">Medium</mat-option>
-                  <mat-option value="hard">Hard</mat-option>
-                </mat-select>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="input-group">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Difficulty</span>
+                  <mat-select class="form-control" formControlName="difficulty">
+                    <mat-option selected hidden></mat-option>
+                    <mat-option value="easy">Easy</mat-option>
+                    <mat-option value="medium">Medium</mat-option>
+                    <mat-option value="hard">Hard</mat-option>
+                  </mat-select>
+                </div>
               </div>
-            </div>
-            <div class="col-md-5">
-              <div class="input-group">
-                <span class="input-group-text" id="inputGroup-sizing-default">Category type</span>
-                <mat-select class="form-control" formControlName="type">
-                  <mat-option value="FE">Frontend</mat-option>
-                  <mat-option value="BE">Backend</mat-option>
-                </mat-select>
+              <div class="col-md-5">
+                <div class="input-group">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Category type</span>
+                  <mat-select class="form-control" formControlName="type">
+                    <mat-option value="FE">Frontend</mat-option>
+                    <mat-option value="BE">Backend</mat-option>
+                  </mat-select>
+                </div>
               </div>
-            </div>
-            <div class="col-md-3">
-              <div class="d-flex align-items-center gap-2 flex-nowrap bg-primary-subt h-100">
-                <button class="search btn" type="submit">
-                  Search
-                </button>
-                <button class="reset btn" type="reset" (click)="getAllQuestions()">
-                  Reset
-                </button>
+              <div class="col-md-3">
+                <div class="d-flex align-items-center gap-2 flex-nowrap bg-primary-subt h-100">
+                  <button class="search btn" type="submit">
+                    Search
+                  </button>
+                  <button class="reset btn" type="reset" (click)="getAllQuestions()">
+                    Reset
+                  </button>
+                </div>
+
               </div>
 
             </div>
-
-          </div>
-        </form>
+          </form>
         </div>
         <app-table [tableBody]="questions" [tableColumnsConfig]="tableColumns"></app-table>
       </div>

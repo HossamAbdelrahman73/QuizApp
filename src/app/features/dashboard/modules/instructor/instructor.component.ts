@@ -7,6 +7,7 @@ import { IQuiz } from './modules/quizes/interfaces/iquiz';
 import { QuizesService } from './modules/quizes/services/quizes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewItemComponent } from './components/view-item/view-item.component';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-instructor',
@@ -23,7 +24,17 @@ export class InstructorComponent implements OnInit, OnDestroy {
   studentDetails: IStudent = {} as IStudent;
   quizList: IQuiz[] = [];
   quizDetails: IQuiz = {} as IQuiz;
+  items: MenuItem[]  = [];
+
   ngOnInit(): void {
+    const item: MenuItem = {
+      icon: 'fa-solid fa-home',
+      routerLink: '/dashboard/instructor',
+      // label: 'Dashboard',
+      separator: true,
+    }
+    this.items.push(item);
+    console.log(this.items);
     this.getFiveIncomingQuiz();
     this.getTopFiveStudents();
   }
@@ -48,31 +59,31 @@ export class InstructorComponent implements OnInit, OnDestroy {
     });
   }
   getStudentByID(id: string): void {
-   this._DashboardService.onGetStudentById(id).subscribe({
-    next: (res)=> {
-      this.studentDetails = res
-    }, error:(err)=> {
-      console.log(err);
-    }, complete:()=> {
-       this.dialog.open(ViewItemComponent, {
-        data : {
-          data: this.studentDetails,
-          title: 'Student'
-        },
-      });
-    }
-   })
+    this._DashboardService.onGetStudentById(id).subscribe({
+      next: (res) => {
+        this.studentDetails = res
+      }, error: (err) => {
+        console.log(err);
+      }, complete: () => {
+        this.dialog.open(ViewItemComponent, {
+          data: {
+            data: this.studentDetails,
+            title: 'Student'
+          },
+        });
+      }
+    })
   }
   getQuizById(id: string): void {
     this._QuizesService.onGetQuizById(id).subscribe({
       next: (res) => {
         this.quizDetails = res
         this.quizDetails = res;
-      },error:(err)=> {
+      }, error: (err) => {
         console.log(err);
-      }, complete: ()=> {
+      }, complete: () => {
         this.dialog.open(ViewItemComponent, {
-          data : {
+          data: {
             data: this.quizDetails,
             title: 'Quiz'
           },

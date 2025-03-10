@@ -17,7 +17,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { MatTableModule } from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
 import { MatSortModule } from '@angular/material/sort';
@@ -30,6 +29,8 @@ import {
 } from '@danielmoncada/angular-datetime-picker';
 import { NoDataComponent } from './components/no-data/no-data.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 
 @NgModule({
@@ -40,13 +41,12 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     ViewEditDialogComponent,
     HomeComponent,
     NotFoundComponent,
-    BreadcrumbComponent,
     NotFoundComponent,
     TableComponent,
     TruncatePipe,
-    BreadcrumbComponent,
     UpdateProfileComponent,
     NoDataComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
@@ -69,7 +69,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatSortModule,
     FormsModule,
     MatPaginatorModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    BreadcrumbModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -81,11 +82,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatDialogModule,
     MatSelectModule,
     MatListModule,
-    BreadcrumbComponent,
     MatListModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    BreadcrumbComponent,
     MatTableModule,
     TableComponent,
     FormsModule,
@@ -93,7 +92,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     TableComponent,
     MatIconModule,
     NoDataComponent,
-    MatProgressBarModule
+    MatProgressBarModule,
+    BreadcrumbModule,
+    BreadcrumbComponent
   ],
   providers: [DatePipe, TruncatePipe],
 })
