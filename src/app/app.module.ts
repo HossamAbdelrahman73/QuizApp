@@ -1,7 +1,6 @@
 import { GlobalInterceptor } from './core/interceptors/global/global.interceptor';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -10,19 +9,11 @@ import {
   HTTP_INTERCEPTORS,
   HttpClientModule,
   provideHttpClient,
-  withFetch,
   withInterceptors,
 } from '@angular/common/http';
-import { NgxPaginationModule } from 'ngx-pagination';
-
 import { NgxSpinnerModule } from 'ngx-spinner';
-
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { loadingInterceptor } from './core/interceptors/loader/loading.interceptor';
-import {
-  OwlDateTimeModule,
-  OwlNativeDateTimeModule,
-} from '@danielmoncada/angular-datetime-picker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +21,6 @@ import {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    // NgxSpinnerModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule.forRoot({ type: 'timer' }),
     HttpClientModule,
@@ -44,6 +34,7 @@ import {
     },
 
     provideAnimationsAsync(),
+    
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

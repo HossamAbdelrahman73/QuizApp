@@ -8,6 +8,7 @@ import { StudentsService } from '../students/services/students.service';
 import { IStudent } from '../students/interfaces/istudent';
 import { DeleteDialogComponent } from '../../../../../../shared/components/delete-dialog/delete-dialog.component';
 import { pipe, take } from 'rxjs';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-groups',

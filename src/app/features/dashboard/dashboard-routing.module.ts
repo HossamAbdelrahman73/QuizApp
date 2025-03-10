@@ -10,11 +10,12 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: 'instructor', canActivate:[instructorGuard],
+        path: 'instructor', canActivate: [instructorGuard],
         loadChildren: () =>
           import('./modules/instructor/instructor.module').then(
             (m) => m.InstructorModule
           ),
+        data: { breadcrumb: "Dashboard" }
       },
       {
         path: 'student', canActivate: [studentGuard],
@@ -22,6 +23,7 @@ const routes: Routes = [
           import('./modules/student/student.module').then(
             (m) => m.StudentModule
           ),
+        data: { breadcrumb: "Dashboard" }
       },
     ],
   },
@@ -31,4 +33,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DashboardRoutingModule {}
+export class DashboardRoutingModule { }

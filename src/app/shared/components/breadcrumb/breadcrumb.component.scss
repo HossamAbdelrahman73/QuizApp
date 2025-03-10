@@ -1,55 +1,41 @@
 @import "../../../../assets/styles/abstracts/variables";
 .breadcrumb {
-  background-color: transparent;
+  list-style: none;
   padding: 0;
   margin: 0;
-  list-style: none;
-}
-.breadcrumb-item a {
-  text-decoration: none;
-  color: #007bff;
-}
-.breadcrumb-item a:hover {
-  text-decoration: underline;
-}
-.breadcrumb-item.active {
-  color: #6c757d;
-nav{
-  .breadcrumb-item::before{
-    color: $color-green;
-    font-weight: bold;
-  }
-}
-.headerBtn {
-    border-radius: 30px;
-    border-color: rgba(0, 0, 0, 0.2);
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    color: rgba(0, 0, 0, 1);
-  }
-  i {
-    font-size: 1.2rem;
-  }
-  .headerBtn:hover {
-    background-color: rgba(0, 0, 0, 1);
-    color: #fff;
-  }
+  display: flex;
 
-  .not-active-crumb {
+  .breadcrumb-item {
+    font-size: 14px;
+    &::before {
+      content: "";
+    }
+    &::after {
+      content: " >> ";
+      padding: 0 5px;
+      color: gray;
+      font-weight: 800;
+    }
+
+    &:last-child::after {
+      content: "";
+    }
+
     a {
-      color:  #333333;
-      font-size: 1rem;
-      font-weight: 500;
       text-decoration: none;
-    }
-  }
+      color: $color-background-section;
+      transition: color 0.3s ease-in-out;
 
-  .active-crumb {
-    a{
-      font-size: 1rem;
-      color: #0D1321;
-      font-weight: 600;
+      &:hover {
+        color: $color-background-section;
+      }
     }
 
+    &.active {
+      font-weight: bold;
+      color: $color-background-section;
+      pointer-events: none;
+    }
   }
 }
+

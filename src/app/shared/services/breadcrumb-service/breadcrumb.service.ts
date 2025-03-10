@@ -1,38 +1,49 @@
 import { Injectable } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { Observable, filter, map } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class BreadcrumbService {
+  private breadcrumbs$ = new BehaviorSubject<{ label: string; url: string }[]>([]);
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
-  getBreadcrumbs(): Observable<Array<{ label: string; url: string }>> {
-    return this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-      map(() => {
-        let breadcrumbs: Array<{ label: string; url: string }> = [];
-        let currentRoute = this.route.root;
-        let url = '';
-
-        while (currentRoute.children.length > 0) {
-          const childRoute = currentRoute.children[0];
-          const routeSnapshot = childRoute.snapshot;
-
-          if (routeSnapshot.data['breadcrumb']) {
-            url += `/${routeSnapshot.url.map((segment) => segment.path).join('/')}`;
-            breadcrumbs.push({
-              label: routeSnapshot.data['breadcrumb'],
-              url,
-            });
-          }
-
-          currentRoute = childRoute;
-        }
-
-        return breadcrumbs;
-      })
-    );
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.breadcrumbs$.next(this.buildBreadcrumbs(this.activatedRoute.root));
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.breadcrumbs$.next(this.buildBreadcrumbs(this.activatedRoute.root));
+      });
   }
+
+  getBreadcrumbs() {
+    return this.breadcrumbs$.asObservable();
+  }
+
+private buildBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: any[] = []): any[] {
+  const children: ActivatedRoute[] = route.children;
+
+  if (children.length === 0) {
+    return breadcrumbs;
+  }
+
+  for (const child of children) {
+    const routeURL: string = child.snapshot.url.map(segment => segment.path).join('/');
+    if (routeURL !== '') {
+      url += `/${routeURL}`;
+    }
+
+    const label = child.snapshot.data['breadcrumb'];
+
+    // Prevent duplicate breadcrumbs
+    if (label && (!breadcrumbs.length || breadcrumbs[breadcrumbs.length - 1].label !== label)) {
+      breadcrumbs.push({ label, url });
+    }
+
+    return this.buildBreadcrumbs(child, url, breadcrumbs);
+  }
+
+  return breadcrumbs;
+}
+
 }
