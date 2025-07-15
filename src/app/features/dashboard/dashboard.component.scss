@@ -1,7 +1,40 @@
-.side-bar,
-.home {
-  transition: 0.5s;
+.dashboard-row {
+  display: flex;
+  height: 100%;
 }
+.container-side-bar {
+  transition: width 0.5s;
+  width: 65px;
+  flex-shrink: 0;
+}
+.sidebar-container-large {
+  width: 218px !important;
+}
+.sidebar-container-small {
+  width: 65px !important;
+}
+.dashboard-main-content {
+  transition: width 0.5s;
+  width: calc(100% - 65px);
+}
+.main-content-large {
+  width: calc(100% - 218px) !important;
+}
+.main-content-small {
+  width: calc(100% - 65px) !important;
+}
+// ...existing code...
+.container-side-bar {
+  transition: width 0.5s;
+  width: 65px;
+}
+.sidebar-container-large {
+  width: 218px !important;
+}
+.sidebar-container-small {
+  width: 65px !important;
+}
+// ...existing code...
 .clock-container {
   width: fit-content;
   position: relative;
