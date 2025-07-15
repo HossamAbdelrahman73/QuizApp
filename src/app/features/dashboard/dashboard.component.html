@@ -1,12 +1,12 @@
 <section>
   <div class="container-fluid h-100 position-relative">
-    <div class="row h-100">
-      <div class="p-0" [ngClass]="valueSideBarChanged() ? 'col-2' : 'col-1'">
-        <div class="container-side-bar w-100">
-          <app-sidebar></app-sidebar>
-        </div>
+    <div class="dashboard-row h-100">
+      <div class="container-side-bar"
+           [ngClass]="valueSideBarChanged() ? 'sidebar-container-large' : 'sidebar-container-small'">
+        <app-sidebar></app-sidebar>
       </div>
-      <div class="px-0" [ngClass]="valueSideBarChanged() ? 'col-10' : 'col-11'">
+      <div class="dashboard-main-content"
+           [ngClass]="valueSideBarChanged() ? 'main-content-large' : 'main-content-small'">
         <app-navbar></app-navbar>
         <router-outlet></router-outlet>
       </div>
